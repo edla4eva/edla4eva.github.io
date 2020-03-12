@@ -8,4 +8,4 @@ Topics covered include:
 * setting up project in github
 * developing a simple home page/landing page using HTML
 * adding style to the page using CSS
-* adding basic form submition capability using JavaScript
+* adding basic form submission capability using JavaScript
