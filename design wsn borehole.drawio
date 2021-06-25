@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-06-25T21:32:49.818Z" agent="5.0 (Windows)" etag="5QyuPSHJ3TMGuljtvhzd" version="13.6.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-06-25T21:40:14.328Z" agent="5.0 (Windows)" etag="_S4ZvlMILuobKKomgJVr" version="13.6.6" type="github">
   <diagram id="TLkPJLO_rXAb08wiplHC" name="Page-1">
     <mxGraphModel dx="868" dy="479" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -88,7 +88,7 @@
         <mxCell id="y8CLTdTPDZlZgqFttJll-6" value="&lt;div&gt;Power Unit&lt;/div&gt;&lt;div&gt;9V LiFeO4 Battery&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Verdana;" vertex="1" parent="1">
           <mxGeometry x="177" y="406" width="130" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="y8CLTdTPDZlZgqFttJll-8" value="Water Level Sensor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Verdana;" vertex="1" parent="1">
+        <mxCell id="y8CLTdTPDZlZgqFttJll-8" value="Valve Control" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Verdana;" vertex="1" parent="1">
           <mxGeometry x="175" y="296" width="130" height="30" as="geometry" />
         </mxCell>
         <mxCell id="y8CLTdTPDZlZgqFttJll-9" value="" style="endArrow=classic;startArrow=classic;html=1;fontFamily=Verdana;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" source="y8CLTdTPDZlZgqFttJll-5" target="y8CLTdTPDZlZgqFttJll-4" parent="1">
