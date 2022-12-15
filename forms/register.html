@@ -107,6 +107,48 @@
                     <button type="submit" id="button">Submit Now</button>
                 </fieldset>
             </form>
+
+
+    <hr>
+    <p>Dynamic with jQuery</p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Dynamic  input fields</title>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="" method="post">
+                <div class="input_fields_wrap">
+
+                <button class="add_field_button">Add More Fields</button>
+                <input type="text" class="form-control mb-3" name="mytext[]" placeholder="Enter Price">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+    var max_fields      = 10; //maximum input boxes allowed
+    var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+    e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div class="input-group mb-3"><input placeholder="Enter Price" type="text" name="mytext[]" class="form-control"><div class="input-group-append"><button class="btn btn-outline-danger remove_field" type="button">Remove</button></div></div>'); //add input box
+        }
+    });
+
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').parent('div').remove(); x--;
+        })
+    });
+</script>
  </body>
 </html>
