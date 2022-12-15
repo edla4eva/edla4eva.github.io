@@ -59,101 +59,60 @@
         <button type="submit">Add</button>
     </form>
     <hr>
-    <form id="contact" action="" method="post">
-                <h1>Registration Form</h1>
-                <h3>Fill the form below and press the submit button!</h3>
-                <div class="row">
-                    <!-- first column -->
-                    <div class="column">                        
-                        <fieldset>
-                            <input type="text" placeholder="Full Name *" name="name" required autofocus>
-                        </fieldset>
-                        <fieldset>
-                            <input type="text" placeholder="Father name *" name="fname" required autofocus>
-                        </fieldset>
-                        <fieldset>
-                            <input type="email" placeholder="Your email *" name="email" required autofocus>
-                        </fieldset>
-                        <fieldset>
-                            <input type="text" placeholder="Date of birth *" name="date" onfocus="(this.type = 'date')" required autofocus>
-                        </fieldset>
-                        <!-- adding all country code list -->
-                        <fieldset>
-                            <input type="text" placeholder="Phone number *" name="phone" id="phone" required autofocus>
-                        </fieldset>
-                    </div>
-                    <!-- second column -->
-                    <div class="column">
-                        <fieldset>
-                            <p>What is your gender?</p>
-                            <div class="radio">
-                                <input type="radio" id="male" name="gender" required>
-                                <label for="male">Male</label>
-                            </div>
-                            <div class="radio">
-                                <input type="radio" id="female" name="gender" required>
-                                <label for="female">Female</label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <label for="idCard">Enter your ID Card in given formate.</label>
-                            <div class="idCard">
-                                <input type="text" name="idCard" pattern="[0-9]{5}" placeholder="#####" maxlength="5"> _
-                                <input type="text" name="idCard" pattern="[0-9]{7}" placeholder="#######" maxlength="7"> _ 
-                                <input type="text" name="idCard" pattern="[0-9]{1}" placeholder="#" maxlength="1">
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <p>Upload Passport Photo (Max size 12kb)</p>
-                            <input type="file" id="file" required>
-                        </fieldset>
-                    </div>
-                </div>
-                <!-- submit button -->
-                <fieldset>
-                    <button type="submit" id="button">Submit Now</button>
-                </fieldset>
-    </form>
+
 
 
     <hr>
-    <p>Dynamic with jQuery</p>
-    <title>Dynamic  input fields</title>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <form action="" method="post">
-                <div class="input_fields_wrap">
 
-                <button class="add_field_button">Add More Fields</button>
-                <input type="text" class="form-control mb-3" name="mytext[]" placeholder="Enter Price">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
 
     <div class="container">
         <h1>Register</h1>
-        <p>Please fill in this form to create an account.</p>
+        <p>Please fill in this form to register your courses</p>
         <hr>
-    
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" id="email" required>
-    
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-    
-        <label for="psw-repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-        <hr>
-    
-        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-        <button type="submit" class="registerbtn">Register</button>
-      </div>
-</div>
 
+        <p>Reg form submit as json</p>
+        <!-- HTML-->
+        <form id="contact-form" action="" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Name" required="" />
+            <label for="message">Message</label>
+            <textarea
+                id="message"
+                name="message"
+                placeholder="Message"
+                required=""
+            ></textarea>
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" id="email" required>
+        
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+        
+            <label for="psw-repeat"><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+            <hr>
+            <p>Dynamic with jQuery</p>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form action="" method="post">
+                        <div class="input_fields_wrap">
+        
+                        <button class="add_field_button">Add More Fields</button>
+                        <input type="text" class="form-control mb-3" name="mytext[]" placeholder="Enter Price">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+            <button type="submit" class="registerbtn">Register</button>
+        </form>
+    </div>
+</div>
+<hr>
     <script>
         $(document).ready(function() {
         var max_fields      = 10; //maximum input boxes allowed
@@ -175,21 +134,7 @@
         });
     </script>
 
-    <hr>
-    <p>Reg form submit as json</p>
-    <!-- HTML-->
-    <form id="contact-form">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Name" required="" />
-      <label for="message">Message</label>
-      <textarea
-        id="message"
-        name="message"
-        placeholder="Message"
-        required=""
-      ></textarea>
-      <button type="submit">Send</button>
-    </form>
+
 
     <!-- JavaScript -->
     <script>
