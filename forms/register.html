@@ -4,8 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration Form With Html & Css</title>
+  <title>Registration Form</title>
   <link rel="stylesheet" href="../css/registration.css">
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"
+></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -111,8 +118,6 @@
 
     <hr>
     <p>Dynamic with jQuery</p>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Dynamic  input fields</title>
     <div class="row">
         <div class="col-md-4"></div>
@@ -150,5 +155,41 @@
         })
     });
 </script>
+
+<hr>
+<p>Reg form submit as json</p>
+<body>
+    <!-- HTML-->
+    <form id="contact-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Name" required="" />
+      <label for="message">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        placeholder="Message"
+        required=""
+      ></textarea>
+      <button type="submit">Send</button>
+    </form>
+
+    <!-- JavaScript -->
+    <script>
+      function convertFormToJSON(form) {
+        const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
+        const json = {};
+        $.each(array, function () {
+          json[this.name] = this.value || "";
+        });
+        return json;
+      }
+
+      $("#contact-form").on("submit", function (e) {
+        e.preventDefault();
+        const form = $(e.target);
+        const json = convertFormToJSON(form);
+        console.log(json);
+      });
+    </script>
  </body>
 </html>
