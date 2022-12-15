@@ -17,110 +17,203 @@
 </head>
     <body>
 
-
-
         <div class="container">
-            <h1>Register</h1>
-            <p>Please fill in this form to register your courses</p>
-            <hr>
 
-            <p>Reg form submit as json</p>
-            <!-- HTML-->
-            <form id="contact-form" action="" method="post">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Name" required="" />
-                <label for="message">Message</label>
-                <textarea
-                    id="message"
-                    name="message"
-                    placeholder="Message"
-                    required=""
-                ></textarea>
+            <!-- Add/Remove -->
+            <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <!-- p-l-5 padding - left - size5 -->
+                    <div class="col-md-6 bg-primary p-l-1">
+                        <h1>Course Registration</h1>
+                         <h3>Fill the form below and press the submit button!</h3>
+                        <form id="contact-form" action="" method="post">
+                            <label for="name">MAT. NO.</label>
+                            <div class="input-group mb-3"><input type="text" id="matno" name="matno" placeholder="ENG..." required="" /><div class="input-group-append"><button class="btn btn-outline-success load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button></div></div>
 
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" id="email" required>
-            
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-            
-                <label for="psw-repeat"><b>Repeat Password</b></label>
-                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-                <hr>
-                <p>Dynamic with jQuery</p>
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <form action="" method="post">
-                            <div class="input_fields_wrap">
-            
-                            <button class="add_field_button">Add More Fields</button>
-                            <input type="text" class="form-control mb-3" name="mytext[]" placeholder="Enter Price">
+                            <br>
+                            <label for="student_firstname"><b>Firstname</b></label>
+                            <input type="text" placeholder="Firstname" name="student_firstname" id="student_firstname" required>
+                            <label for="student_othernames"><b>Othernames</b></label>
+                            <input type="text" placeholder="Othernames" name="student_othernames" id="student_othernames" required>
+                            <label for="student_surname"><b>SURNAME (in capital letters)</b></label>
+                            <input type="text" placeholder="SURNAME" name="student_surname" id="student_surname" required>
+                            <label for="student_dept_idr"><b>Department ID (e.g 1 for CPE, 2 for ...)</b></label>
+                            <input type="text" placeholder="1" name="student_dept_idr" id="student_dept_idr" required>
+                            <label for="email"><b>Department ID (e.g 1 for CPE, 2 for ...)</b></label>
+                            <input type="text" placeholder="1" name="dept_idr" id="dept_idr" required>
+                            <label for="email"><b>Status (e.g Successful, Probation)</b></label>
+                            <input type="text" placeholder="Successful" name="status" id="status" required>
+                            <label for="email"><b>Year of Entry (e.g 2019)</b></label>
+                            <input type="text" placeholder="year_of_entry" name="year_of_entry" id="year_of_entry" required>
+                            <label for="email"><b>Session of Entry (Session you gained admission eg 2019/2020)</b></label>
+                            <input type="text" placeholder="session_idr_of_entry" name="session_idr_of_entry" id="session_idr_of_entry" required>
+                            <label for="mode_of_entry"><b>Mode of Entry (UME or DE)</b></label>
+                            <input type="text" placeholder="mode_of_entry" name="mode_of_entry" id="mode_of_entry" required>
+                            <label for="session_idr"><b>Session (e.g 2020/2021)</b></label>
+                            <input type="text" placeholder="session_idr" name="session_idr" id="session_idr" required>
+                            <label for="Fees_Status"><b>Fees_Status</b></label>
+                            <input type="text" placeholder="Fees_Status" name="Fees_Status" id="Fees_Status" required>
+                            <label for="level"><b>level</b></label>
+                            <input type="text" placeholder="level" name="level" id="level" required>
+                                                                                    
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                        
+                            <label for="psw-repeat"><b>Repeat Password</b></label>
+                            <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+                            <hr>
+                            <label for="dob"><b>Date of birth *</b></label>
+                            <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required autofocus>
+                            <br>
+                            <label for="phone"><b>Phone number *</b></label>                        
+                            <input type="text" placeholder="Phone number *" name="phone" id="phone" required autofocus>
+                            <label for="email"><b>Email *</b></label>               
+                            <input type="email" placeholder="Your email *" name="email" required autofocus>                        
+                            <p>What is your gender?</p>
+                            <div class="radio">
+                                <input type="radio" id="male" name="gender" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" id="female" name="gender" required>
+                                <label for="female">Female</label>
+                            </div>
+
+                            <p>Upload Passport Photo (Max size 12kb)</p>
+                            <input type="file" id="file" required>
+                            <br><hr>
+                            <p>Add/Remove Courses</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="courses_1_div">
+                                        <label for="message">First Semester Courses</label>
+                                        <textarea class="course"
+                                            id="course"
+                                            name="course"
+                                            placeholder="Courses"
+                                            required=""
+                                            value="Value of TextArea CPE3333">
+                                            why
+                                        </textarea>
+                                        <!-- <input placeholder="Enter Course Code" type="text" name="course" id="course" class="form-control"> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="message">Second Semester Courses</label>
+                                    <textarea class="course_2"
+                                        id="course_2"
+                                        name="course_2"
+                                        placeholder="Courses"
+                                        required="">
+                                    </textarea>
+                                    <!-- <input class="course_2" id="course_2" name="course_2" value="Value of TextArea CPE3333" /> -->
+                                </div>
+
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <!-- <form action="" method="post"> -->
+                                <div class="input_fields_wrap">
+                                    <input type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList()" />
+                                    <hr />
+                                    <!-- <select id="comboCourses"></select> -->
+                                    <div class="input-group mb-3"><select id="comboCourses"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button" type="button">Add Course</button></div></div>
+                                    <br>
+                                    <p>Add course not listed above (todo: to list or to NApplicable)</p>
+                                    <div class="input-group mb-3"><div class="input-group-append"><button class="btn btn-outline-success add_field_button" type="button">Another Add Course</button></div></div>
+
+                                    <!-- <button class="update_field_button">Update</button> -->
+                                </div>
+                                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <!-- </form> -->
+                            <p>Review begore you click register</p>
+                            <button type="submit" class="registerbtn">Register</button>
                         </form>
                     </div>
-                    <div class="col-md-4"></div>
-                </div>
+                    <div class="col-md-3">
 
-                <h3>Fill the form below and press the submit button!</h3>
-                        <input type="text" placeholder="Full Name *" name="name" required autofocus>
-                        <input type="text" placeholder="Father name *" name="fname" required autofocus>
-                        <input type="email" placeholder="Your email *" name="email" required autofocus>
-                        <input type="text" placeholder="Date of birth *" name="date" onfocus="(this.type = 'date')" required autofocus>
-                        <input type="text" placeholder="Phone number *" name="phone" id="phone" required autofocus>
-                        <p>What is your gender?</p>
-                        <div class="radio">
-                            <input type="radio" id="male" name="gender" required>
-                            <label for="male">Male</label>
-                        </div>
+                    </div>
 
-                        <div class="radio">
-                            <input type="radio" id="female" name="gender" required>
-                            <label for="female">Female</label>
-                        </div>
-                        <label for="idCard">Enter your ID Card in given formate.</label>
-                        <div class="idCard">
-                            <input type="text" name="idCard" pattern="[0-9]{5}" placeholder="#####" maxlength="5"> _
-                            <input type="text" name="idCard" pattern="[0-9]{7}" placeholder="#######" maxlength="7"> _ 
-                            <input type="text" name="idCard" pattern="[0-9]{1}" placeholder="#" maxlength="1">
-                        </div>
-
-                        <p>Upload Passport Photo (Max size 12kb)</p>
-                        <input type="file" id="file" required>
-
-
-                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-                <button type="submit" class="registerbtn">Register</button>
-            </form>
-
-
+            </div>
         </div>
-
         <hr>
+        
+        <!-- JavaScript add new form and respond to select(combo) changes-->
         <script>
             $(document).ready(function() {
-            var max_fields      = 10; //maximum input boxes allowed
+            var max_fields      = 15; //maximum input boxes allowed
             var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+            var courses_1   	= $(".courses_1"); //Fields wrapper
             var add_button      = $(".add_field_button"); //Add button ID
-
+            // var update_button      = $(".update_field_button"); //Update button ID
             var x = 1; //initlal text box count
             $(add_button).click(function(e){ //on add input button click
             e.preventDefault();
                 if(x < max_fields){ //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<div class="input-group mb-3"><input placeholder="Enter Price" type="text" name="mytext[]" class="form-control"><div class="input-group-append"><button class="btn btn-outline-danger remove_field" type="button">Remove</button></div></div>'); //add input box
+                    var prevValue = $("#course").val();
+                    var dValue = $("#comboCourses").val();
+                    $(wrapper).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext[]" name="mytext[]" class="form-control" value="'+ dValue + '"><div class="input-group-append"><button class="btn btn-outline-danger remove_field" type="button">Remove</button></div></div>'); //add input box
+                    //$(wrapper).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext['+ x + ']" name="mytext['+ x + ']" class="form-control" value="'+ dValue + '"><div class="input-group-append"><button class="btn btn-outline-danger remove_field" type="button">Remove</button></div></div>'); //add input box
+                    if (prevValue==""){
+                        $("#course").val(  dValue ); //change value   
+                    }else{
+                        $("#course").val( prevValue + ";" + dValue ); //change value                        
+                    }
+
+
                 }
             });
 
+
             $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-                e.preventDefault(); $(this).parent('div').parent('div').remove(); x--;
+                e.preventDefault(); 
+                $(this).parent('div').parent('div').remove(); x--;
+                //figure out how to recompute
+                //for each course in mytext[] get val()+=value()
+                removeCourse(x);
                 })
             });
+
+            function removeCourse() {
+                var rows = document.getElementsByName('mytext[]');
+                var selectedRows = [];
+
+                $("#course").val("" ); //clear it
+                for (var i = 0, l = rows.length; i < l; i++) {
+                    if (!rows[i].value=="") {
+                        selectedRows.push(rows[i]);
+                    }
+                    //alert(rows[i].value);
+                    var prevValue = $("#course").val( );
+                    if (prevValue==""){
+                        $("#course").val(  rows[i].value );
+                    }else{
+                        $("#course").val( prevValue + ";" + rows[i].value  ); //change value                        
+                    }
+                    //document.getElementsByName("#course").value = rows[i].value;
+                }
+
+                alert(selectedRows.length);
+            }
+            function newFunction(x) {
+                for (i = 0; i < x; i++) {
+                    //var prevValue = "000";
+                    //var prevValue = $( "#mytext[" + i + "]" ).value();
+                    var prevValue = $( "#mytext[0]" ).val();
+                    //var prevValue = $( "#mytext[]" ).val();
+                    console.log('\n do something with item', prevValue);
+                }
+            }
+            //combo NOT catching event
+            $(function(){
+                $("#comboCourses").change(function(){
+
+                });
+            });
+
         </script>
 
-
-
-        <!-- JavaScript -->
+        <!-- JavaScript Send form data as json-->
         <script>
         function convertFormToJSON(form) {
             const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
@@ -156,8 +249,73 @@
 
             //end send
         });
+        
+        
+         //AJAX for C
+      $(document).ready( function() {
+        $.ajax({
+            type: 'POST',
+            url:  'https://www.rtps.keminsoft.site/public/index.php/api/store_reg',  //evaluates to ->svr/model.php?parent_idr<6'
+            data: {'parent_idr' : '0'},
+            dataType: 'json',
+            cache: false,
+            success: function(result) {
+               
+                console.log('Hey!' + JSON.stringify(result));
+                var dR;
+                dR= JSON.stringify(result);
+                dR.replace(/\s+/g,'');
+                alert("success");
+                // var Html = "<div id='myDivWM'>Copyright Obadan Family</div>";
+                // $("body").append(Html);
+                
+            },
+        });
+
+
+      
+
+    
+      });
+        
         </script>
 
+        <!-- Javascript function - fill combo -->
+        <script type="text/javascript">
+            function PopulateDropDownList() {
+                //Build an array containing Customer records.
+                var courses = [
+                    { course_code: "CPE211", course_title: "CPE211 Introduction to maths", course_title2: "United States" },
+                    { course_code: "CPE311", course_title: "CPE311", course_title2: "India" },
+                    { course_code: "CPE321", course_title: "CPE321", course_title2: "France" },
+                    { course_code: "CPE481", course_title: "CPE481 - Numerical Computation", course_title2: "Russia" }
+                ];
+     
+                var comboCourses = $("#comboCourses");
+                $(courses).each(function () {
+                    var option = $("<option />");
+     
+                    //Set course_title in Text part.
+                    option.html(this.course_title);
+     
+                    //Set  course_code in Value part.
+                    option.val(this.course_code);
+     
+                    //Add the Option element to DropDownList.
+                    comboCourses.append(option);
+                });
+
+
+
+                // let arrCourses = ["CPE111", "CPE222", "CPE333"];
+                // arrCourses.push("<tr><input type='text'></tr>");
+                // console.log('Array before push: ' + arrCourses);
+                // // append new value to the array
+                // colors.push("CPE444");
+                // arrCourses.push("<tr><input type='text'></tr>");
+                // console.log('Array after push : ' + arrCourses);
+            }
+        </script>
         <!-- <?php
         header('Content-Type: text/plain');
         $test = utf8_encode($_POST['test']); // Don't forget the encoding
@@ -165,5 +323,7 @@
         echo $data->test;
         exit();
         ?> -->
+
+
     </body>
 </html>
