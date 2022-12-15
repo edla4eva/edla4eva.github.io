@@ -61,9 +61,61 @@
                     </div>
                     <div class="col-md-4"></div>
                 </div>
+
+                <h3>Fill the form below and press the submit button!</h3>
+                <div class="row">
+                    <!-- first column -->
+                    <div class="column">                        
+                        <fieldset>
+                            <input type="text" placeholder="Full Name *" name="name" required autofocus>
+                        </fieldset>
+                        <fieldset>
+                            <input type="text" placeholder="Father name *" name="fname" required autofocus>
+                        </fieldset>
+                        <fieldset>
+                            <input type="email" placeholder="Your email *" name="email" required autofocus>
+                        </fieldset>
+                        <fieldset>
+                            <input type="text" placeholder="Date of birth *" name="date" onfocus="(this.type = 'date')" required autofocus>
+                        </fieldset>
+                        <!-- adding all country code list -->
+                        <fieldset>
+                            <input type="text" placeholder="Phone number *" name="phone" id="phone" required autofocus>
+                        </fieldset>
+                    </div>
+                    <!-- second column -->
+                    <div class="column">
+                        <fieldset>
+                            <p>What is your gender?</p>
+                            <div class="radio">
+                                <input type="radio" id="male" name="gender" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="radio">
+                                <input type="radio" id="female" name="gender" required>
+                                <label for="female">Female</label>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <label for="idCard">Enter your ID Card in given formate.</label>
+                            <div class="idCard">
+                                <input type="text" name="idCard" pattern="[0-9]{5}" placeholder="#####" maxlength="5"> _
+                                <input type="text" name="idCard" pattern="[0-9]{7}" placeholder="#######" maxlength="7"> _ 
+                                <input type="text" name="idCard" pattern="[0-9]{1}" placeholder="#" maxlength="1">
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <p>Upload Passport Photo (Max size 12kb)</p>
+                            <input type="file" id="file" required>
+                        </fieldset>
+                    </div>
+                </div>
+    
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
                 <button type="submit" class="registerbtn">Register</button>
             </form>
+
+
         </div>
 
         <hr>
