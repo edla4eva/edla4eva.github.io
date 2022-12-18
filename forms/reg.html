@@ -17,19 +17,20 @@
 </head>
     <body>
 
-        <div class="container">
+        <div class="container .bg-primary">
 
             <!-- Add/Remove -->
             <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                     </div>
                     <!-- p-l-5 padding - left - size5 -->
-                    <div class="col-md-6 bg-primary p-l-1">
-                        <h1>Course Registration</h1>
-                         <h3>Fill the form below and press the submit button!</h3>
-                        <form id="contact-form" action="" method="post">
+                    <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
+
+                        <form id="reg-form" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
+                            <h1>Course Registration</h1>
+                             <h3>Fill the form below and press the submit button!</h3>
                             <label for="name">MAT. NO.</label>
-                            <div class="input-group mb-3"><input type="text" id="matno" name="matno" placeholder="ENG..." required="" /><div class="input-group-append"><button class="btn btn-outline-success load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button></div></div>
+                            <div class="input-group mb-3"><input type="text" id="matno" name="matno" placeholder="ENG..." required="" /><div class="input-group-append"><button class="btn btn-outline-success load_data_button" id="load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button></div></div>
 
                             <br>
                             <label for="student_firstname"><b>Firstname</b></label>
@@ -83,52 +84,59 @@
                             <p>Upload Passport Photo (Max size 12kb)</p>
                             <input type="file" id="file" required>
                             <br><hr>
-                            <p>Add/Remove Courses</p>
+                            <h3>Add/Remove Courses</h3>
                             <div class="row">
+                                <div class="col-md-12">
+                                    <input class="btn btn-outline-info btn-lg btn-block" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList()" />
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="courses_1_div">
-                                        <label for="message">First Semester Courses</label>
-                                        <textarea class="course"
-                                            id="course"
-                                            name="course"
-                                            placeholder="Courses"
-                                            required=""
-                                            value="Value of TextArea CPE3333">
+                                        <h4>First Semester Courses</h4>
+                                        <textarea class="CourseCode_1"
+                                            id="CourseCode_1"
+                                            name="CourseCode_1"
+                                            placeholder="First Semester Courses"
+                                            value="">
                                         </textarea>
                                         <!-- <input placeholder="Enter Course Code" type="text" name="course" id="course" class="form-control"> -->
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="message">Second Semester Courses</label>
-                                    <textarea class="course_2"
-                                        id="course_2"
-                                        name="course_2"
-                                        placeholder="Courses"
-                                        required="">
+                                    <h4>Second Semester Courses</h4>
+                                    <textarea class="CourseCode_2"
+                                        id="CourseCode_2"
+                                        name="CourseCode_2"
+                                        placeholder="Second Semester Courses">
                                     </textarea>
                                     <!-- <input class="course_2" id="course_2" name="course_2" value="Value of TextArea CPE3333" /> -->
                                 </div>
 
                             </div>
                             <!-- <form action="" method="post"> -->
-                                <div class="input_fields_wrap">
-                                    <input class="btn btn-outline-secondary" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList()" />
+                                mytext_1<div class="row p-l-5">
+                                    <div class="input_fields_wrap_1 col-md-6">
+                                        <div class="input-group mb-3"><select id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
+                                    </div>
+                                    <div class="input_fields_wrap_2 col-md-6">
+                                        <div class="input-group mb-3"><select id="comboCourses_2"></select><div class="input-group-append_2"><button class="btn btn-outline-success add_field_button_2" type="button">Add</button></div></div>
+                                    </div>
+                                   
                                     <hr />
-                                    <!-- <select id="comboCourses"></select> -->
-                                    <div class="input-group mb-3"><select id="comboCourses"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button" type="button">Add Course</button></div></div>
                                     <br>
-                                    <p>Add course not listed above (todo: to list or to NApplicable)</p>
-                                    <div class="input-group mb-3"><div class="input-group-append"><button class="btn btn-outline-secondary add_field_button" type="button">Another Add Course</button></div></div>
-
-                                    <!-- <button class="update_field_button">Update</button> -->
+                                    <p>First and Second Semester (todo: to list or to NApplicable)</p>
                                 </div>
+
                                 <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                             <!-- </form> -->
                             <p>Review begore you click register</p>
                             <button type="submit" class="registerbtn">Register</button>
                         </form>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
 
                     </div>
 
@@ -139,61 +147,114 @@
         <!-- JavaScript add new form and respond to select(combo) changes-->
         <script>
             $(document).ready(function() {
-            var max_fields      = 15; //maximum input boxes allowed
-            var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
-            var courses_1   	= $(".courses_1"); //Fields wrapper
-            var add_button      = $(".add_field_button"); //Add button ID
-            // var update_button      = $(".update_field_button"); //Update button ID
-            var x = 1; //initlal text box count
-            $(add_button).click(function(e){ //on add input button click
-            e.preventDefault();
-                if(x < max_fields){ //max input box allowed
-                    x++; //text box increment
-                    var prevValue = $("#course").val();
-                    var dValue = $("#comboCourses").val();
-                    $(wrapper).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext[]" name="mytext[]" class="form-control" value="'+ dValue + '"><div class="input-group-append"><button class="btn btn-outline-danger remove_field" type="button">Remove</button></div></div>'); //add input box
-                    //$(wrapper).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext['+ x + ']" name="mytext['+ x + ']" class="form-control" value="'+ dValue + '"><div class="input-group-append"><button class="btn btn-outline-danger remove_field" type="button">Remove</button></div></div>'); //add input box
-                    if (prevValue==""){
-                        $("#course").val(  dValue ); //change value   
-                    }else{
-                        $("#course").val( prevValue + ";" + dValue ); //change value                        
+                var max_fields      = 15; //maximum input boxes allowed
+                var wrapper_1   		= $(".input_fields_wrap_1"); //Fields wrapper
+                var wrapper_2   		= $(".input_fields_wrap_2"); //Fields wrapper
+                var add_button_1      = $(".add_field_button_1"); //Add button ID
+                var add_button_2      = $(".add_field_button_2"); //Add button ID
+                // var update_button      = $(".update_field_button"); //Update button ID
+                var x_1 = 1; //initlal text box count
+                var x_2 = 1; //initlal text box count
+                $(add_button_1).click(function(e){ //on add input button click
+                e.preventDefault();
+                    if(x_1 < max_fields){ //max input box allowed
+                        x_1++; //text box increment
+                        var prevValue_1 = $("#CourseCode_1").val();
+                        var dValue_1 = $("#comboCourses_1").val();
+                        $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
+                        if (prevValue_1==""){
+                            $("#CourseCode_1").val(  dValue_1 ); //change value   
+                        }else{
+                            $("#CourseCode_1").val( prevValue_1 + ";" + dValue_1 ); //change value                        
+                        }
+                    }
+                });
+
+                $(add_button_2).click(function(e){ //on add input button click
+                e.preventDefault();
+                    if(x_2 < max_fields){ //max input box allowed
+                        x_2++; //text box increment
+                        var prevValue_2 = $("#CourseCode_2").val();
+                        var dValue_2 = $("#comboCourses_2").val();
+                        $(wrapper_2).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
+                        if (prevValue_2==""){
+                            $("#CourseCode_2").val(  dValue_2 ); //change value   
+                        }else{
+                            $("#CourseCode_2").val( prevValue_2 + ";" + dValue_2 ); //change value                        
+                        }
+                    }
+                });
+
+
+                $(wrapper_1).on("click",".remove_field_1", function(e){ //user click on remove text
+                    e.preventDefault(); 
+                    $(this).parent('div').parent('div').remove(); x_1--;
+                    removeCourse_1(x_1);
+                    });
+
+                
+                $(wrapper_2).on("click",".remove_field_2", function(e){ //user click on remove text
+                    e.preventDefault(); 
+                    $(this).parent('div').parent('div').remove(); x_2--;
+                    removeCourse_1(x_2);
+                    });
+
+
+                //combo event
+                $(function(){
+                    $("#comboCourses").change(function(){
+                        alert ("Course selected: " + $("#comboCourses").val() )
+
+                    });
+                });
+            });
+
+            function removeCourse_1() {
+                if (confirm ("Are you sure you want to remove?")==true)
+                {
+                    var rows_1 = document.getElementsByName('mytext_1[]');
+                    var selectedRows = [];
+
+                    $("#CourseCode_1").val("" ); //clear it
+                    for (var i = 0, l = rows_1.length; i < l; i++) {
                     }
 
+                    if (!rows_1[i].value=="") {
+                        selectedRows.push(rows_1[i]);
+                    }
 
+                    var prevValue_1 = $("#CourseCode_1").val( );
+                    if (prevValue_1==""){
+                        $("#CourseCode_1").val(  rows_1[i].value );
+                    }else{
+                        $("#CourseCode_1").val( prevValue_1 + ";" + rows_1[i].value  ); //change value                        
+                    }
                 }
-            });
+            }
+            
+            function removeCourse_2() {
+                if (confirm ("Are you sure you want to remove?")==true)
+                {
+                    var rows = document.getElementsByName('mytext_2[]');
+                    var selectedRows = [];
 
+                    $("#CourseCode_2").val("" ); //clear it
+                    for (var i = 0, l = rows.length; i < l; i++) {
+                    }
 
-            $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-                e.preventDefault(); 
-                $(this).parent('div').parent('div').remove(); x--;
-                //figure out how to recompute
-                //for each course in mytext[] get val()+=value()
-                removeCourse(x);
-                })
-            });
-
-            function removeCourse() {
-                var rows = document.getElementsByName('mytext[]');
-                var selectedRows = [];
-
-                $("#course").val("" ); //clear it
-                for (var i = 0, l = rows.length; i < l; i++) {
                     if (!rows[i].value=="") {
                         selectedRows.push(rows[i]);
                     }
-                    //alert(rows[i].value);
-                    var prevValue = $("#course").val( );
-                    if (prevValue==""){
-                        $("#course").val(  rows[i].value );
-                    }else{
-                        $("#course").val( prevValue + ";" + rows[i].value  ); //change value                        
-                    }
-                    //document.getElementsByName("#course").value = rows[i].value;
-                }
 
-                alert(selectedRows.length);
+                    var prevValue_2 = $("#CourseCode_2").val( );
+                    if (prevValue_2==""){
+                        $("#CourseCode_2").val(  rows[i].value );
+                    }else{
+                        $("#CourseCode_2").val( prevValue_2 + ";" + rows[i].value  ); //change value                        
+                    }
+                }
             }
+                 
             function newFunction(x) {
                 for (i = 0; i < x; i++) {
                     //var prevValue = "000";
@@ -203,95 +264,25 @@
                     console.log('\n do something with item', prevValue);
                 }
             }
-            //combo NOT catching event
-            $(function(){
-                $("#comboCourses").change(function(){
-
-                });
-            });
-
-        </script>
-
-        <!-- JavaScript Send form data as json-->
-        <script>
-        function convertFormToJSON(form) {
-            const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
-            const json = {};
-            $.each(array, function () {
-            json[this.name] = this.value || "";
-            });
-            return json;
-        }
-
-        $("#contact-form").on("submit", function (e) {
-            e.preventDefault();
-            const form = $(e.target);
-            const json = convertFormToJSON(form);
-            console.log(json);
-            //send to backend
-            var data = {
-            test: $( "#test" ).val()
-            };
-            var options = {
-            url: "test.php",
-            dataType: "text",
-            type: "POST",
-            data: { test: JSON.stringify( data ) }, // Our valid JSON string
-            success: function( data, status, xhr ) {
-                //...
-            },
-            error: function( xhr, status, error ) {
-                //...
-            }
-            };
-            $.ajax( options );
-
-            //end send
-        });
-        
-        
-         //AJAX for C
-      $(document).ready( function() {
-        $.ajax({
-            type: 'POST',
-            url:  'https://www.rtps.keminsoft.site/public/index.php/api/store_reg',  //evaluates to ->svr/model.php?parent_idr<6'
-            data: {'parent_idr' : '0'},
-            dataType: 'json',
-            cache: false,
-            success: function(result) {
-               
-                console.log('Hey!' + JSON.stringify(result));
-                var dR;
-                dR= JSON.stringify(result);
-                dR.replace(/\s+/g,'');
-                alert("success");
-                // var Html = "<div id='myDivWM'>Copyright Obadan Family</div>";
-                // $("body").append(Html);
-                
-            },
-        });
-
-
-      
-
-    
-      });
-        
-        </script>
-
-        <!-- Javascript function - fill combo -->
-        <script type="text/javascript">
             function PopulateDropDownList() {
+
                 //Build an array containing Customer records.
-                var courses = [
+                var courses_1 = [
                     { course_code: "CPE211", course_title: "CPE211 Introduction to maths", course_title2: "United States" },
                     { course_code: "CPE311", course_title: "CPE311", course_title2: "India" },
                     { course_code: "CPE321", course_title: "CPE321", course_title2: "France" },
                     { course_code: "CPE481", course_title: "CPE481 - Numerical Computation", course_title2: "Russia" }
                 ];
+                var courses_2 = [
+                    { course_code: "CPE212", course_title: "CPE212 Introduction to maths", course_title2: "United States" },
+                    { course_code: "CPE313", course_title: "CPE313", course_title2: "India" },
+                    { course_code: "CPE82", course_title: "CPE82", course_title2: "France" },
+                    { course_code: "CPE572", course_title: "CPE572 - Numerical Computation", course_title2: "Russia" }
+                ];
      
-                var comboCourses = $("#comboCourses");
-                $(courses).each(function () {
+                var comboCourses_1 = $("#comboCourses_1");
+                var comboCourses_2 = $("#comboCourses_2");
+                $(courses_1).each(function () {
                     var option = $("<option />");
      
                     //Set course_title in Text part.
@@ -301,27 +292,173 @@
                     option.val(this.course_code);
      
                     //Add the Option element to DropDownList.
-                    comboCourses.append(option);
+                    comboCourses_1.append(option);
+                });
+                $(courses_2).each(function () {
+                    var option = $("<option />");
+     
+                    //Set course_title in Text part.
+                    option.html(this.course_title);
+     
+                    //Set  course_code in Value part.
+                    option.val(this.course_code);
+     
+                    //Add the Option element to DropDownList.
+                    comboCourses_2.append(option);
+                });
+            }
+
+        </script>
+        <script>     
+            //ajax for posting form data
+            $(document).ready(function () {
+                $("#reg-form").submit(function (event) {
+                    var formData = {
+                    matno: $("#matno").val(),
+                    student_firstname: $("#student_firstname").val(),
+                    student_surname: $("#student_surname").val(),
+                    student_othernames: $("#student_othernames").val(),
+                    student_dept_idr: $("#student_dept_idr").val(),
+                    status: $("#status").val(),
+                    year_of_entry: $("#year_of_entry").val(),
+                    student_firstname: $("#student_firstname").val(),
+                    mode_of_entry: $("#mode_of_entry").val(),
+                    dob: $("#dob").val(),
+                    phone: $("#phone").val(),
+                    email: $("#email").val(),
+                    gender: $("#gender").val(),
+                    session_idr: $("#session_idr").val(),
+                    CourseCode_1: $("#CourseCode_1").val(),
+                    CourseCode_2: $("#CourseCode_1").val(),
+                    NA_CourseCode: $("#NA_CourseCode").val(),
+                    Fees_Status: $("#Fees_Status").val(),
+                    level: $("#level").val(),
+                    dept_idr: $("#dept_idr").val()
+                    };
+
+                    $.ajax({
+                    type: "POST",
+                    url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
+                    data: formData,
+                    dataType: "json",
+                    encode: true,
+                    }).done(function (data) {
+                    console.log(data);
+                    });
+
+                    event.preventDefault();
+                });
+
+                
+                $(load_data_button).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    // grab the ID and send AJAX request if not (empty / only whitespace)
+                    var MatNo = $("#matno").val();
+                    if (/\S/.test(MatNo)) {
+
+                    // using the ajax() method directly
+                    $.ajax({
+                        type : "GET",
+                        url : "https://www.rtps.keminsoft.site/public/index.php/api/get_reg/" + MatNo,
+                        cache : false,
+                        dataType : "json",
+                        data : "{matno: 1}",
+                        success : process_response,
+                        error: function(xhr) { alert("AJAX request failed: " + xhr.status); }
+                    });
+
+                        // there is a shortcut method to GET JSON:
+                        // $.getJSON(url, data, process_response);
+                    }
+                    else {
+                        alert("No MATNO supplied");
+                    }
+
                 });
 
 
+            });
+            /**
+            * process the response, populating the form fields from the JSON data
+            * @param {Object} response the JSON data parsed into an object
+            */
+            function process_response(response) {
+                var frm = $("#reg-form");
+                var i;
 
-                // let arrCourses = ["CPE111", "CPE222", "CPE333"];
-                // arrCourses.push("<tr><input type='text'></tr>");
-                // console.log('Array before push: ' + arrCourses);
-                // // append new value to the array
-                // colors.push("CPE444");
-                // arrCourses.push("<tr><input type='text'></tr>");
-                // console.log('Array after push : ' + arrCourses);
+                console.dir(response);      // for debug
+
+                for (i in response) {
+                    frm.find('[name="' + i + '"]').val(response[i]);
+                }
             }
+
+
         </script>
-        <!-- <?php
-        header('Content-Type: text/plain');
-        $test = utf8_encode($_POST['test']); // Don't forget the encoding
-        $data = json_decode($test);
-        echo $data->test;
-        exit();
-        ?> -->
+        <!-- Extra JavaScript Send form data as json-->
+        <script>
+            // function convertFormToJSON(form) {
+            //     const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
+            //     const json = {};
+            //     $.each(array, function () {
+            //     json[this.name] = this.value || "";
+            //     });
+            //     return json;
+            // }
+
+            // AJAX for posting json
+            // $("#reg-form").on("submit", function (e) {
+            //     e.preventDefault();
+            //     const form = $(e.target);
+            //     const json = convertFormToJSON(form);
+            //     console.log(json);
+            //     //send to backend
+            //     var data = {
+            //     test: $( "#test" ).val()
+            //     };
+            //     var options = {
+            //     url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
+            //     dataType: "text",
+            //     type: "POST",
+            //     data: { test: JSON.stringify( data ) }, // Our valid JSON string
+            //     success: function( data, status, xhr ) {
+            //         //...
+            //     },
+            //     error: function( xhr, status, error ) {
+            //         //...
+            //     }
+            //     };
+            //     $.ajax( options );
+
+            //     //end send
+            // });
+            
+            //Object { matno: "ENG12088909", student_firstname: "dfh", student_othernames: "h", student_surname: "fgh", student_dept_idr: "1", dept_idr: "1", status: "Succ", year_of_entry: "44", session_idr_of_entry: "323", mode_of_entry: "ume", … }
+
+
+            //AJAX for posting json
+            //   $(document).ready( function() {
+            //     $.ajax({
+            //         type: 'POST',
+            //         url:  'https://www.rtps.keminsoft.site/public/index.php/api/store_reg',  //evaluates to ->svr/model.php?parent_idr<6'
+            //         data: {'parent_idr' : '0'},
+            //         dataType: 'json',
+            //         cache: false,
+            //         success: function(result) {
+                    
+            //             console.log('Hey!' + JSON.stringify(result));
+            //             var dR;
+            //             dR= JSON.stringify(result);
+            //             dR.replace(/\s+/g,'');
+            //             alert("success");
+            //             // var Html = "<div id='myDivWM'>Copyright Obadan Family</div>";
+            //             // $("body").append(Html);
+                        
+            //         },
+            //     });
+            //   });
+        </script>
+
 
 
     </body>
