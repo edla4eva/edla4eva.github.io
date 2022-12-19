@@ -382,6 +382,7 @@
                         }).done(function (data) {
                             courses_1=data;
                             courses_2=data;
+                            fillcomboWithReturnedData(data);
                             console.log(data);
                         });
                 //Build an array containing Customer records.
