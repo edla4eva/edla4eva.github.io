@@ -28,9 +28,39 @@
 
                         <form id="reg-form" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
                             <h1>Course Registration</h1>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="inputCity">City</label>
+                                  <input type="text" class="form-control" id="inputCity">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="inputState">State</label>
+                                  <select id="inputState" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                  <label for="inputZip">Zip</label>
+                                  <input type="text" class="form-control" id="inputZip">
+                                </div>
+                            </div>
                              <h3>Fill the form below and press the submit button!</h3>
-                            <label for="name">MAT. NO.</label>
-                            <div class="input-group mb-3"><input type="text" id="matno" name="matno" placeholder="ENG..." required="" /><div class="input-group-append"><button class="btn btn-outline-success load_data_button" id="load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button></div></div>
+                            
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">MAT. NO.</label>
+                                    <input type="text" id="matno" name="matno" placeholder="ENG..." required="" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <p></p>
+                                    <label for="load_data_button">Click to load your personal data</label>
+
+                                    <button class="btn btn-outline-success load_data_button" id="load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button>
+                                </div>
+                            </div>
+
+                            <!-- <div class="input-group mb-3"><input type="text" id="matno" name="matno" placeholder="ENG..." required="" /><div class="input-group-append"><button class="btn btn-outline-success load_data_button" id="load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button></div></div> -->
 
                             <br>
                             <label for="student_firstname"><b>Firstname</b></label>
@@ -39,11 +69,43 @@
                             <input type="text" placeholder="Othernames" name="student_othernames" id="student_othernames" required>
                             <label for="student_surname"><b>SURNAME (in capital letters)</b></label>
                             <input type="text" placeholder="SURNAME" name="student_surname" id="student_surname" required>
-                            <label for="student_dept_idr"><b>Department ID (e.g 1 for CPE, 2 for ...)</b></label>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="inputCity">Dept ID (eg 1 for CPE)</label>
+                                  <input type="text" class="form-control" id="student_dept_idr" name="student_dept_idr" value = "1" hidden>
+                                  <select id="dept_idr" name="dept_idr" class="form-control">
+                                    <option selected>1. Computer Engineering</option>
+                                    <option>2. Computing and Computer Technology</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="inputState">Session</label>
+                                  <select id="session_idr" name="session_idr" class="form-control">
+                                    <option selected>2020/2021</option>
+                                    <option>2021/2022</option>
+                                    <option>2022/2023</option>
+                                    <option>2023/2024</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="level">Level</label>
+                                  <select id="level" name="level" class="form-control">
+                                    <option selected>100</option>
+                                    <option>200</option>
+                                    <option>300</option>
+                                    <option>400</option>
+                                    <option>500</option>
+                                  </select>
+                                </div>
+                            </div>
+
+                            <!-- <label for="student_dept_idr"><b>Department ID (e.g 1 for CPE, 2 for ...)</b></label>
                             <input type="text" placeholder="1" name="student_dept_idr" id="student_dept_idr" required>
                             <label for="email"><b>Department ID (e.g 1 for CPE, 2 for ...)</b></label>
                             <input type="text" placeholder="1" name="dept_idr" id="dept_idr" required>
-                            <label for="email"><b>Status (e.g Successful, Probation)</b></label>
+                            <label for="status"><b>Status (e.g Successful, Probation)</b></label>
                             <input type="text" placeholder="Successful" name="status" id="status" required>
                             <label for="email"><b>Year of Entry (e.g 2019)</b></label>
                             <input type="text" placeholder="year_of_entry" name="year_of_entry" id="year_of_entry" required>
@@ -52,7 +114,34 @@
                             <label for="mode_of_entry"><b>Mode of Entry (UME or DE)</b></label>
                             <input type="text" placeholder="mode_of_entry" name="mode_of_entry" id="mode_of_entry" required>
                             <label for="session_idr"><b>Session (e.g 2020/2021)</b></label>
-                            <input type="text" placeholder="session_idr" name="session_idr" id="session_idr" required>
+                            <input type="text" placeholder="session_idr" name="session_idr" id="session_idr" required> -->
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                  <label for="year_of_entry">Year of Entry (e.g 2019)</label>
+                                  <select id="dept_idr" name="dept_idr" class="form-control">
+                                    <option selected>2019</option>
+                                    <option>2020</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="session_idr_of_entry">Session of Entry</label>
+                                  <select id="session_idr_of_entry" name="session_idr_of_entry" class="form-control">
+                                    <option selected>2020/2021</option>
+                                    <option>2021/2022</option>
+                                    <option>2022/2023</option>
+                                    <option>2023/2024</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="mode_of_entry">Mode of Entry (UME or DE)</label>
+                                  <select id="mode_of_entry" name="mode_of_entry" class="form-control">
+                                    <option selected>UME</option>
+                                    <option>DE</option>
+                                  </select>
+                                </div>
+                            </div>
+
                             <label for="Fees_Status"><b>Fees_Status</b></label>
                             <input type="text" placeholder="Fees_Status" name="Fees_Status" id="Fees_Status" required>
                             <label for="level"><b>level</b></label>
@@ -71,15 +160,34 @@
                             <input type="text" placeholder="Phone number *" name="phone" id="phone" required autofocus>
                             <label for="email"><b>Email *</b></label>               
                             <input type="email" placeholder="Your email *" name="email" required autofocus>                        
+                            
                             <p>What is your gender?</p>
-                            <div class="radio">
-                                <input type="radio" id="male" name="gender" required>
-                                <label for="male">Male</label>
-                            </div>
-                            <div class="radio">
-                                <input type="radio" id="female" name="gender" required>
-                                <label for="female">Female</label>
-                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="gender">Gender</label>
+                                  <!-- <input type="text" class="form-control" id="gender" name="student_dept_idr" value = "1" hidden> -->
+                                  <select id="gender" name="gender" class="form-control">
+                                    <option selected>male</option>
+                                    <option>female</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="Fees_Status">Fees</label>
+                                  <select id="Fees_Status" name="Fees_Status" class="form-control">
+                                    <option selected>paid</option>
+                                    <option>unpaid</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="status">Status</label>
+                                  <select id="status" name="status" class="form-control">
+                                    <option selected>Successful</option>
+                                    <option>Probation</option>
+                                    <option>Carry Over</option>
+                                    <option>Transfer</option>
+                                  </select>
+                                </div>
+                            </div>
 
                             <p>Upload Passport Photo (Max size 12kb)</p>
                             <input type="file" id="file" required>
@@ -96,28 +204,28 @@
                                 <div class="col-md-6">
                                     <div class="courses_1_div">
                                         <h4>First Semester Courses</h4>
-                                        <textarea class="CourseCode_1"
+                                        <!-- <textarea class="CourseCode_1"
                                             id="CourseCode_1"
                                             name="CourseCode_1"
                                             placeholder="First Semester Courses"
                                             value="">
-                                        </textarea>
-                                        <!-- <input placeholder="Enter Course Code" type="text" name="course" id="course" class="form-control"> -->
+                                        </textarea> -->
+                                        <input type="text" name="CourseCode_1" id="CourseCode_1" class="CourseCode_1" readonly />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <h4>Second Semester Courses</h4>
-                                    <textarea class="CourseCode_2"
+                                    <!-- <textarea class="CourseCode_2"
                                         id="CourseCode_2"
                                         name="CourseCode_2"
                                         placeholder="Second Semester Courses">
-                                    </textarea>
-                                    <!-- <input class="course_2" id="course_2" name="course_2" value="Value of TextArea CPE3333" /> -->
+                                    </textarea> -->
+                                    <input type="text"  class="CourseCode_2" id="CourseCode_2" name="CourseCode_2" value="" readonly />
                                 </div>
 
                             </div>
                             <!-- <form action="" method="post"> -->
-                                mytext_1<div class="row p-l-5">
+                                <div class="row p-l-5">
                                     <div class="input_fields_wrap_1 col-md-6">
                                         <div class="input-group mb-3"><select id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
                                     </div>
