@@ -398,34 +398,48 @@
                 //     { course_code: "CPE572", course_title: "CPE572 - Numerical Computation", course_title2: "Russia" }
                 // ];
      
-                var comboCourses_1 = $("#comboCourses_1");
-                var comboCourses_2 = $("#comboCourses_2");
+    //             var comboCourses_1 = $("#comboCourses_1");
+    //             var comboCourses_2 = $("#comboCourses_2");
+    //             $(courses_1).each(function () {
+    //                 var option = $("<option />");
+    //  
+    //                 //Set course_title in Text part.
+    //                 //option.html(this.course_title);
+    //  
+    //                 //Set  course_code in Value part.
+    //                 option.val(this.course_code);
+    //  
+    //                 //Add the Option element to DropDownList.
+    //                 comboCourses_1.append(option);
+    //             });
+    //             $(courses_2).each(function () {
+    //                 var option = $("<option />");
+    //  
+    //                 //Set course_title in Text part.
+    //                 option.html(this.course_title);
+    //  
+    //                 //Set  course_code in Value part.
+    //                 option.val(this.course_code);
+    //  
+    //                 //Add the Option element to DropDownList.
+    //                 comboCourses_2.append(option);
+    //             });
+            }
+
+            function fillcomboWithReturnedData(courses_1){
                 $(courses_1).each(function () {
                     var option = $("<option />");
      
                     //Set course_title in Text part.
-                    option.html(this.course_title);
+                    //option.html(this.course_title);
      
                     //Set  course_code in Value part.
-                    option.val(this.course_code);
+                    option.val(this.matno); //option.val(this.course_code);
      
                     //Add the Option element to DropDownList.
                     comboCourses_1.append(option);
                 });
-                $(courses_2).each(function () {
-                    var option = $("<option />");
-     
-                    //Set course_title in Text part.
-                    option.html(this.course_title);
-     
-                    //Set  course_code in Value part.
-                    option.val(this.course_code);
-     
-                    //Add the Option element to DropDownList.
-                    comboCourses_2.append(option);
-                });
             }
-
         </script>
         <script>     
             //ajax for posting form data
