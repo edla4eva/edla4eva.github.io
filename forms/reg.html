@@ -28,29 +28,12 @@
 
                         <form id="reg-form" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
                             <h1>Course Registration</h1>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                  <label for="inputCity">City</label>
-                                  <input type="text" class="form-control" id="inputCity">
-                                </div>
-                                <div class="form-group col-md-4">
-                                  <label for="inputState">State</label>
-                                  <select id="inputState" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                  </select>
-                                </div>
-                                <div class="form-group col-md-2">
-                                  <label for="inputZip">Zip</label>
-                                  <input type="text" class="form-control" id="inputZip">
-                                </div>
-                            </div>
                              <h3>Fill the form below and press the submit button!</h3>
                             
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">MAT. NO.</label>
-                                    <input type="text" id="matno" name="matno" placeholder="ENG..." required="" />
+                                    <input type="text" id="matno" name="matno" placeholder="ENG..." required autofocus />
                                 </div>
                                 <div class="form-group col-md-6">
                                     <p></p>
@@ -63,13 +46,19 @@
                             <!-- <div class="input-group mb-3"><input type="text" id="matno" name="matno" placeholder="ENG..." required="" /><div class="input-group-append"><button class="btn btn-outline-success load_data_button" id="load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button></div></div> -->
 
                             <br>
-                            <label for="student_firstname"><b>Firstname</b></label>
-                            <input type="text" placeholder="Firstname" name="student_firstname" id="student_firstname" required>
-                            <label for="student_othernames"><b>Othernames</b></label>
-                            <input type="text" placeholder="Othernames" name="student_othernames" id="student_othernames" required>
                             <label for="student_surname"><b>SURNAME (in capital letters)</b></label>
                             <input type="text" placeholder="SURNAME" name="student_surname" id="student_surname" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="dob"><b>Firstname *</b></label>
+                                    <input type="text" placeholder="Firstname *" name="student_firstname"  id="student_firstname"  required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="student_othernames"><b>Othernames</b></label>               
+                                    <input type="text" placeholder="Othernames" name="student_othernames" id="student_othernames">                           
+                                </div>
 
+                            </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -142,10 +131,10 @@
                                 </div>
                             </div>
 
-                            <label for="Fees_Status"><b>Fees_Status</b></label>
-                            <input type="text" placeholder="Fees_Status" name="Fees_Status" id="Fees_Status" required>
-                            <label for="level"><b>level</b></label>
-                            <input type="text" placeholder="level" name="level" id="level" required>
+                            <!-- <label for="Fees_Status"><b>Fees_Status</b></label> -->
+                            <!-- <input type="text" placeholder="Fees_Status" name="Fees_Status" id="Fees_Status" required> -->
+                            <!-- <label for="level"><b>level</b></label> -->
+                            <!-- <input type="text" placeholder="level" name="level" id="level" required> -->
                                                                                     
                             <label for="psw"><b>Password</b></label>
                             <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
@@ -153,15 +142,34 @@
                             <label for="psw-repeat"><b>Repeat Password</b></label>
                             <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
                             <hr>
-                            <label for="dob"><b>Date of birth *</b></label>
-                            <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required autofocus>
+                            <!-- <label for="dob"><b>Date of birth *</b></label>
+                            <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required >
                             <br>
                             <label for="phone"><b>Phone number *</b></label>                        
-                            <input type="text" placeholder="Phone number *" name="phone" id="phone" required autofocus>
+                            <input type="text" placeholder="Phone number *" name="phone" id="phone" required >
                             <label for="email"><b>Email *</b></label>               
-                            <input type="email" placeholder="Your email *" name="email" required autofocus>                        
-                            
-                            <p>What is your gender?</p>
+                            <input type="email" placeholder="Your email *" name="email" required >                        
+                             -->
+                             <p>Bio Data</p>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="dob"><b>Date of birth *</b></label>
+                                    <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="email"><b>Email *</b></label>               
+                                    <input type="email" placeholder="Your email *" name="email" required>                           
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="phone"><b>Phone number*</b></label>                        
+                                    <input type="phone" placeholder="Phone number *" name="phone" id="phone" required>
+                                </div>
+
+                            </div>
+
+
+
+
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                   <label for="gender">Gender</label>
@@ -264,7 +272,7 @@
                 var x_1 = 1; //initlal text box count
                 var x_2 = 1; //initlal text box count
                 $(add_button_1).click(function(e){ //on add input button click
-                e.preventDefault();
+                    e.preventDefault();
                     if(x_1 < max_fields){ //max input box allowed
                         x_1++; //text box increment
                         var prevValue_1 = $("#CourseCode_1").val();
@@ -363,30 +371,32 @@
                 }
             }
                  
-            function newFunction(x) {
-                for (i = 0; i < x; i++) {
-                    //var prevValue = "000";
-                    //var prevValue = $( "#mytext[" + i + "]" ).value();
-                    var prevValue = $( "#mytext[0]" ).val();
-                    //var prevValue = $( "#mytext[]" ).val();
-                    console.log('\n do something with item', prevValue);
-                }
-            }
             function PopulateDropDownList() {
-
+                    // using the ajax() method directly to get data for comco
+                    $.ajax({
+                        type: "POST",
+                        url: "https://www.rtps.keminsoft.site/public/index.php/api/regs",
+                        data: formData,
+                        dataType: "json",
+                        encode: true,
+                        }).done(function (data) {
+                            courses_1=data;
+                            courses_2=data;
+                            console.log(data);
+                        });
                 //Build an array containing Customer records.
-                var courses_1 = [
-                    { course_code: "CPE211", course_title: "CPE211 Introduction to maths", course_title2: "United States" },
-                    { course_code: "CPE311", course_title: "CPE311", course_title2: "India" },
-                    { course_code: "CPE321", course_title: "CPE321", course_title2: "France" },
-                    { course_code: "CPE481", course_title: "CPE481 - Numerical Computation", course_title2: "Russia" }
-                ];
-                var courses_2 = [
-                    { course_code: "CPE212", course_title: "CPE212 Introduction to maths", course_title2: "United States" },
-                    { course_code: "CPE313", course_title: "CPE313", course_title2: "India" },
-                    { course_code: "CPE82", course_title: "CPE82", course_title2: "France" },
-                    { course_code: "CPE572", course_title: "CPE572 - Numerical Computation", course_title2: "Russia" }
-                ];
+                // var courses_1 = [
+                //     { course_code: "CPE211", course_title: "CPE211 Introduction to maths", course_title2: "United States" },
+                //     { course_code: "CPE311", course_title: "CPE311", course_title2: "India" },
+                //     { course_code: "CPE321", course_title: "CPE321", course_title2: "France" },
+                //     { course_code: "CPE481", course_title: "CPE481 - Numerical Computation", course_title2: "Russia" }
+                // ];
+                // var courses_2 = [
+                //     { course_code: "CPE212", course_title: "CPE212 Introduction to maths", course_title2: "United States" },
+                //     { course_code: "CPE313", course_title: "CPE313", course_title2: "India" },
+                //     { course_code: "CPE82", course_title: "CPE82", course_title2: "France" },
+                //     { course_code: "CPE572", course_title: "CPE572 - Numerical Computation", course_title2: "Russia" }
+                // ];
      
                 var comboCourses_1 = $("#comboCourses_1");
                 var comboCourses_2 = $("#comboCourses_2");
