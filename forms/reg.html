@@ -372,59 +372,59 @@
             }
                  
             function PopulateDropDownList() {
-                    // using the ajax() method directly to get data for comco
-                    $.ajax({
-                        type: "POST",
-                        url: "https://www.rtps.keminsoft.site/public/index.php/api/regs",
-                        data: {},
-                        dataType: "json",
-                        encode: true,
-                        }).done(function (data) {
-                            courses_1=data;
-                            courses_2=data;
-                            fillcomboWithReturnedData(data);
-                            console.log(data);
-                        });
+                    // // using the ajax() method directly to get data for comco
+                    // $.ajax({
+                    //     type: "POST",
+                    //     url: "https://www.rtps.keminsoft.site/public/index.php/api/regs",
+                    //     data: {},
+                    //     dataType: "json",
+                    //     encode: true,
+                    //     }).done(function (data) {
+                    //         courses_1=data;
+                    //         courses_2=data;
+                    //         fillcomboWithReturnedData(data);
+                    //         console.log(data);
+                    //     });
                 //Build an array containing Customer records.
-                // var courses_1 = [
-                //     { course_code: "CPE211", course_title: "CPE211 Introduction to maths", course_title2: "United States" },
-                //     { course_code: "CPE311", course_title: "CPE311", course_title2: "India" },
-                //     { course_code: "CPE321", course_title: "CPE321", course_title2: "France" },
-                //     { course_code: "CPE481", course_title: "CPE481 - Numerical Computation", course_title2: "Russia" }
-                // ];
-                // var courses_2 = [
-                //     { course_code: "CPE212", course_title: "CPE212 Introduction to maths", course_title2: "United States" },
-                //     { course_code: "CPE313", course_title: "CPE313", course_title2: "India" },
-                //     { course_code: "CPE82", course_title: "CPE82", course_title2: "France" },
-                //     { course_code: "CPE572", course_title: "CPE572 - Numerical Computation", course_title2: "Russia" }
-                // ];
+                var courses_1 = [
+                    { course_code: "CPE211", course_title: "CPE211 Introduction to maths", course_title2: "United States" },
+                    { course_code: "CPE311", course_title: "CPE311", course_title2: "India" },
+                    { course_code: "CPE321", course_title: "CPE321", course_title2: "France" },
+                    { course_code: "CPE481", course_title: "CPE481 - Numerical Computation", course_title2: "Russia" }
+                ];
+                var courses_2 = [
+                    { course_code: "CPE212", course_title: "CPE212 Introduction to maths", course_title2: "United States" },
+                    { course_code: "CPE313", course_title: "CPE313", course_title2: "India" },
+                    { course_code: "CPE82", course_title: "CPE82", course_title2: "France" },
+                    { course_code: "CPE572", course_title: "CPE572 - Numerical Computation", course_title2: "Russia" }
+                ];
      
-    //             var comboCourses_1 = $("#comboCourses_1");
-    //             var comboCourses_2 = $("#comboCourses_2");
-    //             $(courses_1).each(function () {
-    //                 var option = $("<option />");
-    //  
-    //                 //Set course_title in Text part.
-    //                 //option.html(this.course_title);
-    //  
-    //                 //Set  course_code in Value part.
-    //                 option.val(this.course_code);
-    //  
-    //                 //Add the Option element to DropDownList.
-    //                 comboCourses_1.append(option);
-    //             });
-    //             $(courses_2).each(function () {
-    //                 var option = $("<option />");
-    //  
-    //                 //Set course_title in Text part.
-    //                 option.html(this.course_title);
-    //  
-    //                 //Set  course_code in Value part.
-    //                 option.val(this.course_code);
-    //  
-    //                 //Add the Option element to DropDownList.
-    //                 comboCourses_2.append(option);
-    //             });
+                var comboCourses_1 = $("#comboCourses_1");
+                var comboCourses_2 = $("#comboCourses_2");
+                $(courses_1).each(function () {
+                    var option = $("<option />");
+     
+                    //Set course_title in Text part.
+                    //option.html(this.course_title);
+     
+                    //Set  course_code in Value part.
+                    option.val(this.course_code);
+     
+                    //Add the Option element to DropDownList.
+                    comboCourses_1.append(option);
+                });
+                $(courses_2).each(function () {
+                    var option = $("<option />");
+     
+                    //Set course_title in Text part.
+                    option.html(this.course_title);
+     
+                    //Set  course_code in Value part.
+                    option.val(this.course_code);
+     
+                    //Add the Option element to DropDownList.
+                    comboCourses_2.append(option);
+                });
             }
 
             function fillcomboWithReturnedData(courses_1){
