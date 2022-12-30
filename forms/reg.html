@@ -535,7 +535,7 @@
                     encode: true,
                     }).done(function (data) {
                             //const myObj = JSON.parse(data);
-                            let text = "<table border='1'>"
+                            let text = '<table class="table" border="1">';
                             for (let x in data) {
                                 text += "<tr><td>MAT. NO.</td><td>" + data[x].matno + "</td></tr>";
                                 text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
@@ -548,8 +548,8 @@
                                 text += "</tr>";
 
                                 text += "<tr>";
-                                text += "<td>" + data[x].CourseCode_1 + "</td>";
-                                text += "<td>" + data[x].CourseCode_2 + "</td>";
+                                text += "<td class='text-wrap'>" + data[x].CourseCode_1 + "</td>";
+                                text += "<td class='text-wrap'>" + data[x].CourseCode_2 + "</td>";
                                 text += "</tr>";
                             }
                             text += "</table>"
