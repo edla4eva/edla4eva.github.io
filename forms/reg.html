@@ -610,7 +610,7 @@
                         cache : false,
                         dataType : "json",
                         data : "{matno: 1}",
-                        success : load_returnd_records_into_fields(data),
+                        success : load_returnd_records_into_fields,
                         error: function(xhr) { alert("AJAX request failed: " + xhr.status); }
                     });
 
