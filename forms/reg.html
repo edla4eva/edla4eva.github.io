@@ -39,7 +39,7 @@
                                     <p></p>
                                     <label for="load_data_button">Click to load your personal data</label>
 
-                                    <button class="btn btn-outline-success load_data_button" id="load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button>
+                                    <button class="btn btn-outline-success btn-block load_data_button" id="load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button>
                                 </div>
                             </div>
 
@@ -135,12 +135,20 @@
                             <!-- <input type="text" placeholder="Fees_Status" name="Fees_Status" id="Fees_Status" required> -->
                             <!-- <label for="level"><b>level</b></label> -->
                             <!-- <input type="text" placeholder="level" name="level" id="level" required> -->
-                                                                                    
-                            <label for="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-                        
-                            <label for="psw-repeat"><b>Repeat Password</b></label>
-                            <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="psw"><b>Password</b></label>
+                                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>       
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="psw-repeat"><b>Repeat Password</b></label>
+                                    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+                                </div>
+
+                            </div>                                    
+
+
                             <hr>
                             <!-- <label for="dob"><b>Date of birth *</b></label>
                             <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required >
@@ -151,22 +159,20 @@
                             <input type="email" placeholder="Your email *" name="email" required >                        
                              -->
                              <p>Bio Data</p>
+                             <label for="dob"><b>Date of birth *</b></label>
+                             <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required>
+
                             <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="dob"><b>Date of birth *</b></label>
-                                    <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required>
+                                <div class="form-group col-md-6">
+                                    <label for="email"><b>Email *</b></label>
+                                    <input type="text" placeholder="Email *" name="email"  id="email"  required>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="email"><b>Email *</b></label>               
-                                    <input type="email" placeholder="Your email *" name="email" required>                           
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="phone"><b>Phone number*</b></label>                        
-                                    <input type="phone" placeholder="Phone number *" name="phone" id="phone" required>
+                                <div class="form-group col-md-6">
+                                    <label for="phone"><b>Phone</b></label>               
+                                    <input type="text" placeholder="Phone" name="phone" id="phone">                           
                                 </div>
 
                             </div>
-
 
 
 
@@ -207,21 +213,25 @@
                                 </div>
                                
                             </div>
-                            <div class="row">
 
-                                <div class="col-md-6">
-                                    <div class="courses_1_div">
-                                        <h4>First Semester Courses</h4>
-                                        <!-- <textarea class="CourseCode_1"
-                                            id="CourseCode_1"
-                                            name="CourseCode_1"
-                                            placeholder="First Semester Courses"
-                                            value="">
-                                        </textarea> -->
-                                        <input type="text" name="CourseCode_1" id="CourseCode_1" class="CourseCode_1" readonly />
-                                    </div>
+                            
+
+
+
+                            <div class="row p-l-5">
+                                <div class="input_fields_wrap_1 col-md-6">
+                                    <h4>First Semester Courses</h4>
+                                    <!-- <textarea class="CourseCode_1"
+                                        id="CourseCode_1"
+                                        name="CourseCode_1"
+                                        placeholder="First Semester Courses"
+                                        value="">
+                                    </textarea> -->
+                                    <input type="text" name="CourseCode_1" id="CourseCode_1" class="CourseCode_1" readonly />
+
+                                    <div class="input-group mb-3"><select id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="input_fields_wrap_2 col-md-6">
                                     <h4>Second Semester Courses</h4>
                                     <!-- <textarea class="CourseCode_2"
                                         id="CourseCode_2"
@@ -229,25 +239,15 @@
                                         placeholder="Second Semester Courses">
                                     </textarea> -->
                                     <input type="text"  class="CourseCode_2" id="CourseCode_2" name="CourseCode_2" value="" readonly />
-                                </div>
 
+                                    <div class="input-group mb-3"><select id="comboCourses_2"></select><div class="input-group-append_2"><button class="btn btn-outline-success add_field_button_2" type="button">Add</button></div></div>
+                                </div>
+                                
+                                <hr />
+                                <br>
+                                <p>Todo: NApplicable</p>
                             </div>
-                            <!-- <form action="" method="post"> -->
-                                <div class="row p-l-5">
-                                    <div class="input_fields_wrap_1 col-md-6">
-                                        <div class="input-group mb-3"><select id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
-                                    </div>
-                                    <div class="input_fields_wrap_2 col-md-6">
-                                        <div class="input-group mb-3"><select id="comboCourses_2"></select><div class="input-group-append_2"><button class="btn btn-outline-success add_field_button_2" type="button">Add</button></div></div>
-                                    </div>
-                                   
-                                    <hr />
-                                    <br>
-                                    <p>First and Second Semester (todo: to list or to NApplicable)</p>
-                                </div>
 
-                                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                            <!-- </form> -->
                             <p>Review begore you click register</p>
                             <button type="submit" class="registerbtn">Register</button>
                         </form>
@@ -386,17 +386,28 @@
                     //         console.log(data);
                     //     });
                 //Build an array containing Customer records.
+
+                //first clear all courses
+                $("#CourseCode_1").val(  "");
+                $("#CourseCode_2").val(  "");
+
+                //<select id="comboCourses_1"></select>
+                $("#comboCourses_1").empty();
+                $("#comboCourses_2").empty();
+
+
+                //load combos
                 var courses_1 = [
-                    { course_code: "CPE211", course_title: "CPE211 Introduction to maths", course_title2: "United States" },
-                    { course_code: "CPE311", course_title: "CPE311", course_title2: "India" },
-                    { course_code: "CPE321", course_title: "CPE321", course_title2: "France" },
-                    { course_code: "CPE481", course_title: "CPE481 - Numerical Computation", course_title2: "Russia" }
+                    { course_code: "CPE211", course_title: "CPE211-Title"},
+                    { course_code: "CPE311", course_title: "CPE311"},
+                    { course_code: "CPE321", course_title: "CPE321" },
+                    { course_code: "CPE481", course_title: "CPE481"}
                 ];
                 var courses_2 = [
-                    { course_code: "CPE212", course_title: "CPE212 Introduction to maths", course_title2: "United States" },
-                    { course_code: "CPE313", course_title: "CPE313", course_title2: "India" },
-                    { course_code: "CPE82", course_title: "CPE82", course_title2: "France" },
-                    { course_code: "CPE572", course_title: "CPE572 - Numerical Computation", course_title2: "Russia" }
+                    { course_code: "CPE212", course_title: "CPE212-Title"},
+                    { course_code: "CPE313", course_title: "CPE313" },
+                    { course_code: "CPE82", course_title: "CPE82"},
+                    { course_code: "CPE572", course_title: "CPE572"}
                 ];
      
                 var comboCourses_1 = $("#comboCourses_1");
@@ -405,7 +416,7 @@
                     var option = $("<option />");
      
                     //Set course_title in Text part.
-                    //option.html(this.course_title);
+                    option.html(this.course_title);
      
                     //Set  course_code in Value part.
                     option.val(this.course_code);
@@ -432,10 +443,10 @@
                     var option = $("<option />");
      
                     //Set course_title in Text part.
-                    //option.html(this.course_title);
+                    option.html(this.course_title);
      
                     //Set  course_code in Value part.
-                    option.val("this.matno"); //option.val(this.matno); //option.val(this.course_code);
+                    option.val(this.course_code);
      
                     //Add the Option element to DropDownList.
                     comboCourses_1.append(option);
