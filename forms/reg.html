@@ -221,23 +221,12 @@
                             <div class="row p-l-5">
                                 <div class="input_fields_wrap_1 col-md-6">
                                     <h5>First Semester Courses</h5>
-                                    <!-- <textarea class="CourseCode_1"
-                                        id="CourseCode_1"
-                                        name="CourseCode_1"
-                                        placeholder="First Semester Courses"
-                                        value="">
-                                    </textarea> -->
                                     <input type="text" name="CourseCode_1" id="CourseCode_1" class="CourseCode_1" readonly />
 
                                     <div class="input-group mb-3"><select id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
                                 </div>
                                 <div class="input_fields_wrap_2 col-md-6">
                                     <h5>Second Semester Courses</h5>
-                                    <!-- <textarea class="CourseCode_2"
-                                        id="CourseCode_2"
-                                        name="CourseCode_2"
-                                        placeholder="Second Semester Courses">
-                                    </textarea> -->
                                     <input type="text"  class="CourseCode_2" id="CourseCode_2" name="CourseCode_2" value="" readonly />
 
                                     <div class="input-group mb-3"><select id="comboCourses_2"></select><div class="input-group-append_2"><button class="btn btn-outline-success add_field_button_2" type="button">Add</button></div></div>
@@ -245,10 +234,10 @@
                                 
                                 <hr />
                                 <br>
-                                <p>Todo: NApplicable</p>
+                                <p>TODO: NA Courses</p>
                             </div>
 
-                            <p>Review begore you click register</p>
+                            <p>Review before you click register</p>
                             <button type="submit" class="registerbtn">Register</button>
                         </form>
                     </div>
@@ -306,6 +295,7 @@
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_1--;
                     removeCourse_1(x_1);
+                    //removeCourse(1);
                     });
 
                 
@@ -313,29 +303,23 @@
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_2--;
                     removeCourse_1(x_2);
+                    //removeCourse(2);
                     });
                 
                 $("#file").on("change", function (e) {
-
                     var count=1;
                     var files = e.currentTarget.files; // puts all files into an array
                     var approvedHTML="";
                     // call them as such; files[0].size will get you the file size of the 0th file
                     for (var x in files) {
-
                         var filesize = ((files[x].size/1024)/1024).toFixed(4); // MB
-
                         if (files[x].name != "item" && typeof files[x].name != "undefined" && filesize <= 10) { 
-
                             if (count > 1) {
-                                
                                 approvedHTML += ", "+files[x].name;
                             }
                             else {
-                            
                                 approvedHTML += files[x].name;
                             }
-
                             count++;
                         }
                     }
@@ -351,77 +335,76 @@
 
             });
 
-            function removeCourse_1() {
-                if (confirm ("Are you sure you want to remove?")==true)
-                {
-                    var rows_1 = document.getElementsByName('mytext_1[]');
-                    var selectedRows = [];
-
-                    $("#CourseCode_1").val("" ); //clear it
-                    for (var i = 0, l = rows_1.length; i < l; i++) {
-                    }
-
-                    if (!rows_1[i].value=="") {
-                        selectedRows.push(rows_1[i]);
-                    }
-
-                    var prevValue_1 = $("#CourseCode_1").val( );
-                    if (prevValue_1==""){
-                        $("#CourseCode_1").val(  rows_1[i].value );
-                    }else{
-                        $("#CourseCode_1").val( prevValue_1 + ";" + rows_1[i].value  ); //change value                        
-                    }
-                }
-            }
-            
-            function removeCourse_2() {
-                if (confirm ("Are you sure you want to remove?")==true)
-                {
+            function removeCourse(semester) {
+                if(semester==1){
+                    var rows = document.getElementsByName('mytext_1[]');
+                    var Course_Code_Input =$("#CourseCode_1");
+                } else{
                     var rows = document.getElementsByName('mytext_2[]');
-                    var selectedRows = [];
-
-                    $("#CourseCode_2").val("" ); //clear it
-                    for (var i = 0, l = rows.length; i < l; i++) {
-                    }
+                    var Course_Code_Input =$("#CourseCode_2");
+                }
+                    
+                var selectedRows = [];
+                // $(wrapper_2).append('<div class="input-group mb-3">
+                //<input placeholder="Enter Course Code" type="text" id="mytext_2[]" 
+                //name="mytext_2[]" class="form-control" value="'+ dValue_2 + '">
+                //<div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 
+                //remove_field_2" type="button">Remove</button></div></div>'); //add input box
+                Course_Code_Input.val("" ); //clear it
+                for (var i = 0, l = rows.length; i < l; i++) {
 
                     if (!rows[i].value=="") {
                         selectedRows.push(rows[i]);
                     }
 
-                    var prevValue_2 = $("#CourseCode_2").val( );
-                    if (prevValue_2==""){
-                        $("#CourseCode_2").val(  rows[i].value );
+                    var prevValue = Course_Code_Input.val( );
+                    if (prevValue==""){
+                        Course_Code_Input.val(  rows[i].value );
                     }else{
-                        $("#CourseCode_2").val( prevValue_2 + ";" + rows[i].value  ); //change value                        
+                        Course_Code_Input.val( prevValue + ";" + rows[i].value  ); //change value                        
                     }
                 }
             }
+            function removeCourse_1() {
+                    var rows_1 = document.getElementsByName('mytext_1[]');
+                    var selectedRows = [];
+
+                    $("#CourseCode_1").val("" ); //clear it
+                    for (var i = 0, l = rows_1.length; i < l; i++) {
+                        if (!rows_1[i].value=="") {
+                            selectedRows.push(rows_1[i]);
+                        }
+
+                        var prevValue_1 = $("#CourseCode_1").val( );
+                        if (prevValue_1==""){
+                            $("#CourseCode_1").val(  rows_1[i].value );
+                        }else{
+                            $("#CourseCode_1").val( prevValue_1 + ";" + rows_1[i].value  ); //change value                        
+                        }
+                    }
+            }
+            
+            function removeCourse_2() {
+
+                    var rows = document.getElementsByName('mytext_2[]');
+                    var selectedRows = [];
+
+                    $("#CourseCode_2").val("" ); //clear it
+                    for (var i = 0, l = rows.length; i < l; i++) {
+                        if (!rows[i].value=="") {
+                            selectedRows.push(rows[i]);
+                        }
+
+                        var prevValue_2 = $("#CourseCode_2").val( );
+                        if (prevValue_2==""){
+                            $("#CourseCode_2").val(  rows[i].value );
+                        }else{
+                            $("#CourseCode_2").val( prevValue_2 + ";" + rows[i].value  ); //change value                        
+                        }
+                    }
+            }
                  
             function PopulateDropDownList() {
-                    // // using the ajax() method directly to get data for comco
-                    // $.ajax({
-                    //     type: "POST",
-                    //     url: "https://www.rtps.keminsoft.site/public/index.php/api/get_table/courses",
-                    //     data: {},
-                    //     dataType: "json",
-                    //     encode: true,
-                    //     }).done(function (data) {
-                    //         courses_1=data;
-                    //         courses_2=data;
-                    //         fillcomboWithReturnedData(data);
-                    //         console.log(data);
-                    //     });
-                //Build an array containing course records.
-
-                //first clear all courses
-                $("#CourseCode_1").val(  "");
-                $("#CourseCode_2").val(  "");
-
-                //<select id="comboCourses_1"></select>
-                $("#comboCourses_1").empty();
-                $("#comboCourses_2").empty();
-
-
                 //load combos
                 var courses_1 = [
                     { course_code: "CPE211", course_title: "CPE211-Title"},
@@ -435,7 +418,30 @@
                     { course_code: "CPE82", course_title: "CPE82"},
                     { course_code: "CPE572", course_title: "CPE572"}
                 ];
-     
+                    // using the ajax() method directly to get data for comco
+                    $.ajax({
+                        type: "POST",
+                        url: "https://www.rtps.keminsoft.site/public/index.php/api/get_table/courses",
+                        data: {},
+                        dataType: "json",
+                        encode: true,
+                        }).done(function (data) {
+                            courses_1=data;
+                            courses_2=data;
+                            fillcomboWithReturnedData(data);
+                            console.log(data);
+                        });
+
+                //Build an array containing course records.
+
+                //first clear all courses
+                $("#CourseCode_1").val(  "");
+                $("#CourseCode_2").val(  "");
+
+                //<select id="comboCourses_1"></select>
+                $("#comboCourses_1").empty();
+                $("#comboCourses_2").empty();
+
                 var comboCourses_1 = $("#comboCourses_1");
                 var comboCourses_2 = $("#comboCourses_2");
                 $(courses_1).each(function () {
@@ -465,6 +471,16 @@
             }
 
             function fillcomboWithReturnedData(courses_1){
+                //first clear all courses
+                $("#CourseCode_1").val(  "");
+                $("#CourseCode_2").val(  "");
+
+                //<select id="comboCourses_1"></select>
+                $("#comboCourses_1").empty();
+                $("#comboCourses_2").empty();
+     
+                var comboCourses_1 = $("#comboCourses_1");
+                var comboCourses_2 = $("#comboCourses_2");
                 $(courses_1).each(function () {
                     var option = $("<option />");
      
@@ -476,6 +492,7 @@
      
                     //Add the Option element to DropDownList.
                     comboCourses_1.append(option);
+                    comboCourses_2.append(option);
                 });
             }
         </script>
