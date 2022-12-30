@@ -433,41 +433,42 @@
                         });
 
                 //Build an array containing course records.
+                fillcomboWithReturnedData(courses_1);
+                
+    //             //first clear all courses
+    //             $("#CourseCode_1").val(  "");
+    //             $("#CourseCode_2").val(  "");
 
-                //first clear all courses
-                $("#CourseCode_1").val(  "");
-                $("#CourseCode_2").val(  "");
+    //             //<select id="comboCourses_1"></select>
+    //             $("#comboCourses_1").empty();
+    //             $("#comboCourses_2").empty();
 
-                //<select id="comboCourses_1"></select>
-                $("#comboCourses_1").empty();
-                $("#comboCourses_2").empty();
-
-                var comboCourses_1 = $("#comboCourses_1");
-                var comboCourses_2 = $("#comboCourses_2");
-                $(courses_1).each(function () {
-                    var option = $("<option />");
-     
-                    //Set course_title in Text part.
-                    option.html(this.course_title);
-     
-                    //Set  course_code in Value part.
-                    option.val(this.course_code);
-     
-                    //Add the Option element to DropDownList.
-                    comboCourses_1.append(option);
-                });
-                $(courses_2).each(function () {
-                    var option = $("<option />");
-     
-                    //Set course_title in Text part.
-                    option.html(this.course_title);
-     
-                    //Set  course_code in Value part.
-                    option.val(this.course_code);
-     
-                    //Add the Option element to DropDownList.
-                    comboCourses_2.append(option);
-                });
+    //             var comboCourses_1 = $("#comboCourses_1");
+    //             var comboCourses_2 = $("#comboCourses_2");
+    //             $(courses_1).each(function () {
+    //                 var option = $("<option />");
+    //  
+    //                 //Set course_title in Text part.
+    //                 option.html(this.course_title);
+    //  
+    //                 //Set  course_code in Value part.
+    //                 option.val(this.course_code);
+    //  
+    //                 //Add the Option element to DropDownList.
+    //                 comboCourses_1.append(option);
+    //             });
+    //             $(courses_2).each(function () {
+    //                 var option = $("<option />");
+    //  
+    //                 //Set course_title in Text part.
+    //                 option.html(this.course_title);
+    //  
+    //                 //Set  course_code in Value part.
+    //                 option.val(this.course_code);
+    //  
+    //                 //Add the Option element to DropDownList.
+    //                 comboCourses_2.append(option);
+    //             });
             }
 
             function fillcomboWithReturnedData(courses_1){
@@ -482,16 +483,17 @@
                 var comboCourses_1 = $("#comboCourses_1");
                 var comboCourses_2 = $("#comboCourses_2");
                 $(courses_1).each(function () {
+                    
                     var option = $("<option />");
-     
                     //Set course_title in Text part.
-                    option.html(this.course_title);
+                    option.html(this.course_code + "-" + this.course_title);
      
                     //Set  course_code in Value part.
                     option.val(this.course_code);
      
                     //Add the Option element to DropDownList.
-                    comboCourses_1.append(option);
+                    if(this.course_semester=="1") comboCourses_1.append(option);
+                    //comboCourses_1.append(option);
                     comboCourses_2.append(option);
                 });
             }
