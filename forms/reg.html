@@ -294,16 +294,16 @@
                 $(wrapper_1).on("click",".remove_field_1", function(e){ //user click on remove text
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_1--;
-                    removeCourse_1(x_1);
-                    //removeCourse(1);
+                    //removeCourse_1(x_1);
+                    removeCourse(1);
                     });
 
                 
                 $(wrapper_2).on("click",".remove_field_2", function(e){ //user click on remove text
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_2--;
-                    removeCourse_1(x_2);
-                    //removeCourse(2);
+                    //removeCourse_1(x_2);
+                    removeCourse(2);
                     });
                 
                 $("#file").on("change", function (e) {
@@ -365,44 +365,44 @@
                     }
                 }
             }
-            function removeCourse_1() {
-                    var rows_1 = document.getElementsByName('mytext_1[]');
-                    var selectedRows = [];
+            // function removeCourse_1() {
+            //         var rows_1 = document.getElementsByName('mytext_1[]');
+            //         var selectedRows = [];
 
-                    $("#CourseCode_1").val("" ); //clear it
-                    for (var i = 0, l = rows_1.length; i < l; i++) {
-                        if (!rows_1[i].value=="") {
-                            selectedRows.push(rows_1[i]);
-                        }
+            //         $("#CourseCode_1").val("" ); //clear it
+            //         for (var i = 0, l = rows_1.length; i < l; i++) {
+            //             if (!rows_1[i].value=="") {
+            //                 selectedRows.push(rows_1[i]);
+            //             }
 
-                        var prevValue_1 = $("#CourseCode_1").val( );
-                        if (prevValue_1==""){
-                            $("#CourseCode_1").val(  rows_1[i].value );
-                        }else{
-                            $("#CourseCode_1").val( prevValue_1 + ";" + rows_1[i].value  ); //change value                        
-                        }
-                    }
-            }
+            //             var prevValue_1 = $("#CourseCode_1").val( );
+            //             if (prevValue_1==""){
+            //                 $("#CourseCode_1").val(  rows_1[i].value );
+            //             }else{
+            //                 $("#CourseCode_1").val( prevValue_1 + ";" + rows_1[i].value  ); //change value                        
+            //             }
+            //         }
+            // }
             
-            function removeCourse_2() {
+            // function removeCourse_2() {
 
-                    var rows = document.getElementsByName('mytext_2[]');
-                    var selectedRows = [];
+            //         var rows = document.getElementsByName('mytext_2[]');
+            //         var selectedRows = [];
 
-                    $("#CourseCode_2").val("" ); //clear it
-                    for (var i = 0, l = rows.length; i < l; i++) {
-                        if (!rows[i].value=="") {
-                            selectedRows.push(rows[i]);
-                        }
+            //         $("#CourseCode_2").val("" ); //clear it
+            //         for (var i = 0, l = rows.length; i < l; i++) {
+            //             if (!rows[i].value=="") {
+            //                 selectedRows.push(rows[i]);
+            //             }
 
-                        var prevValue_2 = $("#CourseCode_2").val( );
-                        if (prevValue_2==""){
-                            $("#CourseCode_2").val(  rows[i].value );
-                        }else{
-                            $("#CourseCode_2").val( prevValue_2 + ";" + rows[i].value  ); //change value                        
-                        }
-                    }
-            }
+            //             var prevValue_2 = $("#CourseCode_2").val( );
+            //             if (prevValue_2==""){
+            //                 $("#CourseCode_2").val(  rows[i].value );
+            //             }else{
+            //                 $("#CourseCode_2").val( prevValue_2 + ";" + rows[i].value  ); //change value                        
+            //             }
+            //         }
+            // }
                  
             function PopulateDropDownList() {
                 //load combos
@@ -493,8 +493,9 @@
      
                     //Add the Option element to DropDownList.
                     if(this.course_semester=="1") comboCourses_1.append(option);
+                    if(this.course_semester=="2") comboCourses_2.append(option);
                     //comboCourses_1.append(option);
-                    comboCourses_2.append(option);
+                    //comboCourses_2.append(option);
                 });
             }
         </script>
@@ -519,7 +520,7 @@
                     gender: $("#gender").val(),
                     session_idr: $("#session_idr").val(),
                     CourseCode_1: $("#CourseCode_1").val(),
-                    CourseCode_2: $("#CourseCode_1").val(),
+                    CourseCode_2: $("#CourseCode_2").val(),
                     NA_CourseCode: $("#NA_CourseCode").val(),
                     Fees_Status: $("#Fees_Status").val(),
                     level: $("#level").val(),
@@ -537,8 +538,19 @@
                             let text = "<table border='1'>"
                             for (let x in data) {
                                 text += "<tr><td>" + data[x].matno + "</td></tr>";
-                                text += "<tr><td>" + data[x].CourseCode_1 + "</td></tr>";
-                                text += "<tr><td>" + data[x].CourseCode_2 + "</td></tr>";
+                                text += "<tr><td>" + data[x].student_surname + "</td></tr>";
+                                text += "<tr><td>" + data[x].student_firstname + "</td></tr>";
+                                text += "<tr><td>Dept ID: " + data[x].student_dept_idr + "</td></tr>";
+                                
+                                text += "<tr>";
+                                text += "<td>Fist Semester Courses</td>";
+                                text += "<td>Second Semester Courses</td>";
+                                text += "</tr>";
+
+                                text += "<tr>";
+                                text += "<td>" + data[x].CourseCode_1 + "</td>";
+                                text += "<td>" + data[x].CourseCode_2 + "</td>";
+                                text += "</tr>";
                             }
                             text += "</table>"
                         $("#reg-form").html("<div id='message'></div>");
@@ -550,12 +562,10 @@
                             .hide()
                             .fadeIn(1500, function () {
                                 $("#message").append(
-                                "<img id='checkmark' src='images/check.png' />" );
-                                $("#message").append(
                                 "<a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a>" );
                         });
                         console.log(data);
-                        alert("Success. data: " + data);
+                        //alert("Success. data: " + data);
                     });
 
                     // $.ajax({
@@ -600,12 +610,10 @@
                         cache : false,
                         dataType : "json",
                         data : "{matno: 1}",
-                        success : process_response,
+                        success : load_returnd_records_into_fields(data),
                         error: function(xhr) { alert("AJAX request failed: " + xhr.status); }
                     });
 
-                        // there is a shortcut method to GET JSON:
-                        // $.getJSON(url, data, process_response);
                     }
                     else {
                         alert("No MATNO supplied");
@@ -619,14 +627,14 @@
             * process the response, populating the form fields from the JSON data
             * @param {Object} response the JSON data parsed into an object
             */
-            function process_response(response) {
+            function load_returnd_records_into_fields(data) {
                 var frm = $("#reg-form");
                 var i;
 
-                console.dir(response);      // for debug
+                console.dir(data);      // for debug
 
-                for (i in response) {
-                    frm.find('[name="' + i + '"]').val(response[i]);
+                for (i in data) {
+                    frm.find('[name="' + i + '"]').val(data[i]);
                 }
             }
 
