@@ -517,9 +517,9 @@
                             //const myObj = JSON.parse(data);
                             let text = "<table border='1'>"
                             for (let x in data) {
-                                text += "<tr><td>" + myObj[x].matno + "</td></tr>";
-                                text += "<tr><td>" + myObj[x].CourseCode_1 + "</td></tr>";
-                                text += "<tr><td>" + myObj[x].CourseCode_2 + "</td></tr>";
+                                text += "<tr><td>" + data[x].matno + "</td></tr>";
+                                text += "<tr><td>" + data[x].CourseCode_1 + "</td></tr>";
+                                text += "<tr><td>" + data[x].CourseCode_2 + "</td></tr>";
                             }
                             text += "</table>"
                         $("#reg-form").html("<div id='message'></div>");
