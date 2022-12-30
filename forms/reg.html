@@ -636,6 +636,10 @@
                 for (i in data) {
                     console.log(i); 
                     frm.find('[name="' + i + '"]').val(data[i]);
+                    for (field in i) {
+                        console.log(field); 
+                        frm.find('[name="' + field + '"]').val(i[field]);
+                    }
                 }
             }
 
