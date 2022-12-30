@@ -479,6 +479,7 @@
                 });
             }
         </script>
+        <!-- AJAX -->
         <script>     
             //ajax for posting form data
             $(document).ready(function () {
@@ -506,14 +507,29 @@
                     dept_idr: $("#dept_idr").val()
                     };
 
+                    // $.ajax({
+                    // type: "POST",
+                    // url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
+                    // data: formData,
+                    // dataType: "json",
+                    // encode: true,
+                    // }).done(function (data) {
+                    // console.log(data);
+                    // });
+
                     $.ajax({
-                    type: "POST",
-                    url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
-                    data: formData,
-                    dataType: "json",
-                    encode: true,
-                    }).done(function (data) {
-                    console.log(data);
+                        type: "POST",
+                        url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
+                        data: formData,
+                        dataType: "json",
+                        encode: true,
+                        success: function (data) {
+                        console.log(data);
+                        alert("Success");
+                        },
+                        error: function (data) {
+                        alert("An error occured");
+                        }
                     });
 
                     event.preventDefault();
