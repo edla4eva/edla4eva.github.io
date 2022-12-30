@@ -631,6 +631,30 @@
                 var frm = $("#reg-form");
                 var i;
 
+                // data= [
+                //         {   "matno": "ENG390ajax",
+                //             "student_firstname": "Ed",
+                //             "student_surname": "OLAP",
+                //             "student_othernames": "Prod",
+                //             "student_dept_idr": "1",
+                //             "status": "Successful",
+                //             "year_of_entry": "0",
+                //             "session_idr_of_entry": "Ed",
+                //             "mode_of_entry": "UME",
+                //             "dob": "2022-12-13",
+                //             "phone": "333",
+                //             "email": "eddie.olaye@gmail.com",
+                //             "gender": "male",
+                //             "session_idr": "2020/2021",
+                //             "CourseCode_1": "CPE311",
+                //             "CourseCode_2": "CPE311",
+                //             "NA_CourseCode": "0",
+                //             "Fees_Status": "paid",
+                //             "level": "200",
+                //             "dept_idr": "1"
+                //         }
+                //     ];
+
                 console.dir(data);      // for debug
 
                 for (i in data) {
@@ -638,7 +662,7 @@
                     frm.find('[name="' + i + '"]').val(data[i]);
                     for (field in data[i]) {
                         console.log(data[i][field]); 
-                        frm.find('[name="' + field + '"]').val(field);
+                        frm.find('[name="' + field + '"]').val(data[i][field]);
                     }
                 }
             }
