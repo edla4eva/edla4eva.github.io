@@ -517,7 +517,9 @@
                             //const myObj = JSON.parse(data);
                             let text = "<table border='1'>"
                             for (let x in data) {
-                              text += "<tr><td>" + "myObj[x].matno "+ "</td></tr>";
+                                text += "<tr><td>" + myObj[x].matno + "</td></tr>";
+                                text += "<tr><td>" + myObj[x].CourseCode_1 + "</td></tr>";
+                                text += "<tr><td>" + myObj[x].CourseCode_2 + "</td></tr>";
                             }
                             text += "</table>"
                         $("#reg-form").html("<div id='message'></div>");
@@ -530,6 +532,8 @@
                             .fadeIn(1500, function () {
                                 $("#message").append(
                                 "<img id='checkmark' src='images/check.png' />" );
+                                $("#message").append(
+                                "<a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a>" );
                         });
                         console.log(data);
                         alert("Success. data: " + data);
