@@ -516,15 +516,15 @@
                     }).done(function (data) {
                         $("#reg-form").html("<div id='message'></div>");
                             $("#message")
-                            .html("<h2>Contact Form Submitted!</h2>")
-                            .append("<p>We will be in touch soon.</p>")
+                            .html("<h2>Reg Form Submitted!</h2>")
+                            .append("<p>See your Course Adviser.</p>")
                             .hide()
                             .fadeIn(1500, function () {
                                 $("#message").append(
                                 "<img id='checkmark' src='images/check.png' />" );
                         });
                         console.log(data);
-                        alert("Success" + data);
+                        alert("Success. data: " + data);
                     });
 
                     // $.ajax({
