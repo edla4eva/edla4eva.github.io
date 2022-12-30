@@ -514,10 +514,10 @@
                     dataType: "json",
                     encode: true,
                     }).done(function (data) {
-                            const myObj = JSON.parse(data);
+                            //const myObj = JSON.parse(data);
                             let text = "<table border='1'>"
                             for (let x in myObj) {
-                              text += "<tr><td>" + myObj[x].matno + "</td></tr>";
+                              text += "<tr><td>" + "myObj[x].matno "+ "</td></tr>";
                             }
                             text += "</table>"
                         $("#reg-form").html("<div id='message'></div>");
