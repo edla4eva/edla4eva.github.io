@@ -401,7 +401,7 @@
                     // // using the ajax() method directly to get data for comco
                     // $.ajax({
                     //     type: "POST",
-                    //     url: "https://www.rtps.keminsoft.site/public/index.php/api/regs",
+                    //     url: "https://www.rtps.keminsoft.site/public/index.php/api/get_table/courses",
                     //     data: {},
                     //     dataType: "json",
                     //     encode: true,
@@ -411,7 +411,7 @@
                     //         fillcomboWithReturnedData(data);
                     //         console.log(data);
                     //     });
-                //Build an array containing Customer records.
+                //Build an array containing course records.
 
                 //first clear all courses
                 $("#CourseCode_1").val(  "");
@@ -507,31 +507,49 @@
                     dept_idr: $("#dept_idr").val()
                     };
 
-                    // $.ajax({
-                    // type: "POST",
-                    // url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
-                    // data: formData,
-                    // dataType: "json",
-                    // encode: true,
-                    // }).done(function (data) {
-                    // console.log(data);
-                    // });
-
                     $.ajax({
-                        type: "POST",
-                        url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
-                        data: formData,
-                        dataType: "json",
-                        encode: true,
-                        success: function (data) {
-                            console.log(data);
-                            alert("Success");
-                        },
-                        error: function (data) {
-                            console.log(data);
-                            alert("An error occured");
-                        }
+                    type: "POST",
+                    url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
+                    data: formData,
+                    dataType: "json",
+                    encode: true,
+                    }).done(function (data) {
+                        $("#reg-form").html("<div id='message'></div>");
+                            $("#message")
+                            .html("<h2>Contact Form Submitted!</h2>")
+                            .append("<p>We will be in touch soon.</p>")
+                            .hide()
+                            .fadeIn(1500, function () {
+                                $("#message").append(
+                                "<img id='checkmark' src='images/check.png' />" );
+                            });
+                        console.log(data);
                     });
+
+                    // $.ajax({
+                    //     type: "POST",
+                    //     url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
+                    //     data: formData,
+                    //     dataType: "json",
+                    //     encode: true,
+                    //     success: function (data) {
+                    //         console.log(data);
+                    //         $("#reg-form").html("<div id='message'></div>");
+                    //         $("#message")
+                    //         .html("<h2>Contact Form Submitted!</h2>")
+                    //         .append("<p>We will be in touch soon.</p>")
+                    //         .hide()
+                    //         .fadeIn(1500, function () {
+                    //             $("#message").append(
+                    //             "<img id='checkmark' src='images/check.png' />" );
+                    //         });
+                    //         alert("Success");
+                    //     },
+                    //     error: function (data) {
+                    //         console.log(data);
+                    //         alert("An error occured");
+                    //     }
+                    // });
 
                     event.preventDefault();
                 });
