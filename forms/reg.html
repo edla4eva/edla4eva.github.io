@@ -516,7 +516,7 @@
                     }).done(function (data) {
                             //const myObj = JSON.parse(data);
                             let text = "<table border='1'>"
-                            for (let x in myObj) {
+                            for (let x in data) {
                               text += "<tr><td>" + "myObj[x].matno "+ "</td></tr>";
                             }
                             text += "</table>"
