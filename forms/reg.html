@@ -209,7 +209,20 @@
                             <h3>Add/Remove Courses</h3>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input class="btn btn-outline-info btn-lg btn-block" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList()" />
+                                    <input class="btn btn-outline-info btn-lg btn-block" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList(91,0)" />
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                          <!-- <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                          </li> -->
+                                          <li class="page-item active"><a class="page-link" onclick="PopulateDropDownList(90,180)">1<span class="sr-only">(current)</span></a></li>
+                                          <li class="page-item" onclick="PopulateDropDownList(90,90)" ><a class="page-link">2 </a></li>
+                                          <li class="page-item" onclick="PopulateDropDownList(90,180)"><a class="page-link" >3</a></li>
+                                          <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                          </li>
+                                        </ul>
+                                      </nav>
                                 </div>
                                
                             </div>
@@ -404,7 +417,7 @@
             //         }
             // }
                  
-            function PopulateDropDownList() {
+            function PopulateDropDownList(limits, offset) {
                 //load combos
                 var courses_1 = [
                     { course_code: "CPE211", course_title: "CPE211-Title"},
@@ -421,7 +434,7 @@
                     // using the ajax() method directly to get data for comco
                     $.ajax({
                         type: "POST",
-                        url: "https://www.rtps.keminsoft.site/public/index.php/api/get_table/courses",
+                        url: "https://www.rtps.keminsoft.site/public/index.php/api/get_table/courses/"+limits+"/"+ offset,
                         data: {},
                         dataType: "json",
                         encode: true,
