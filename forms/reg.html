@@ -580,6 +580,8 @@
                                 text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
                                 text += "<tr><td>First Name</td><td>" + data[x].student_firstname + "</td></tr>";
                                 text += "<tr><td>Dept ID</td><td>Dept ID: " + data[x].student_dept_idr + "</td></tr>";
+                                text += "<tr><td>Dept ID</td><td>Phone: " + data[x].phone + "</td></tr>";
+                                text += "<tr><td>Date</td><td>Date: " + new Date().toJSON() + "</td></tr>";
                                 
                                 text += "<tr>";
                                 text += "<td>Fist Semester Courses</td>";
@@ -587,8 +589,22 @@
                                 text += "</tr>";
 
                                 text += "<tr>";
-                                text += "<td><p class='text-wrap'>" + data[x].CourseCode_1 + "</p></td>";
-                                text += "<td><p class='text-wrap'>" + data[x].CourseCode_2 + "</p></td>";
+                                text += "<td class='text-wrap'><p class='text-wrap'>" + data[x].CourseCode_1 + "</p></td>";
+                                text += "<td> class='text-wrap'<p class='text-wrap'>" + data[x].CourseCode_2 + "</p></td>";
+                                text += "</tr>";
+
+
+                                text += "<tr>";
+                                text += "<td>______________________</td>";
+                                text += "<td>______________________</td>";
+                                text += "<td>______________________</td>";
+                                text += "</tr>";
+
+
+                                text += "<tr>";
+                                text += "<td>Student's Sign/td>";
+                                text += "<td>Dean's Sign</td>";
+                                text += "<td>Course Adviser's Sign</td>";
                                 text += "</tr>";
                             }
                             text += "</table>"
