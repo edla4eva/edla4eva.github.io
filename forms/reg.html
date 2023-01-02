@@ -593,32 +593,24 @@
                                 text += "<td> class='text-wrap'<p class='text-wrap'>" + data[x].CourseCode_2 + "</p></td>";
                                 text += "</tr>";
 
-                                text += "<tr>";
+
+                            text += "</table>"
+                            text += "<tr>";
                                 text += "<td></td>";
                                 text += "<td></td>";
 
                                 text += "</tr>";
                                 
-                                text += "<tr>";
-                                text += "<td>Student's Sign: </td>";
-                                text += "<td>______________________</td>";
+                                text += "<br><p>Student's Sign: </p>";
+                                text += "<p>______________________</p>";
 
-                                text += "</tr>";
-
-
-                                text += "<tr>";
-
-                                text += "<td>Course Adviser's Sign</td>";
-                                text += "<td><p>______________________</p>n </td>";
-                                text += "</tr>";
-
-                                text += "<tr>";
-
-                                text += "<td>Dean's Sign</td>";
-                                text += "<td>______________________</td>";
-                                text += "</tr>";
+                                text += "<br><p>Student's Sign: ";
+                                text += "______________________</p>";
+                                text += "<br><p>Course Adviser's Sign: ";
+                                text += "_____________________</p>";
+                                text += "<br><p>Dean's Sign: ";
+                                text += "_____________________</p>";
                             }
-                            text += "</table>"
                         $("#reg-form").html("<div id='message'></div>");
                             $("#message")
                             .html("<h2>Reg Form Submitted!</h2>")
