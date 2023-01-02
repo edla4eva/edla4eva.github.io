@@ -579,9 +579,9 @@
                                 text += "<tr><td>MAT. NO.</td><td>" + data[x].matno + "</td></tr>";
                                 text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
                                 text += "<tr><td>First Name</td><td>" + data[x].student_firstname + "</td></tr>";
-                                text += "<tr><td>Dept ID</td><td>Dept ID: " + data[x].student_dept_idr + "</td></tr>";
-                                text += "<tr><td>Dept ID</td><td>Phone: " + data[x].phone + "</td></tr>";
-                                text += "<tr><td>Date</td><td>Date: " + new Date().toJSON() + "</td></tr>";
+                                text += "<tr><td>Dept ID: " + data[x].student_dept_idr + "</td></tr>";
+                                text += "<tr><td>Phone</td><td>" + data[x].phone + "</td></tr>";
+                                text += "<tr><td>Date</td><td>" + new Date().toJSON() + "</td></tr>";
                                 
                                 text += "<tr>";
                                 text += "<td>Fist Semester Courses</td>";
@@ -592,11 +592,9 @@
                                 text += "<td class='text-wrap'><p class='text-wrap'>" + data[x].CourseCode_1 + "</p></td>";
                                 text += "<td> class='text-wrap'<p class='text-wrap'>" + data[x].CourseCode_2 + "</p></td>";
                                 text += "</tr>";
-
-
-                            text += "</table>"
-
                             }
+                        
+                        text += "</table>"
                         text += "<br><p>______________________</p>";
                         text += "<p>Student's Sign </p><br>";
 
@@ -605,7 +603,7 @@
 
                         text += "<p>_____________________</p>";
                         text += "<br><p>Dean's Sign ";
-                            
+
                         $("#reg-form").html("<div id='message'></div>");
                             $("#message")
                             .html("<h2>Reg Form Submitted!</h2>")
