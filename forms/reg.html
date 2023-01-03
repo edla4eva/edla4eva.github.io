@@ -590,25 +590,26 @@
 
                                 text += "<tr>";
                                 text += "<td class='text-wrap'><p class='text-wrap'>" + data[x].CourseCode_1 + "</p></td>";
-                                text += "<td> class='text-wrap'<p class='text-wrap'>" + data[x].CourseCode_2 + "</p></td>";
+                                text += "<td class='text-wrap'> <p class='text-wrap'>" + data[x].CourseCode_2 + "</p></td>";
                                 text += "</tr>";
                             }
-                        
+
                         text += "</table>"
                         text += "<br><p>______________________</p>";
                         text += "<p>Student's Sign </p><br>";
 
                         text += "<p>______________________</p>";
-                        text += "<p>Course Adviser's Sign<br>";
+                        text += "<p>Course Adviser's Sign</p><br>";
 
                         text += "<p>_____________________</p>";
-                        text += "<br><p>Dean's Sign ";
+                        text += "<br>Dean's Sign ";
 
                         $("#reg-form").html("<div id='message'></div>");
                             $("#message")
-                            .html("<h2>Reg Form Submitted!</h2>")
-                            .append("<p>Print this slip and submit it to Course Adviser.</p>")
-                            .append("<p>Student Registration Record (Awaiting Approval)</p>")
+                            .html("<h2>Online Departmental Course Registration<</h2>")
+                            .append("<p></p>")
+                            .append("<p>Print this slip and submit it to your Course Adviser.</p>")
+
                             .append(text)
                             .hide()
                             .fadeIn(1500, function () {
