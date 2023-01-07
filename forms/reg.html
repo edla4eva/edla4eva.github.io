@@ -28,7 +28,7 @@
                     <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
 
                         <form id="reg-form" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
-                            <h1>Course Registration</h1>
+                            <h1>Online Course Registration</h1>
                              <h3>Fill the form below and press the submit button!</h3>
                             
                             <div class="form-row">
@@ -273,11 +273,11 @@
                                 
                                 <hr />
                                 <br>
-                                <p>TODO: NA Courses</p>
+                                <!-- <p>TODO: NA Courses</p> -->
                             </div>
 
-                            <p>Review before you click register</p>
-                            <button type="submit" class="registerbtn">Register</button>
+                            <p>Cross check the entries you made on the form before you submit</p>
+                            <button type="submit" class="registerbtn">Submit to Course Adviser</button>
                         </form>
                     </div>
                     <div class="col-md-2">
@@ -576,6 +576,8 @@
                             //const myObj = JSON.parse(data);
                             let text = '<table class="table" border="1">';
                             for (let x in data) {
+                                let formatedCourses1 = data[x].CourseCode_1 .replace(/;/g, "; ");
+                                let formatedCourses2 = data[x].CourseCode_2 .replace(/;/g, "; ");
                                 text += "<tr><td>MAT. NO.</td><td>" + data[x].matno + "</td></tr>";
                                 text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
                                 text += "<tr><td>First Name</td><td>" + data[x].student_firstname + "</td></tr>";
@@ -589,8 +591,8 @@
                                 text += "</tr>";
 
                                 text += "<tr>";
-                                text += "<td class='text-wrap'><p class='text-wrap'>" + data[x].CourseCode_1 + "</p></td>";
-                                text += "<td class='text-wrap'> <p class='text-wrap'>" + data[x].CourseCode_2 + "</p></td>";
+                                text += "<td class='text-wrap'><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
+                                text += "<td class='text-wrap'> <p class='text-wrap'>" + formatedCourses2 + "</p></td>";
                                 text += "</tr>";
                             }
 

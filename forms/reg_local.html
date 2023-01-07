@@ -550,6 +550,8 @@
                             //const myObj = JSON.parse(data);
                             let text = '<table class="table" border="1">';
                             for (let x in data) {
+                                let formatedCourses1 = data[x].CourseCode_1 .replace(/;/g, "; ");
+                                let formatedCourses2 = data[x].CourseCode_2 .replace(/;/g, "; ");
                                 text += "<tr><td>MAT. NO.</td><td>" + data[x].matno + "</td></tr>";
                                 text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
                                 text += "<tr><td>First Name</td><td>" + data[x].student_firstname + "</td></tr>";
@@ -561,8 +563,8 @@
                                 text += "</tr>";
 
                                 text += "<tr>";
-                                text += "<td><p class='text-wrap'>" + data[x].CourseCode_1 + "</p></td>";
-                                text += "<td><p class='text-wrap'>" + data[x].CourseCode_2 + "</p></td>";
+                                text += "<td><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
+                                text += "<td><p class='text-wrap'>" + formatedCourses2+ "</p></td>";
                                 text += "</tr>";
                             }
                             text += "</table>"
