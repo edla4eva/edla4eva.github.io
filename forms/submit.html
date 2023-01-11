@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="../css/reg.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+    <body>
+
+        <div class="container .bg-primary">
+
+            <!-- Add/Remove -->
+            <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <!-- p-l-5 padding - left - size5 -->
+                    <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
+                        <h1 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h1>
+                         <h3 class="text-center">FACULTY OF ENGINEERING</h3>
+                         <h4 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h3>
+                        <br>
+                        <table class="table" border="1">
+                            <tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>ENG09099922</td><td rowspan="4"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>
+                            <tr><td>SURNAME</td><td>NOGHAYIN</td></tr>
+                            <tr><td>OTHER NAMES</td><td>Andrew</td></tr>
+                            <tr><td>DEPARTMENT</td><td>Computer Engineering</td></tr>
+                            <tr><td>MODE OF ENTRY</td><td>UME</td><td rowspan="4"><img width="150" height="150" src="http://localhost/rtps/web/back-end/public/index.php/api/jpg/img.png" /></td></tr>
+                            <tr><td>LEVEL</td><td>100</td></tr>
+                            <tr><td>PHONE NO.</td><td>08011122285</td></tr>
+                            <tr><td>GENDER</td><td></td></tr>
+                        </table>
+
+                         <h3 class="text-center">REGISTER CARRY OVER COURSES FIRST</h3>
+                        <table class="table" border="1">
+                            <tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>
+                            <tr><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td></tr>
+                            <tr><td>CED300</td><td>3</td><td>PEE233</td><td class="mw-40" style="width: 180px;">2</td></tr>
+                            <tr><td>CPE300</td><td>3</td><td>-</td><td class="mw-40" style="width: 180px;">-</td></tr>
+
+                        </table>
+                        <br>
+                        <table class="table table-borderless" >
+                            <tr><td colspan=2 class="text-center">-----------------------</td><td colspan=2></td><td colspan=2 class="text-center">-----------------------</td></tr>
+                            <tr><td colspan=2 class="text-center">Student's signature</td><td colspan=2 class="text-center">-----------------------</td><td colspan=2 class="text-center">Course Adviser's signature</td></tr>
+                            <tr><td colspan=2></td><td colspan=2 class="text-center">Dean's Signature</td><td colspan=2></td></tr>
+
+                        </table>
+
+                        
+
+   
+                        <form id="reg-form" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
+                            <h1>Course Registration</h1>
+                             <h3>Fill the form below and press the submit button!</h3>
+                            
+
+
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+
+            </div>
+        </div>
+        <hr>
+        
+
+        <script>     
+            //ajax for posting form data
+            $(document).ready(function () {
+             
+                            let text = '<table class="table" border="1">';
+                            let formatedCourses1 = "</p></td> dfgdf dfdf dfgdf dfgdf dfgdf dfgdf dfgdf";
+                            let formatedCourses2 = "</p></td> dfgdf dfdf dfgdf dfgdf dfgdf dfgdf dfgdf";
+                            let matno = "ENG999000";
+                            let surname= "OLAp"
+
+                                text += "<tr><td>MAT. NO.</td><td>" + matno + "</td></tr>";
+                                text += "<tr><td>SURNAME</td><td>" + surname + "</td></tr>";
+                                text += "<tr><td>First Name</td><td>" + surname+ "</td></tr>";
+                                text += "<tr><td>Dept ID</td><td>Dept ID: " + surname+ "</td></tr>";
+                                
+                                text += "<tr>";
+                                text += "<td>Fist Semester Courses</td>";
+                                text += "<td>Second Semester Courses</td>";
+                                text += "</tr>";
+
+                                text += "<tr>";
+                                text += "<td><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
+                                text += "<td><p class='text-wrap'>" + formatedCourses2+ "</p></td>";
+                                text += "</tr>";
+
+                            text += "</table>"
+                        $("#reg-form").html("<div id='message'></div>");
+                            $("#message")
+                            .html("<h2>Reg Form Submitted!</h2>")
+                            .append("<p>Print this slip and submit it to Course Adviser.</p>")
+                            .append("<p>Student Registration Record (Awaiting Approval)</p>")
+                            .append(text)
+                            .hide()
+                            .fadeIn(1500, function () {
+                                $("#message").append(
+                                "<a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a>" );
+                        });
+                        console.log(data);
+                        //alert("Success. data: " + data);
+                    });
+
+
+
+        </script>
+
+ 
+
+
+    </body>
+</html>
