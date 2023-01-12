@@ -428,43 +428,46 @@
                     }).done(function (data) {
                             //const myObj = JSON.parse(data);
 
-                            let text = '<table class="table" border="1">';
+                            let text = '';
+                            text += '<h1 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h1>';
+                            text += '<h3 class="text-center">FACULTY OF ENGINEERING</h1>';
+                            text += '<h4 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h1>';
+                            text += '<br>';
+                            text += '<table class="table" border="1">';
                             let formatedCourses1 = "";
                             let formatedCourses2 = "";
                             let matno = "ENG999000";
-                            let surname= "OLAp";
+                            let surname= "OLA";
                             let course='CPE000';
+                            let course2='CPE000';
                             let credit ='3';
                             for (let x in data) {
                                 let formatedCourses1 = data[x].CourseCode_1 .replace(/;/g, "; ");
                                 let formatedCourses2 = data[x].CourseCode_2 .replace(/;/g, "; ");
-                                text += "<tr><td>MAT. NO.</td><td>" + data[x].matno + "</td></tr>";
-                                text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
-                                text += "<tr><td>First Name</td><td>" + data[x].student_firstname + "</td></tr>";
-                                text += "<tr><td>Dept ID: </td><td>" + data[x].student_dept_idr + "</td></tr>";
-                                text += "<tr><td>Phone</td><td>" + data[x].phone + "</td></tr>";
-                                text += "<tr><td>Date</td><td>" + new Date().toJSON() + "</td></tr>";
-
+                        //         text += "<tr><td>MAT. NO.</td><td>" + data[x].matno + "</td></tr>";
+                        //         text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
+                        //         text += "<tr><td>First Name</td><td>" + data[x].student_firstname + "</td></tr>";
+                        //         text += "<tr><td>Dept ID: </td><td>" + data[x].student_dept_idr + "</td></tr>";
+                        //         text += "<tr><td>Phone</td><td>" + data[x].phone + "</td></tr>";
+                        //         text += "<tr><td>Date</td><td>" + new Date().toJSON() + "</td></tr>";
+                                text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[x].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
+                                text += '<tr><td>SURNAME</td><td>' + data[x].student_surname  + '</td></tr>';
+                                text += '<tr><td>OTHER NAMES</td><td>' + data[x].student_firstname  + '</td></tr>';
+                                text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[x].student_dept_idr  + '</td></tr>';
+                                text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[x].phone  + '</td></tr>';
+                                text += '<tr><td>LEVEL</td><td colspan="2">' + data[x].level  + '</td></tr>';
+                                text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[x].student_surname  + '</td></tr>';
+                                text += '<tr><td>GENDER</td><td colspan="2">' + data[x].student_surname  + '</td></tr>';
                                 text += "<tr>";
                                 text += "<td class='text-wrap'><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
                                 text += "<td class='text-wrap'> <p class='text-wrap'>" + formatedCourses2 + "</p></td>";
                                 text += "</tr>";
                             }
 
-                            text += '<h1 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h1>';
-                            text += '<h3 class="text-center">FACULTY OF ENGINEERING</h1>';
-                            text += '<h4 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h1>';
-                            text += '<br>';
 
 
-                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[x].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
-                            text += '<tr><td>SURNAME</td><td>' + data[x].student_surname  + '</td></tr>';
-                            text += '<tr><td>OTHER NAMES</td><td>' + data[x].student_firstname  + '</td></tr>';
-                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[x].student_dept_idr  + '</td></tr>';
-                            text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[x].phone  + '</td></tr>';
-                            text += '<tr><td>LEVEL</td><td colspan="2">' + data[x].level  + '</td></tr>';
-                            text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[x].student_surname  + '</td></tr>';
-                            text += '<tr><td>GENDER</td><td colspan="2">' + data[x].student_surname  + '</td></tr>';
+
+
                             text += '</table>';
 
                             text += '<h3 class="text-center">REGISTER CARRY OVER COURSES FIRST</h3>';
@@ -474,8 +477,11 @@
                             text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>';
                             
                             text += '<tr><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td></tr>';
-                            text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
-                            
+                            for (let x in data) {
+                                course=formatedCourses1;
+                                course2=formatedCourses2;
+                                text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                            }
                             text += '</table>';
                             text += '<br>';
                             text += '<table class="table table-borderless" >';
