@@ -63,18 +63,14 @@
                         </div>
                         <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" hidden>
                             <h1>Online Course Registration</h1>
-                             <h3>Fill the form below and press the submit button!</h3>
-                            
+                             <h5>Carefully fill the form below then preview before submission!</h5>
+                            <br>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">MAT. NO.</label>
                                     <input type="text" id="matno" name="matno" placeholder="ENG..." required autofocus />
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <p></p>
-                                    <label for="load_data_button">Click to load your personal data</label>
-
-                                    <button class="btn btn-outline-success btn-block load_data_button" id="load_reg_data_button" type="button">Load Personal Data</button>
                                 </div>
                             </div>
 
@@ -280,12 +276,11 @@
                             <div id="buttonsDiv">
                          
                             
-                                <button class="btn btn-primary btn-lg btn-block" id="btnPreview" type="button" onclick='$(btnPreview).attr("disabled","true"); $(btnSave).attr("hidden","true");'>
-                                    Preview
-                                </button>
-                                <button class="btn btn-primary btn-lg btn-block"  type="button" onclick="$(btnPreview).hide();">
+                                <button class="btn btn-primary btn-lg btn-block" id="btnSave" type="button" onclick='$(btnPreview).attr("disabled","true"); $(btnSave).attr("hidden","true");'>
                                     Save Incomplete Form
                                 </button>
+
+                                
                                 <br>
 
     
@@ -297,7 +292,7 @@
                                     I have downloaded and read the terms and condition
                                     </label>
                                 </div>
-                                <button type="submit"  class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button">
+                                <button type="submit"  class="btn btn-success btn-lg btn-block" id=" btnPreview" type="button">
                                     Preview before Submitting
                                 </button>
                             </div>
@@ -490,18 +485,17 @@
                             text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
                            
                                 
-    
-                                
+                            text += ("<p>Print this slip and submit it to your Course Adviser.</p>");
+                            text += ('<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>');
+                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" onclick="$(btnPreview).hide();"> Edit Form </button>');
+                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" onclick="doPrint();" disabled> Print Form</button> <br>');
+                            text += ('<button type="submit"  class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button">Submit to Course Adviser (Cannot be Undone)</button>');
 
                         $("#regForm").html("<div id='message'></div>");
                             $("#message")
                             .html("<h2>Online Departmental Course Registration<</h2>")
                             .append("<p></p>")
-                            .append("<p>Print this slip and submit it to your Course Adviser.</p>")
-                            .append('<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>')
-                            .append('<button class="btn btn-primary btn-lg btn-block"  type="button" onclick="$(btnPreview).hide();"> Edit Form </button>')
-                            .append('<button class="btn btn-primary btn-lg btn-block"  type="button" onclick="doPrint();" disabled> Print Form</button> <br>')
-                            .append('<button type="submit"  class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button">Submit to Course Adviser (Cannot be Undone)</button>')
+
                             .append(text)
                             .hide()
                             .fadeIn(1500, function () {
