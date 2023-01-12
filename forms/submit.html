@@ -25,7 +25,7 @@
                     </div>
                     <!-- p-l-5 padding - left - size5 -->
                     <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
-                        <h1 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h1>
+                        <!-- <h1 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h1>
                          <h3 class="text-center">FACULTY OF ENGINEERING</h3>
                          <h4 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h3>
                         <br>
@@ -50,11 +50,11 @@
                         </table>
                         <br>
                         <table class="table table-borderless" >
-                            <tr><td colspan=2 class="text-center">-----------------------</td><td colspan=2></td><td colspan=2 class="text-center">-----------------------</td></tr>
-                            <tr><td colspan=2 class="text-center">Student's signature</td><td colspan=2 class="text-center">-----------------------</td><td colspan=2 class="text-center">Course Adviser's signature</td></tr>
+                            <tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>
+                            <tr><td colspan=2 class="text-center">Student's signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser's signature</td></tr>
                             <tr><td colspan=2></td><td colspan=2 class="text-center">Dean's Signature</td><td colspan=2></td></tr>
 
-                        </table>
+                        </table> -->
 
                         
 
@@ -84,30 +84,48 @@
                             let formatedCourses1 = "</p></td> dfgdf dfdf dfgdf dfgdf dfgdf dfgdf dfgdf";
                             let formatedCourses2 = "</p></td> dfgdf dfdf dfgdf dfgdf dfgdf dfgdf dfgdf";
                             let matno = "ENG999000";
-                            let surname= "OLAp"
+                            let surname= "OLAp";
+                            let course='CPE000';
+                            let credit ='3';
 
-                                text += "<tr><td>MAT. NO.</td><td>" + matno + "</td></tr>";
-                                text += "<tr><td>SURNAME</td><td>" + surname + "</td></tr>";
-                                text += "<tr><td>First Name</td><td>" + surname+ "</td></tr>";
-                                text += "<tr><td>Dept ID</td><td>Dept ID: " + surname+ "</td></tr>";
-                                
-                                text += "<tr>";
-                                text += "<td>Fist Semester Courses</td>";
-                                text += "<td>Second Semester Courses</td>";
-                                text += "</tr>";
+                            text += '<h1 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h1>';
+                            text += '<h3 class="text-center">FACULTY OF ENGINEERING</h1>';
+                            text += '<h4 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h1>';
+                            text += '<br>';
 
-                                text += "<tr>";
-                                text += "<td><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
-                                text += "<td><p class='text-wrap'>" + formatedCourses2+ "</p></td>";
-                                text += "</tr>";
 
-                            text += "</table>"
+                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + matno + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
+                            text += '<tr><td>SURNAME</td><td>' + surname + '</td></tr>';
+                            text += '<tr><td>OTHER NAMES</td><td>' + surname + '</td></tr>';
+                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + surname + '</td></tr>';
+                            text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + surname + '</td></tr>';
+                            text += '<tr><td>LEVEL</td><td colspan="2">' + surname + '</td></tr>';
+                            text += '<tr><td>PHONE NO.</td><td colspan="2">' + surname + '</td></tr>';
+                            text += '<tr><td>GENDER</td><td colspan="2">' + surname + '</td></tr>';
+                            text += '</table>';
+
+                            text += '<h3 class="text-center">REGISTER CARRY OVER COURSES FIRST</h3>';
+                            text += '<table class="table" border="1">';
+                            
+                            text += '<table class="table" border="1">';
+                            text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>';
+                            
+                            text += '<tr><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td></tr>';
+                            text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                            
+                            text += '</table>';
+                            text += '<br>';
+                            text += '<table class="table table-borderless" >';
+                            text += '<tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>';
+                            text += '<tr><td colspan=2 class="text-center">Student\'s signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser\'s signature</td></tr>';
+                            text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
+
                         $("#reg-form").html("<div id='message'></div>");
                             $("#message")
-                            .html("<h2>Reg Form Submitted!</h2>")
-                            .append("<p>Print this slip and submit it to Course Adviser.</p>")
-                            .append("<p>Student Registration Record (Awaiting Approval)</p>")
-                            .append(text)
+                            .html(text)
+                            .append("")
+                            .append("")
+
                             .hide()
                             .fadeIn(1500, function () {
                                 $("#message").append(

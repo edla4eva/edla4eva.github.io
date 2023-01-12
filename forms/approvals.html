@@ -12,7 +12,6 @@
     </script>
     <link rel="stylesheet" href="../css/reg.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,42 +26,9 @@
                     </div>
                     <!-- p-l-5 padding - left - size5 -->
                     <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
-                        <div id="topButtonsDiv">
-                         
-                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" 
-                            value="Continue Registration"
-                            onclick='$("#btnContinue").attr("disabled","true"); $("#regForm").removeAttr("hidden");'>
-                                Start Online Course Registration
-                            </button>
-                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" value="Continue Registration"
-                            onclick='$("#btnContinue").attr("disabled"); $("#continueRegDiv").removeAttr("hidden");'>
-                                Continue Registration from where you Stopped
-                            </button>
-                            <div class="form-row" id="continueRegDiv" hidden>
 
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="name">MAT. NO.</label>
-                                        <input type="text" id="searchMatno" name="searchMatno" placeholder="ENG..." required autofocus />
-                                        <label for="psw"><b>Password</b></label>
-                                        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>       
-
-                                        <label for="load_data_button">Click to load your personal data</label>
-    
-                                        <button class="btn btn-outline-success btn-block load_data_button" id="load_reg_data_button" type="button">Load Personal Data</button>
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <p></p>
-
-                                    </div>
-                                </div>
-                            </div>    
-
-                        </div>
-                        <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" hidden>
-                            <h1>Online Course Registration</h1>
+                        <form id="reg-form" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
+                            <h1>Online Course Registration (Course Adviser)</h1>
                              <h3>Fill the form below and press the submit button!</h3>
                             
                             <div class="form-row">
@@ -72,182 +38,33 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <p></p>
-                                    <label for="load_data_button">Click to load your personal data</label>
+                                    <label for="load_data_button">Approve/label>
 
-                                    <button class="btn btn-outline-success btn-block load_data_button" id="load_reg_data_button" type="button">Load Personal Data</button>
+                                    <button class="btn btn-outline-success btn-block load_data_button" id="load_reg_data_button" type="button">Approve</button>
+                                    <button class="btn btn-outline-success btn-block load_data_button" id="reject_button" type="button">Reject</button>
                                 </div>
                             </div>
 
                 
-
-                            <br>
-                            <label for="student_surname"><b>SURNAME (in capital letters)</b></label>
-                            <input type="text" placeholder="SURNAME" name="student_surname" id="student_surname" required>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="dob"><b>Firstname *</b></label>
-                                    <input type="text" placeholder="Firstname *" name="student_firstname"  id="student_firstname"  required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="student_othernames"><b>Othernames</b></label>               
-                                    <input type="text" placeholder="Othernames" name="student_othernames" id="student_othernames">                           
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                  <label for="inputCity">Dept ID (eg 1 for CPE)</label>
-                                  <input type="text" class="form-control" id="student_dept_idr" name="student_dept_idr" value = "1" hidden>
-                                  <select id="dept_idr" name="dept_idr" class="form-control">
-                                    <option value="1" selected>1. Computer Engineering</option>
-                                    <option value="5">5	Agricultural Engineering</option>
-                                    <option value="6">6	Chemical Engineering</option>
-                                    <option value="18">18 Civil Engineering</option>
-                                    <option value="8">8	Electrical/Electronics Engineering</option>
-                                    <option value="9">9	Industrial Engineering</option>
-                                    <option value="10">10 Marine Engineering</option>
-                                    <option value="11">11 Material and Metrolog Engineering</option>
-                                    <option value="12">12 Mechanical Engineering</option>
-                                    <option value="13">13 Mechatronics Engineering</option>
-                                    <option value="14">14 Metallurgical and Material Engineering</option>
-                                    <option value="15">15 Petroleum Engineering</option>
-                                    <option value="16">16 Production Engineering</option>
-                                    <option value="17">17 Structural Engineering</option>
-                                    <option value="19">19 Geomatics</option>
-                                    <option value="20">20 Vocational and Technical Education</option>
-                                    
-                                    
-                                    <option value="2">2. Diploma in Computing and Computer Technology</option>
-                                    <option value="3">3	Diploma In  Marine Drilling And Production Technology</option>
-                                    <option value="4">4	Diploma In  Maritime Studies, Information & Communication Technology</option>
-                                    <option value="0">0	Generic Department</option>
-
-                                  </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                  <label for="inputState">Session</label>
-                                  <select id="session_idr" name="session_idr" class="form-control">
-                                    <option selected>2020/2021</option>
-                                    <option>2021/2022</option>
-                                    <option>2022/2023</option>
-                                    <option>2023/2024</option>
-                                  </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                  <label for="level">Level</label>
-                                  <select id="level" name="level" class="form-control">
-                                    <option selected>100</option>
-                                    <option>200</option>
-                                    <option>300</option>
-                                    <option>400</option>
-                                    <option>500</option>
-                                  </select>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                  <label for="year_of_entry">Year of Entry (e.g 2019)</label>
-                                  <select id="dept_idr" name="dept_idr" class="form-control">
-                                    <option value = "2016" selected>2016</option>
-                                    <option value = "2017">2017</option>
-                                    <option value = "2018">2018</option>
-                                    <option value = "2019">2019</option>
-                                    <option value = "2020">2020</option>
-                                    <option value = "2021">2021</option>
-                                    <option value = "2022">2022</option>
-                                  </select>
-                                </div>
-                                <div class="form-group col-md-4">
-                                  <label for="session_idr_of_entry">Session of Entry</label>
-                                  <select id="session_idr_of_entry" name="session_idr_of_entry" class="form-control">
-                                    <option selected>2016/2017</option>
-                                    <option value="2017/2018">2017/2018</option>
-                                    <option value="2018/2019">2018/2019</option>
-                                    <option value="2019/2020">2019/2020</option>
-                                    <option value="2020/2021">2020/2021</option>
-                                  </select>
-                                </div>
-                                <div class="form-group col-md-4">
-                                  <label for="mode_of_entry">Mode of Entry (UME or DE)</label>
-                                  <select id="mode_of_entry" name="mode_of_entry" class="form-control">
-                                    <option value="UME" selected>UME</option>
-                                    <option value="DE">DE</option>
-                                  </select>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="form-group col-md-6">
-                                    <label for="psw"><b>Password</b></label>
-                                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>       
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="psw-repeat"><b>Repeat Password</b></label>
-                                    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-                                </div>
-
-                            </div>                                    
-
-
-                            <hr>
-
-                             <p>Bio Data</p>
-                             <label for="dob"><b>Date of birth *</b></label>
-                             <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="email"><b>Email *</b></label>
-                                    <input type="text" placeholder="Email *" name="email"  id="email"  required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="phone"><b>Phone</b></label>               
-                                    <input type="text" placeholder="Phone" name="phone" id="phone">                           
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                  <label for="gender">Gender</label>
-                                  <!-- <input type="text" class="form-control" id="gender" name="student_dept_idr" value = "1" hidden> -->
-                                  <select id="gender" name="gender" class="form-control">
-                                    <option selected>male</option>
-                                    <option>female</option>
-                                  </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                  <label for="Fees_Status">Fees</label>
-                                  <select id="Fees_Status" name="Fees_Status" class="form-control">
-                                    <option selected>paid</option>
-                                    <option>unpaid</option>
-                                  </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                  <label for="status">Status</label>
-                                  <select id="status" name="status" class="form-control">
-                                    <option selected>Successful</option>
-                                    <option>Probation</option>
-                                    <option>Carry Over</option>
-                                    <option>Transfer</option>
-                                  </select>
-                                </div>
-                            </div>
-
-                            <p>Upload recent passport size Photo (Must be on red background; Max size 12kb)</p><input id="file_info"></input>
-                            <input type="file" id="file" required>
-                            <br><hr>
                             <h3>Add/Remove Courses</h3>
                             <div class="row">
                                 <div class="col-md-12">
                                     <input class="btn btn-outline-info btn-lg btn-block" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList(700,0)" />
                                     <div class="spinner-border"></div>
-
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                          <!-- <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                          </li> -->
+                                          <li class="page-item active"><a class="page-link" onclick="PopulateDropDownList(201,0)">1<span class="sr-only">(current)</span></a></li>
+                                          <li class="page-item" onclick="PopulateDropDownList(201,200)" ><a class="page-link">2 </a></li>
+                                          <li class="page-item" onclick="PopulateDropDownList(201,400)"><a class="page-link" >3</a></li>
+                                          <li class="page-item" onclick="PopulateDropDownList(201,600)"><a class="page-link" >4</a></li>
+                                          <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                          </li>
+                                        </ul>
+                                      </nav>
                                 </div>
                                
                             </div>
@@ -277,37 +94,53 @@
                             </div>
                              
                             <p>Cross check the entries you made on the form before you submit</p>
-                            <div id="buttonsDiv">
-                         
-                            
-                                <button class="btn btn-primary btn-lg btn-block" id="btnPreview" type="button" onclick='$(btnPreview).attr("disabled","true"); $(btnSave).attr("hidden","true");'>
-                                    Preview
-                                </button>
-                                <button class="btn btn-primary btn-lg btn-block"  type="button" onclick="$(btnPreview).hide();">
-                                    Save Incomplete Form
-                                </button>
-                                <br>
-
-    
-                                
-                                <p class = "text text-info" hidden>Before you submit you must agree to the terms and conditions</p><a href="">download PDF</a>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="chkTAR" onclick='if($(chkTAR).is(":checked")) {$(btnFinalSubmit).attr("disabled", "false");}else{$(btnFinalSubmit).attr("disabled", "true");}'>
-                                    <label class="form-check-label" for="chkTAR">
-                                    I have downloaded and read the terms and condition
-                                    </label>
-                                </div>
-                                <button type="submit"  class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button">
-                                    Preview before Submitting
-                                </button>
-                            </div>
-                            <!-- <button type="submit" id="btnFinalSubmit"  class="registerbtn">Submit to Course Adviser</button> -->
+                            <button type="submit" class="registerbtn">Submit to Course Adviser</button>
                         </form>
-
-
                     </div>
                     <div class="col-md-2">
-                        <!-- Right side -->
+
+                         
+                         <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" value="Continue Registration">Start Registration</button>
+                         <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" value="Continue Registration">Continue Registration</button>
+                         <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label for="psw"><b>Enter your Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>       
+                            </div>
+                            <div class="form-group col-md-6">
+                                <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" value="Continue Registration">Continue</button>
+                            </div>
+
+                         </div>    
+                         
+                         <button class="btn btn-primary btn-lg btn-block" id="btnPreview" type="button" onclick='$(btnPreview).attr("disabled","true"); $(btnSave).attr("hidden","true");'>
+                            Preview
+                         </button>
+                         <button class="btn btn-primary btn-lg btn-block"  type="button" onclick="$(btnPreview).hide();">
+                            Save Incomplete Form
+                         </button>
+                         <br>
+                         <p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>
+                         <button class="btn btn-primary btn-lg btn-block"  type="button" onclick="$(btnPreview).hide();">
+                            Edit Form
+                         </button>
+
+                         <button class="btn btn-primary btn-lg btn-block"  type="button" onclick="printJS({ printable: 'printJS-form', type: 'html', header: 'PrintJS - Form Element Selection' })">
+                            Print Form
+                         </button> <br>
+
+                         
+                         <p class = "text text-info" hidden>Before you submit you must agree to the terms and conditions</p><a href="">download PDF</a>
+                         <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="chkTAR" onclick='if($(chkTAR).is(":checked")) {$(btnFinalSubmit).attr("disabled", "false");}else{$(btnFinalSubmit).attr("disabled", "true");}'>
+                            <label class="form-check-label" for="chkTAR">
+                              I have downloaded and read the terms and condition
+                            </label>
+                          </div>
+                         <button class="btn btn-primary btn-lg btn-block" id="btnFinalSubmit" type="button" disabled>
+                            Submit Form
+                         </button>
                     </div>
 
             </div>
@@ -326,76 +159,10 @@
                 var x_1 = 1; //initlal text box count
                 var x_2 = 1; //initlal text box count
 
-                //Add course
-                $(add_button_1).click(function(e){ //on add input button click
-                    e.preventDefault();
-                    if(x_1 < max_fields){ //max input box allowed
-                        x_1++; //text box increment
-                        var prevValue_1 = $("#CourseCode_1").val();
-                        var dValue_1 = $("#comboCourses_1").val();
-                        $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
-                        if (prevValue_1==""){
-                            $("#CourseCode_1").val(  dValue_1 ); //change value   
-                        }else{
-                            $("#CourseCode_1").val( prevValue_1 + ";" + dValue_1 ); //change value                        
-                        }
-                    }
-                });
 
-                $(add_button_2).click(function(e){ //on add input button click
-                e.preventDefault();
-                    if(x_2 < max_fields){ //max input box allowed
-                        x_2++; //text box increment
-                        var prevValue_2 = $("#CourseCode_2").val();
-                        var dValue_2 = $("#comboCourses_2").val();
-                        $(wrapper_2).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
-                        if (prevValue_2==""){
-                            $("#CourseCode_2").val(  dValue_2 ); //change value   
-                        }else{
-                            $("#CourseCode_2").val( prevValue_2 + ";" + dValue_2 ); //change value                        
-                        }
-                    }
-                });
-
-                //remove courses
-                $(wrapper_1).on("click",".remove_field_1", function(e){ //user click on remove text
-                    e.preventDefault(); 
-                    $(this).parent('div').parent('div').remove(); x_1--;
-                    //removeCourse_1(x_1);
-                    removeCourse(1);
-                    });
-     
-                $(wrapper_2).on("click",".remove_field_2", function(e){ //user click on remove text
-                    e.preventDefault(); 
-                    $(this).parent('div').parent('div').remove(); x_2--;
-                    //removeCourse_1(x_2);
-                    removeCourse(2);
-                    });
-                
-                $("#file").on("change", function (e) {
-                    var count=1;
-                    var files = e.currentTarget.files; // puts all files into an array
-                    var approvedHTML="";
-                    // call them as such; files[0].size will get you the file size of the 0th file
-                    for (var x in files) {
-                        var filesize = ((files[x].size/1024)/1024).toFixed(4); // MB
-                        if (files[x].name != "item" && typeof files[x].name != "undefined" && filesize <= 10) { 
-                            if (count > 1) {
-                                approvedHTML += ", "+files[x].name;
-                            }
-                            else {
-                                approvedHTML += files[x].name;
-                            }
-                            count++;
-                        }
-                    }
-                    $("#file_info").val(approvedHTML);
-                    console.log(approvedHTML);
-                });
-                
 
                 //ajax for posting form data
-                $("#regForm").submit(function (event) {
+                $("#reg-form").submit(function (event) {
                     var formData = {
                     matno: $("#matno").val(),
                     student_firstname: $("#student_firstname").val(),
@@ -482,20 +249,15 @@
                             text += '<tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>';
                             text += '<tr><td colspan=2 class="text-center">Student\'s signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser\'s signature</td></tr>';
                             text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
-                           
-                                
-    
-                                
 
-                        $("#regForm").html("<div id='message'></div>");
+
+                        $("#reg-form").html("<div id='message'></div>");
                             $("#message")
                             .html("<h2>Online Departmental Course Registration<</h2>")
                             .append("<p></p>")
                             .append("<p>Print this slip and submit it to your Course Adviser.</p>")
-                            .append('<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>')
-                            .append('<button class="btn btn-primary btn-lg btn-block"  type="button" onclick="$(btnPreview).hide();"> Edit Form </button>')
-                            .append('<button class="btn btn-primary btn-lg btn-block"  type="button" onclick="doPrint();" disabled> Print Form</button> <br>')
-                            .append('<button type="submit"  class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button">Submit to Course Adviser (Cannot be Undone)</button>')
+                            
+
                             .append(text)
                             .hide()
                             .fadeIn(1500, function () {
@@ -514,7 +276,7 @@
                     //     encode: true,
                     //     success: function (data) {
                     //         console.log(data);
-                    //         $("#regForm").html("<div id='message'></div>");
+                    //         $("#reg-form").html("<div id='message'></div>");
                     //         $("#message")
                     //         .html("<h2>Contact Form Submitted!</h2>")
                     //         .append("<p>We will be in touch soon.</p>")
@@ -566,8 +328,6 @@
                 });
 
                 //validate button
-
-
                   // Submit button
                   $("#submitbtn").click(function () {
                     validateUsername();
@@ -750,7 +510,7 @@
             }
 
             function load_returnd_records_into_fields(data) {
-                var frm = $("#regForm");
+                var frm = $("#reg-form");
                 var i;
 
                 console.dir(data);      // for debug
@@ -799,9 +559,6 @@
                   });
              }
 
-            function doPrint(){
-                printJS({ printable: 'regForm', type: 'html', header: 'Online Course Registration (c)2023' });
-            }
 
         </script>
 
@@ -819,7 +576,7 @@
             // }
 
             // AJAX for posting json
-            // $("#regForm").on("submit", function (e) {
+            // $("#reg-form").on("submit", function (e) {
             //     e.preventDefault();
             //     const form = $(e.target);
             //     const json = convertFormToJSON(form);
