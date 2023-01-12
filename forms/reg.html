@@ -549,7 +549,7 @@
                         dataType : "json",
                         data : "{matno: 1}",
                         success : load_returnd_records_into_fields,
-                        error: function(xhr) { alert("AJAX request failed: " + xhr.status); }
+                        error: function(xhr) { alert("No record found in database, start registration from scratch" + xhr.status); }
                     });
 
                     }
@@ -763,6 +763,8 @@
                         frm.find('[name="' + field + '"]').val(data[i][field]);
                     }
                 }
+
+                frm.removeAttr("hidden");
             }
       
             //todo: validations
