@@ -403,7 +403,7 @@
 
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost/rtps/web/back-end/public/index.php/api/store_reg",
+                        url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
                         data: form.serialize(),
                         dataType: "json",
                         encode: true,
@@ -412,7 +412,7 @@
                             //fetch data to verify if post was successful
                             $.ajax({
                                 type: "GET",
-                                url: "http://localhost/rtps/web/back-end/public/index.php/api/get_reg/"+ MatNo,
+                                url: "https://www.rtps.keminsoft.site/public/index.php/api/get_reg/"+ MatNo,
                                 data: form.serialize(),
                                 dataType: "json",
                                 encode: true,
