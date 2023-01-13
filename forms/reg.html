@@ -639,6 +639,7 @@
                  
             function PopulateDropDownList(limits, offset) {
                 //load combos
+                $("#btnGenerate").attr("disabled", "true");
                 var courses_1 = [
                     { course_code: "CPE211", course_title: "CPE211-Title"},
                     { course_code: "CPE311", course_title: "CPE311"},
@@ -663,6 +664,7 @@
                             courses_2=data;
                             fillcomboWithReturnedData(data);
                             console.log(data);
+                            $("#btnGenerate").removeAttr("disabled");
                         });
 
                 //Build an array containing course records.
