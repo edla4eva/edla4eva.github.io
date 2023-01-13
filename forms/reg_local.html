@@ -26,7 +26,7 @@
                     <!-- p-l-5 padding - left - size5 -->
                     <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
 
-                        <form id="reg-form" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
+                        <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
                             <h1>Course Registration</h1>
                              <h3>Fill the form below and press the submit button!</h3>
                             
@@ -511,102 +511,218 @@
                     //comboCourses_2.append(option);
                 });
             }
+            function editReg(){
+                location.reload();
+            }
+            function finalSubmit(){
+                $(btnEdit).hide();
+                $(btnFinalSubmit).hide();
+                $(previewButtons).hide(); //hide the whole thing
+                
+            }
         </script>
         <!-- AJAX -->
         <script>     
+
+
             //ajax for posting form data
             $(document).ready(function () {
-                $("#reg-form").submit(function (event) {
-                    var formData = {
-                    matno: $("#matno").val(),
-                    student_firstname: $("#student_firstname").val(),
-                    student_surname: $("#student_surname").val(),
-                    student_othernames: $("#student_othernames").val(),
-                    student_dept_idr: $("#student_dept_idr").val(),
-                    status: $("#status").val(),
-                    year_of_entry: $("#year_of_entry").val(),
-                    student_firstname: $("#student_firstname").val(),
-                    mode_of_entry: $("#mode_of_entry").val(),
-                    dob: $("#dob").val(),
-                    phone: $("#phone").val(),
-                    email: $("#email").val(),
-                    gender: $("#gender").val(),
-                    session_idr: $("#session_idr").val(),
-                    CourseCode_1: $("#CourseCode_1").val(),
-                    CourseCode_2: $("#CourseCode_2").val(),
-                    NA_CourseCode: $("#NA_CourseCode").val(),
-                    Fees_Status: $("#Fees_Status").val(),
-                    level: $("#level").val(),
-                    dept_idr: $("#dept_idr").val()
-                    };
+                // //using deffered
+                // function getData() {
+                //     var formData = {
+                //         matno: $("#matno").val(),
+                //         student_firstname: $("#student_firstname").val(),
+                //         student_surname: $("#student_surname").val(),
+                //         student_othernames: $("#student_othernames").val(),
+                //         student_dept_idr: $("#student_dept_idr").val(),
+                //         status: $("#status").val(),
+                //         year_of_entry: $("#year_of_entry").val(),
+                //         student_firstname: $("#student_firstname").val(),
+                //         mode_of_entry: $("#mode_of_entry").val(),
+                //         dob: $("#dob").val(),
+                //         phone: $("#phone").val(),
+                //         email: $("#email").val(),
+                //         gender: $("#gender").val(),
+                //         session_idr: $("#session_idr").val(),
+                //         CourseCode_1: $("#CourseCode_1").val(),
+                //         CourseCode_2: $("#CourseCode_2").val(),
+                //         NA_CourseCode: $("#NA_CourseCode").val(),
+                //         Fees_Status: $("#Fees_Status").val(),
+                //         level: $("#level").val(),
+                //         dept_idr: $("#dept_idr").val()
+                //         };
+                //     var form = $( this );
+                //     //data: form.serialize(),
+                //     $.ajax({
+                //         type: "POST",
+                //         url: "http://localhost/rtps/web/back-end/public/index.php/api/store_reg",
+                //         data: formData,
+                //         dataType: "json",
+                //         encode: true,
+                //         });
+                // }
+
+                // function handleData(data /* , textStatus, jqXHR */ ) {
+                //     alert(data);
+                //     //do some stuff
+                //        let text = '<table class="table" border="1">';
+                //                 for (let x in data) {
+                //                     let formatedCourses1 = data[x].CourseCode_1 .replace(/;/g, "; ");
+                //                     let formatedCourses2 = data[x].CourseCode_2 .replace(/;/g, "; ");
+                //                     text += "<tr><td>MAT. NO.</td><td>" + data[x].matno + "</td></tr>";
+                //                     text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
+                //                     text += "<tr><td>First Name</td><td>" + data[x].student_firstname + "</td></tr>";
+                //                     text += "<tr><td>Dept ID</td><td>Dept ID: " + data[x].student_dept_idr + "</td></tr>";
+                                    
+                //                     text += "<tr>";
+                //                     text += "<td>Fist Semester Courses</td>";
+                //                     text += "<td>Second Semester Courses</td>";
+                //                     text += "</tr>";
+
+                //                     text += "<tr>";
+                //                     text += "<td><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
+                //                     text += "<td><p class='text-wrap'>" + formatedCourses2+ "</p></td>";
+                //                     text += "</tr>";
+                //                 }
+                //                 text += "</table>"
+                //                 $("#regForm").html("<div id='message'></div>");
+                //                     $("#message")
+                //                     .html("<h2>Reg Form Submitted!</h2>")
+                //                     .append("<p>Print this slip and submit it to Course Adviser.</p>")
+                //                     .append("<p>Student Registration Record (Awaiting Approval)</p>")
+                //                     .append(text)
+                //                     .hide()
+                //                     .fadeIn(1500, function () {
+                //                         $("#message").append(
+                //                         "<a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a>" );
+                //                 });
+                //                 console.log(data);
+                //                 //alert("Success. data: " + data);
+                // }
+
+
+                $("#regForm").submit(function (event) {
+
+                    //getData().done(handleData);
+                    //data: form.serialize(),
+                    // data: formData,
+
+
+                    var form = $( this );
+                    var MatNo = $("#matno").val();
 
                     $.ajax({
-                    type: "POST",
-                    url: "http://localhost/rtps/web/back-end/public/index.php/api/store_reg",
-                    data: formData,
-                    dataType: "json",
-                    encode: true,
-                    }).done(function (data) {
-                            //const myObj = JSON.parse(data);
-                            let text = '<table class="table" border="1">';
-                            for (let x in data) {
-                                let formatedCourses1 = data[x].CourseCode_1 .replace(/;/g, "; ");
-                                let formatedCourses2 = data[x].CourseCode_2 .replace(/;/g, "; ");
-                                text += "<tr><td>MAT. NO.</td><td>" + data[x].matno + "</td></tr>";
-                                text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
-                                text += "<tr><td>First Name</td><td>" + data[x].student_firstname + "</td></tr>";
-                                text += "<tr><td>Dept ID</td><td>Dept ID: " + data[x].student_dept_idr + "</td></tr>";
-                                
-                                text += "<tr>";
-                                text += "<td>Fist Semester Courses</td>";
-                                text += "<td>Second Semester Courses</td>";
-                                text += "</tr>";
+                        type: "POST",
+                        url: "http://localhost/rtps/web/back-end/public/index.php/api/store_reg",
+                        data: form.serialize(),
+                        dataType: "json",
+                        encode: true,
+                        success: function (data) {
 
-                                text += "<tr>";
-                                text += "<td><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
-                                text += "<td><p class='text-wrap'>" + formatedCourses2+ "</p></td>";
-                                text += "</tr>";
-                            }
-                            text += "</table>"
-                        $("#reg-form").html("<div id='message'></div>");
-                            $("#message")
-                            .html("<h2>Reg Form Submitted!</h2>")
-                            .append("<p>Print this slip and submit it to Course Adviser.</p>")
-                            .append("<p>Student Registration Record (Awaiting Approval)</p>")
-                            .append(text)
-                            .hide()
-                            .fadeIn(1500, function () {
-                                $("#message").append(
-                                "<a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a>" );
-                        });
-                        console.log(data);
-                        //alert("Success. data: " + data);
+                            //fetch data to verify if post was successful
+                            $.ajax({
+                                type: "GET",
+                                url: "http://localhost/rtps/web/back-end/public/index.php/api/get_reg/"+ MatNo,
+                                data: form.serialize(),
+                                dataType: "json",
+                                encode: true,
+                                success: function (data) 
+                                        {
+                                            alert("Successful"); 
+                                            console.log("get succeeded \n");
+                                            console.log(data);
+
+
+
+                                            let text = '';
+                                            text += '<h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>';
+                                            text += '<h4 class="text-center">FACULTY OF ENGINEERING</h4>';
+                                            text += '<h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h5>';
+                                            text += '<br>';
+                                            text += '<table class="table" border="1">';
+                                            // let formatedCourses1 = "";
+                                            // let formatedCourses2 = "";
+                                            let matno = "ENG999000";
+                                            let surname= "OLA";
+                                            let course='CPE000';
+                                            let course2='CPE000';
+                                            let credit ='3';
+
+                                            if(data.lenght>0){alert("data returned");}
+                                            console.log("coursecode \n" + data[0].CourseCode_1);
+                                            let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
+                                            let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
+
+                                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
+                                            text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
+                                            text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
+                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[0].student_dept_idr  + '</td></tr>';
+                                            text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].phone  + '</td></tr>';
+                                            text += '<tr><td>LEVEL</td><td colspan="2">' + data[0].level  + '</td></tr>';
+                                            text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].student_surname  + '</td></tr>';
+                                            text += '<tr><td>GENDER</td><td colspan="2">' + data[0].student_surname  + '</td></tr>';
+                                            // text += "<tr>";
+                                            // text += "<td class='text-wrap'><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
+                                            // text += "<td class='text-wrap' colspan='2'> <p class='text-wrap'>" + formatedCourses2 + "</p></td>";
+                                            // text += "</tr>";
+                                            text += '</table>';
+
+                                            text += '<h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>';
+                                            text += '<table class="table" border="1">';
+                                            text += '<table class="table" border="1">';
+                                            text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>'; 
+                                            text += '<tr><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td></tr>';
+                                            //for (let x in data) {
+                                                course=formatedCourses1;
+                                                course2=formatedCourses2;
+                                                text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            //}
+                                            text += '</table>';
+
+                                            //signatures
+                                            text += '<br>';
+                                            text += '<table class="table table-borderless" >';
+                                            text += '<tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>';
+                                            text += '<tr><td colspan=2 class="text-center">Student\'s signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser\'s signature</td></tr>';
+                                            text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
+                                            text += '</table>';
+
+                                            //buttons
+                                            text += ("<p>Print this slip and submit it to your Course Adviser.</p>");
+                                            text += ('<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>');
+                                            text += ('<p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p>');
+                                            text += '<div id="previewButtons">';
+                                                //todo if (data.submitted) editbutton.hidden = true
+                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>');
+                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" onclick="doPrint();" disabled> Print Form</button> <br>');
+                                            text += ('<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>');
+                                            text += '</div>';
+                                            $("#regForm").html("<div id='message'></div>");
+                                            $("#message")
+                                                .html('<h2 class="text-center">Online Departmental Course Registration</h2>')
+                                                .append("<p></p>")
+
+                                                .append(text)
+                                                .hide()
+                                                .fadeIn(1500, function () {
+                                                    $("#message").append(
+                                                    "<p><a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a></p>" );
+                                                });
+                                        },
+                                        error: function (data) {
+                                            console.log(data);
+                                            alert("An error occured fetching data \n" + data.responseJSON.message);
+                                        }
+                            });
+                            //console.log(data); //no need to do this again
+
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            alert("An error occured posting data\n" + data.responseJSON.message);
+
+                        }
                     });
-
-                    // $.ajax({
-                    //     type: "POST",
-                    //     url: "http://localhost/rtps/web/back-end/public/index.php/api/store_reg",
-                    //     data: formData,
-                    //     dataType: "json",
-                    //     encode: true,
-                    //     success: function (data) {
-                    //         console.log(data);
-                    //         $("#reg-form").html("<div id='message'></div>");
-                    //         $("#message")
-                    //         .html("<h2>Contact Form Submitted!</h2>")
-                    //         .append("<p>We will be in touch soon.</p>")
-                    //         .hide()
-                    //         .fadeIn(1500, function () {
-                    //             $("#message").append(
-                    //             "<img id='checkmark' src='images/check.png' />" );
-                    //         });
-                    //         alert("Success");
-                    //     },
-                    //     error: function (data) {
-                    //         console.log(data);
-                    //         alert("An error occured");
-                    //     }
-                    // });
 
                     event.preventDefault();
                 });
@@ -638,12 +754,15 @@
 
 
             });
+            
+            
+
             /**
             * process the response, populating the form fields from the JSON data
             * @param {Object} response the JSON data parsed into an object
             */
             function load_returnd_records_into_fields(data) {
-                var frm = $("#reg-form");
+                var frm = $("#regForm");
                 var i;
 
                 // data= [
@@ -696,7 +815,7 @@
             // }
 
             // AJAX for posting json
-            // $("#reg-form").on("submit", function (e) {
+            // $("#regForm").on("submit", function (e) {
             //     e.preventDefault();
             //     const form = $(e.target);
             //     const json = convertFormToJSON(form);
