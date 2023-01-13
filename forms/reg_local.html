@@ -25,8 +25,41 @@
                     </div>
                     <!-- p-l-5 padding - left - size5 -->
                     <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
+                        <div id="topButtonsDiv">
+                         
+                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnStart" 
+                            onclick='$("#btnContinue").attr("disabled","true"); $("#regForm").removeAttr("hidden"); $("#continueRegDiv").attr("hidden");'>
+                                Start Online Course Registration
+                            </button>
+                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" 
+                            onclick='$("#continueRegDiv").removeAttr("hidden");'>
+                                Continue Registration from where you Stopped
+                            </button>
+                            <div class="form-row" id="continueRegDiv" hidden>
 
-                        <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">MAT. NO.</label>
+                                        <input type="text" id="searchMatno" name="searchMatno" placeholder="ENG..." required autofocus />
+                                        <label for="psw"><b>Password</b></label>
+                                        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>       
+
+                                        <label for="load_data_button">Click to load your personal data</label>
+    
+                                        <button class="btn btn-outline-success btn-block load_data_button" id="load_reg_data_button" type="button">Load Personal Data</button>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <p></p>
+
+                                    </div>
+                                </div>
+                            </div>    
+
+                        </div>
+
+                        <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" hidden>
                             <h1>Course Registration</h1>
                              <h3>Fill the form below and press the submit button!</h3>
                             

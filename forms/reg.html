@@ -29,13 +29,12 @@
                     <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
                         <div id="topButtonsDiv">
                          
-                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" 
-                            value="Continue Registration"
-                            onclick='$("#btnContinue").attr("disabled","true"); $("#regForm").removeAttr("hidden");'>
+                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnStart" 
+                            onclick='$("#btnContinue").attr("disabled","true"); $("#regForm").removeAttr("hidden"); $("#continueRegDiv").attr("hidden");'>
                                 Start Online Course Registration
                             </button>
-                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" value="Continue Registration"
-                            onclick='$("#btnContinue").attr("disabled"); $("#continueRegDiv").removeAttr("hidden");'>
+                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" 
+                            onclick='$("#continueRegDiv").removeAttr("hidden");'>
                                 Continue Registration from where you Stopped
                             </button>
                             <div class="form-row" id="continueRegDiv" hidden>
@@ -61,6 +60,8 @@
                             </div>    
 
                         </div>
+
+                        
                         <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" hidden>
                             <h1>Online Course Registration</h1>
                              <h5>Carefully fill the form below then preview before submission!</h5>
