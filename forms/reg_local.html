@@ -641,9 +641,15 @@
                     //getData().done(handleData);
                     //data: form.serialize(),
                     // data: formData,
+                    ///                        data: new FormData(this),
 
-
-                    var form = $( this );
+                    //handle image
+                    //$.ajax({
+                        //url: "http://localhost/rtps/web/back-end/public/index.php/api/ajax_upload",
+                        //data: new FormData(this),
+                    //});
+                    
+                        var form = $( this );
                     var MatNo = $("#matno").val();
 
                     $.ajax({
@@ -688,7 +694,7 @@
                                             let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
                                             let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
 
-                                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
+                                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="https://rtps.keminsoft.site/public/images/img.png" /></td></tr>';
                                             text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
                                             text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
                                             text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[0].student_dept_idr  + '</td></tr>';
