@@ -440,15 +440,15 @@
                                             console.log("coursecode \n" + data[0].CourseCode_1);
                                             let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
                                             let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
-
+                                            
                                             text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
                                             text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
                                             text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
-                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[0].student_dept_idr  + '</td></tr>';
+                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[0].dept_idr  + '</td></tr>';
                                             text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].phone  + '</td></tr>';
                                             text += '<tr><td>LEVEL</td><td colspan="2">' + data[0].level  + '</td></tr>';
-                                            text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].student_surname  + '</td></tr>';
-                                            text += '<tr><td>GENDER</td><td colspan="2">' + data[0].student_surname  + '</td></tr>';
+                                            text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].phone  + '</td></tr>';
+                                            text += '<tr><td>GENDER</td><td colspan="2">' + data[0].gender  + '</td></tr>';
                                             // text += "<tr>";
                                             // text += "<td class='text-wrap'><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
                                             // text += "<td class='text-wrap' colspan='2'> <p class='text-wrap'>" + formatedCourses2 + "</p></td>";

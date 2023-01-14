@@ -562,6 +562,12 @@
 
             //ajax for posting form data
             $(document).ready(function () {
+
+                //var selDept= $('#dept_idr :selected').text();
+                //alert(selDept);
+                var selDept2= $("#dept_idr").children("option").filter(":selected").text();
+                alert(selDept2);
+                console.log($("#dept_idr").children);
                 // //using deffered
                 // function getData() {
                 //     var formData = {
