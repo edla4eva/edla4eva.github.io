@@ -28,7 +28,13 @@
                     <!-- p-l-5 padding - left - size5 -->
                     <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
                         <div id="topButtonsDiv">
-                         
+                            
+
+
+                            <h1 class="text-center">University Of Benin, Benin City</h1>
+                            <h1 class="text-center">Faculty of Engineering </h1>
+                            <h3 class="text-center">Online Examination Course Registration Form - 2021/2022</h1>
+                           
                             <button class="btn btn-success btn-lg btn-block" type="button" id="btnStart" 
                             onclick='$("#btnContinue").attr("disabled","true"); $("#regForm").removeAttr("hidden"); $("#continueRegDiv").attr("hidden");'>
                                 Start Online Course Registration
@@ -325,8 +331,9 @@
                 //Add course
                 $(add_button_1).click(function(e){ //on add input button click
                     e.preventDefault();
-                    if(x_1 < max_fields){ //max input box allowed
+                    if(x_1 < max_fields && $("#comboCourses_1").val()!==null){ //max input box allowed
                         x_1++; //text box increment
+                        //if (dCredit + getCredit(dValue_1)>50)//todo compute credit
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
                         $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
@@ -396,6 +403,8 @@
                     //getData().done(handleData);
                     //data: form.serialize(),
                     // data: formData,
+                    var selDept= $('#dept_idr :selected').text();
+                    //var selDept2= $("#dept_idr").children("option").filter(":selected").text();
 
 
                     var form = $( this );
@@ -444,7 +453,7 @@
                                             text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
                                             text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
                                             text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
-                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[0].dept_idr  + '</td></tr>';
+                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[0].dept_idr + ' - ' + selDept + '</td></tr>';
                                             text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].phone  + '</td></tr>';
                                             text += '<tr><td>LEVEL</td><td colspan="2">' + data[0].level  + '</td></tr>';
                                             text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].phone  + '</td></tr>';
@@ -520,7 +529,7 @@
                 $(load_reg_data_button).click(function(e){ //on add input button click
                     e.preventDefault();
                     // grab the ID and send AJAX request if not (empty / only whitespace)
-                    var MatNo = $("#matno").val();
+                    var MatNo = $("#searchMatno").val();
                     if (/\S/.test(MatNo)) {
 
                     // using the ajax() method directly
@@ -670,40 +679,6 @@
                 //Build an array containing course records.
                 fillcomboWithReturnedData(courses_1);
                 
-    //             //first clear all courses
-    //             $("#CourseCode_1").val(  "");
-    //             $("#CourseCode_2").val(  "");
-
-    //             //<select id="comboCourses_1"></select>
-    //             $("#comboCourses_1").empty();
-    //             $("#comboCourses_2").empty();
-
-    //             var comboCourses_1 = $("#comboCourses_1");
-    //             var comboCourses_2 = $("#comboCourses_2");
-    //             $(courses_1).each(function () {
-    //                 var option = $("<option />");
-    //  
-    //                 //Set course_title in Text part.
-    //                 option.html(this.course_title);
-    //  
-    //                 //Set  course_code in Value part.
-    //                 option.val(this.course_code);
-    //  
-    //                 //Add the Option element to DropDownList.
-    //                 comboCourses_1.append(option);
-    //             });
-    //             $(courses_2).each(function () {
-    //                 var option = $("<option />");
-    //  
-    //                 //Set course_title in Text part.
-    //                 option.html(this.course_title);
-    //  
-    //                 //Set  course_code in Value part.
-    //                 option.val(this.course_code);
-    //  
-    //                 //Add the Option element to DropDownList.
-    //                 comboCourses_2.append(option);
-    //             });
             }
 
             function fillcomboWithReturnedData(courses_1){
