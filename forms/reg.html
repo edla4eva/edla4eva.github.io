@@ -333,9 +333,14 @@
                     e.preventDefault();
                     if(x_1 < max_fields && $("#comboCourses_1").val()!==null){ //max input box allowed
                         x_1++; //text box increment
-                        //if (dCredit + getCredit(dValue_1)>50)//todo compute credit
+
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
+                        //todo compute credit
+                        if (dCredit + getCredit(dValue_1)>50){
+                            alert("Exceeded 50 credits");
+                            return;
+                        }
                         $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
                         if (prevValue_1==""){
                             $("#CourseCode_1").val(  dValue_1 ); //change value   
@@ -453,8 +458,8 @@
                                             text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
                                             text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
                                             text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
-                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[0].dept_idr + ' - ' + selDept + '</td></tr>';
-                                            text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].phone  + '</td></tr>';
+                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + selDept + '</td></tr>';
+                                            text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].mode_of_entry  + '</td></tr>';
                                             text += '<tr><td>LEVEL</td><td colspan="2">' + data[0].level  + '</td></tr>';
                                             text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].phone  + '</td></tr>';
                                             text += '<tr><td>GENDER</td><td colspan="2">' + data[0].gender  + '</td></tr>';
@@ -650,16 +655,16 @@
                 //load combos
                 $("#btnGenerate").attr("disabled", "true");
                 var courses_1 = [
-                    { course_code: "CPE211", course_title: "CPE211-Title"},
-                    { course_code: "CPE311", course_title: "CPE311"},
-                    { course_code: "CPE321", course_title: "CPE321" },
-                    { course_code: "CPE481", course_title: "CPE481"}
+                    { course_code: "CPE211", course_title: "CPE211-Title", course_unit: 3},
+                    { course_code: "CPE311", course_title: "CPE311", course_unit: 3},
+                    { course_code: "CPE321", course_title: "CPE321", course_unit: 3 },
+                    { course_code: "CPE481", course_title: "CPE481", course_unit: 3}
                 ];
                 var courses_2 = [
-                    { course_code: "CPE212", course_title: "CPE212-Title"},
-                    { course_code: "CPE313", course_title: "CPE313" },
-                    { course_code: "CPE82", course_title: "CPE82"},
-                    { course_code: "CPE572", course_title: "CPE572"}
+                    { course_code: "CPE212", course_title: "CPE212-Title", course_unit: 3},
+                    { course_code: "CPE313", course_title: "CPE313" , course_unit: 3},
+                    { course_code: "CPE82", course_title: "CPE82", course_unit: 3},
+                    { course_code: "CPE572", course_title: "CPE572", course_unit: 3}
                 ];
                     // using the ajax() method directly to get data for comco
                     $.ajax({
@@ -681,6 +686,14 @@
                 
             }
 
+            function getCredit(dCourse){
+                
+                var dCredit = courses_1.find(dCourse).course_unit;
+                if (dCredit==undefined){
+                    dCredit=0;
+                }
+                return dCredit
+            }
             function fillcomboWithReturnedData(courses_1){
                 //first clear all courses
                 $("#CourseCode_1").val(  "");

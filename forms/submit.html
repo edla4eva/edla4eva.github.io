@@ -133,7 +133,39 @@
                         });
                         console.log(data);
                         //alert("Success. data: " + data);
-                    });
+
+
+
+
+                                        //ajax for posting form data
+                $("#regForm").submit(function (event) {
+
+
+                    //test image
+                var selDept= $('#dept_idr :selected').text();
+                //var selDept2= $("#dept_idr").children("option").filter(":selected").text();
+                var form = $( this );
+                var MatNo = $("#matno").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/rtps/web/back-end/public/index.php/api/jpg",
+                    data: form.serialize(),
+                    dataType: "json",
+                    encode: true,
+                    success: function (data) {
+                        //fetch data to verify if post was successful
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        alert("An error occured posting data \n" + data.responseJSON.message);
+                    }
+                });
+
+                event.preventDefault();
+                });
+
+            });
 
 
 
