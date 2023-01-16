@@ -337,12 +337,12 @@
 
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
-                        //todo compute credit
-                        if (dCredit + getCredit(dValue_1)>50){
-                            alert("Exceeded 50 credits");
-                            return;
-                        }
-                        dCredit=dCredit+getCredit(dValue_1);
+                        // //todo compute credit
+                        // if (dCredit + getCredit(dValue_1, glb_Course_1)>50){
+                        //     alert("Exceeded 50 credits");
+                        //     return;
+                        // }
+                        // dCredit=dCredit+getCredit(dValue_1);
                         $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
                         if (prevValue_1==""){
                             $("#CourseCode_1").val(  dValue_1 ); //change value   
@@ -693,7 +693,7 @@
                 
             }
 
-            function getCredit(dCourse){
+            function getCredit(dCourse, glb_Course_1){
                 
                 var dCredit = glb_Course_1.find(dCourse).course_unit;
                 if (dCredit==undefined){

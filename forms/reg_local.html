@@ -307,6 +307,7 @@
                 var x_1 = 1; //initlal text box count
                 var x_2 = 1; //initlal text box count
                 var dCredit =0;
+                var glb_Course_1 ="";
                 $(add_button_1).click(function(e){ //on add input button click
                     e.preventDefault();
                     if(x_1 < max_fields){ //max input box allowed
@@ -314,11 +315,11 @@
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
                         //todo compute credit
-                        if (dCredit + getCredit(dValue_1)>50){
-                            alert("Exceeded 50 credits");
-                            return;
-                        }
-                        dCredit=dCredit+getCredit(dValue_1);
+                        // if (dCredit + getCredit(dValue_1, glb_Course_1)>50){
+                        //     alert("Exceeded 50 credits");
+                        //     return;
+                        // }
+                        // dCredit=dCredit+getCredit(dValue_1);
                         $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
                         if (prevValue_1==""){
                             $("#CourseCode_1").val(  dValue_1 ); //change value   
@@ -389,9 +390,9 @@
             });
 
             
-            function getCredit(dCourse){
+            function getCredit(dCourse, glb_Course_1){
                 
-                var dCredit = courses_1.find(dCourse).course_unit;
+                var dCredit = glb_Course_1.find(dCourse).course_unit;
                 if (dCredit==undefined){
                     dCredit=0;
                 }
@@ -491,6 +492,7 @@
                         }).done(function (data) {
                             courses_1=data;
                             courses_2=data;
+                            glb_Course_1 =data;
                             fillcomboWithReturnedData(data);
                             console.log(data);
                             $("#btnGenerate").removeAttr("disabled");
