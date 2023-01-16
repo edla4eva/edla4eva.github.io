@@ -327,6 +327,7 @@
                 var x_1 = 1; //initlal text box count
                 var x_2 = 1; //initlal text box count
                 var glb_Course_1 ="";
+                var dCredit =0;
                 //var nameArr = names.split(',');
                 //Add course
                 $(add_button_1).click(function(e){ //on add input button click
@@ -472,10 +473,10 @@
                                             text += '</table>';
 
                                             text += '<h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>';
-                                            text += '<table class="table" border="1">';
+                                            text += '<table class="table" border="1" width="100%">';
                                             text += '<table class="table" border="1">';
                                             text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>'; 
-                                            text += '<tr><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td></tr>';
+                                            text += '<tr><td  class="mw-30" style="width: 100px;">COURSE CODE</td><td>CREDIT</td><td class="mw-30" style="width: 100px;>COURSE CODE</td><td ">CREDIT</td></tr>';
                                             //for (let x in data) {
                                                 course=formatedCourses1;
                                                 course2=formatedCourses2;
@@ -536,7 +537,7 @@
                 $(load_reg_data_button).click(function(e){ //on add input button click
                     e.preventDefault();
                     $("#topButtonsDiv").attr("hidden"); //hide em
-                    
+
                     // grab the ID and send AJAX request if not (empty / only whitespace)
                     var MatNo = $("#searchMatno").val();
                     if (/\S/.test(MatNo)) {
