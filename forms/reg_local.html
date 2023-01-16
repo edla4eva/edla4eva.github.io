@@ -314,6 +314,7 @@
                         x_1++; //text box increment
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
+                        //var dCredit = $("option").data("course_unit") //"built in" todo: selected index
                         //todo compute credit
                         // if (dCredit + getCredit(dValue_1, glb_Course_1)>50){
                         //     alert("Exceeded 50 credits");
@@ -550,13 +551,17 @@
                 var comboCourses_2 = $("#comboCourses_2");
                 $(courses_1).each(function () {
                     
-                    var option = $("<option />");
+                    var option = $("<option data-course_unit='" + this.course_unit + "' />");
                     //Set course_title in Text part.
                     option.html(this.course_code + "-" + this.course_title + " (" + this.course_unit + ")");
      
                     //Set  course_code in Value part.
                     option.val(this.course_code);
-     
+                    // option.data("course_unit").val(this.course_unit);
+                    //$("#myname").find(':selected').attr('course_unit');
+                    //<option data-course_unit="CommonLi"></option
+                    //$("option").data("course_unit") //"built in"
+
                     //Add the Option element to DropDownList.
                     if(this.course_semester=="1") comboCourses_1.append(option);
                     if(this.course_semester=="2") comboCourses_2.append(option);
