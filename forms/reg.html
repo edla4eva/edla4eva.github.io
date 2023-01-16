@@ -35,7 +35,7 @@
                             <h3 class="text-center">Online Examination Course Registration Form - 2021/2022</h1>
                            
                             <button class="btn btn-success btn-lg btn-block" type="button" id="btnStart" 
-                            onclick='$("#btnContinue").attr("disabled","true"); $("#regForm").removeAttr("hidden"); $("#continueRegDiv").attr("hidden");'>
+                            onclick='$("#btnContinue").attr("disabled","true"); $("#regForm").removeAttr("hidden"); $("#topButtonsDiv").attr("hidden");'>
                                 Start Online Course Registration
                             </button>
                             <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" 
@@ -535,6 +535,8 @@
                 //load registration data
                 $(load_reg_data_button).click(function(e){ //on add input button click
                     e.preventDefault();
+                    $("#topButtonsDiv").attr("hidden"); //hide em
+                    
                     // grab the ID and send AJAX request if not (empty / only whitespace)
                     var MatNo = $("#searchMatno").val();
                     if (/\S/.test(MatNo)) {
