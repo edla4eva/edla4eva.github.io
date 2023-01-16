@@ -30,7 +30,6 @@
                         <div id="topButtonsDiv">
                             
 
-
                             <h1 class="text-center">University Of Benin, Benin City</h1>
                             <h1 class="text-center">Faculty of Engineering </h1>
                             <h3 class="text-center">Online Examination Course Registration Form - 2021/2022</h1>
@@ -283,9 +282,9 @@
                             <div id="buttonsDiv">
                          
                             
-                                <button class="btn btn-primary btn-lg btn-block" id="btnSave" type="button" onclick='$(btnPreview).attr("disabled","true"); $(btnSave).attr("hidden","true");'>
+                                <!-- <button class="btn btn-primary btn-lg btn-block" id="btnSave" type="button" onclick='$(btnPreview).attr("disabled","true"); $(btnSave).attr("hidden","true");'>
                                     Save Incomplete Form
-                                </button>
+                                </button> -->
 
                                 
                                 <br>
@@ -410,6 +409,7 @@
                     //getData().done(handleData);
                     //data: form.serialize(),
                     // data: formData,
+                    $("#topButtonsDiv").hide();
                     var selDept= $('#dept_idr :selected').text();
                     //var selDept2= $("#dept_idr").children("option").filter(":selected").text();
 
@@ -450,7 +450,7 @@
                                             let surname= "OLA";
                                             let course='CPE000';
                                             let course2='CPE000';
-                                            let credit ='3';
+                                            let credit ='0';
 
                                             if(data.lenght>0){alert("data returned");}
                                             console.log("coursecode \n" + data[0].CourseCode_1);
