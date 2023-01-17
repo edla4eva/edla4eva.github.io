@@ -535,8 +535,8 @@
                                                 glbCredit_2 = parseInt(glbCredit_2) + parseInt(credit2);
                                                // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
                                             }
-                                            text += '<tr><td class="text-wrap">' + strCourses1 + '</td><td>'+ '</td><td>' + strCourses2 + '</td><td class="mw-40" style="width: 180px;">'  + '</td></tr>';
-                                            text += '<tr><td>' + 'Total' + '</td><td>'+ glbCredit_1 + '</td><td>' + 'Total' + '</td><td class="mw-40" style="width: 180px;">' + glbCredit_2 + '</td></tr>';
+                                            text += '<tr><td class="text-wrap" colspan=2><pre>' + strCourses1 + '</pre></td>'+ '<td colspan=2><pre>' + strCourses2 + '</pre></td>'  + '</tr>';
+                                            text += '<tr><td colspan=2>' + 'Total' + "  -  " + glbCredit_1 + '</td>' + '<td colspan=2>' + 'Total' + "  -  " + glbCredit_2 + '</td>' + '</tr>';
                                             text += '</table>';
 
                                             //signatures
