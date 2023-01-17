@@ -176,6 +176,7 @@
                                   <select id="mode_of_entry" name="mode_of_entry" class="form-control">
                                     <option value="UME" selected>UME</option>
                                     <option value="DE">DE</option>
+                                    <option value="TRANSFER">TRANSFER</option>
                                   </select>
                                 </div>
                             </div>
@@ -247,7 +248,7 @@
                             <h3>Add/Remove Courses</h3>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input class="btn btn-outline-info btn-lg btn-block" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList(700,0)" />
+                                    <input class="btn btn-outline-info btn-lg btn-block" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList(900,0)" />
                                     <div class="spinner-border"></div>
 
                                 </div>
@@ -315,9 +316,17 @@
         </div>
         <hr>
         
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
         <!-- JavaScript add new form and respond to select(combo) changes-->
         <script>
             $(document).ready(function() {
+                //config
+                urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                url_global = urlCloud;
+                glb_Course_1 ="";
+
                 var max_fields      = 15; //maximum input boxes allowed
                 var wrapper_1   		= $(".input_fields_wrap_1"); //Fields wrapper
                 var wrapper_2   		= $(".input_fields_wrap_2"); //Fields wrapper
@@ -326,9 +335,25 @@
                 // var update_button      = $(".update_field_button"); //Update button ID
                 var x_1 = 1; //initlal text box count
                 var x_2 = 1; //initlal text box count
-                var glb_Course_1 ="";
-                var dCredit =0;
+                
+                dCredit = 0;
                 //var nameArr = names.split(',');
+
+                doc = new jsPDF(); 
+                var specialElementHandlers = { 
+                    '#editor': function (element, renderer) { 
+                        return true; 
+                    } 
+                };
+                //or regForm or message
+                $('#printForm').click(function () { 
+                    alert("printing...");
+                    doc.fromHTML($('#regForm').html(), 15, 15, { 
+                            'width': 190, 
+                            'elementHandlers': specialElementHandlers 
+                    }); 
+                    doc.save('onlineCourseRegistration.pdf'); 
+                });
                 //Add course
                 $(add_button_1).click(function(e){ //on add input button click
                     e.preventDefault();
@@ -420,7 +445,7 @@
 
                     $.ajax({
                         type: "POST",
-                        url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
+                        url: url_global + "store_reg",
                         data: form.serialize(),
                         dataType: "json",
                         encode: true,
@@ -429,7 +454,7 @@
                             //fetch data to verify if post was successful
                             $.ajax({
                                 type: "GET",
-                                url: "https://www.rtps.keminsoft.site/public/index.php/api/get_reg/"+ MatNo,
+                                url: url_global + "get_reg/"+ MatNo,
                                 data: form.serialize(),
                                 dataType: "json",
                                 encode: true,
@@ -458,7 +483,7 @@
                                             let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
                                             let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
                                             
-                                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
+                                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="'+ url_global + 'jpg/img.png" /></td></tr>';
                                             text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
                                             text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
                                             text += '<tr><td>DEPARTMENT</td><td colspan="2">' + selDept + '</td></tr>';
@@ -499,7 +524,7 @@
                                             text += '<div id="previewButtons">';
                                                 //todo if (data.submitted) editbutton.hidden = true
                                             text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>');
-                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" onclick="$("#previewButtons").attr("hidden"); window.print();" > Print Form</button> <br>');
+                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onclick="$("#previewButtons").attr("hidden"); window.print();" > Print Form</button> <br>');
                                             text += ('<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>');
                                             text += '</div>';
                                             $("#regForm").html("<div id='message'></div>");
@@ -545,7 +570,7 @@
                     // using the ajax() method directly
                     $.ajax({
                         type : "GET",
-                        url : "https://www.rtps.keminsoft.site/public/index.php/api/get_reg/" + MatNo,
+                        url : url_global + "get_reg/" + MatNo,
                         cache : false,
                         dataType : "json",
                         data : "{matno: 1}",
@@ -674,7 +699,7 @@
                     // using the ajax() method directly to get data for comco
                     $.ajax({
                         type: "POST",
-                        url: "https://www.rtps.keminsoft.site/public/index.php/api/get_table/courses/"+limits+"/"+ offset,
+                        url: url_global + "get_table/courses/"+ limits +"/"+ offset,
                         data: {},
                         dataType: "json",
                         encode: true,

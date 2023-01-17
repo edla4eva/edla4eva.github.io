@@ -12,7 +12,9 @@
     </script>
     <link rel="stylesheet" href="../css/reg.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
     <body>
@@ -26,9 +28,14 @@
                     <!-- p-l-5 padding - left - size5 -->
                     <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
                         <div id="topButtonsDiv">
-                         
+                            
+
+                            <h1 class="text-center">University Of Benin, Benin City</h1>
+                            <h1 class="text-center">Faculty of Engineering </h1>
+                            <h3 class="text-center">Online Examination Course Registration Form - 2021/2022</h1>
+                           
                             <button class="btn btn-success btn-lg btn-block" type="button" id="btnStart" 
-                            onclick='$("#btnContinue").attr("disabled","true"); $("#regForm").removeAttr("hidden"); $("#continueRegDiv").attr("hidden");'>
+                            onclick='$("#btnContinue").attr("disabled","true"); $("#regForm").removeAttr("hidden"); $("#topButtonsDiv").attr("hidden");'>
                                 Start Online Course Registration
                             </button>
                             <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" 
@@ -59,24 +66,21 @@
 
                         </div>
 
+                        
                         <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" hidden>
-                            <h1>Course Registration</h1>
-                             <h3>Fill the form below and press the submit button!</h3>
-                            
+                            <h1>Online Course Registration</h1>
+                             <h5>Carefully fill the form below then preview before submission!</h5>
+                            <br>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">MAT. NO.</label>
                                     <input type="text" id="matno" name="matno" placeholder="ENG..." required autofocus />
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <p></p>
-                                    <label for="load_data_button">Click to load your personal data</label>
-
-                                    <button class="btn btn-outline-success btn-block load_data_button" id="load_reg_data_button" type="button">Load Personal Data</button>
                                 </div>
                             </div>
 
-                            <!-- <div class="input-group mb-3"><input type="text" id="matno" name="matno" placeholder="ENG..." required="" /><div class="input-group-append"><button class="btn btn-outline-success load_data_button" id="load_data_button" type="button" onclick="PopulateDropDownList()">Load Personal Data</button></div></div> -->
+                
 
                             <br>
                             <label for="student_surname"><b>SURNAME (in capital letters)</b></label>
@@ -98,8 +102,29 @@
                                   <label for="inputCity">Dept ID (eg 1 for CPE)</label>
                                   <input type="text" class="form-control" id="student_dept_idr" name="student_dept_idr" value = "1" hidden>
                                   <select id="dept_idr" name="dept_idr" class="form-control">
-                                    <option selected>1. Computer Engineering</option>
-                                    <option>2. Computing and Computer Technology</option>
+                                    <option value="1" selected>1. Computer Engineering</option>
+                                    <option value="5">5	Agricultural Engineering</option>
+                                    <option value="6">6	Chemical Engineering</option>
+                                    <option value="18">18 Civil Engineering</option>
+                                    <option value="8">8	Electrical/Electronics Engineering</option>
+                                    <option value="9">9	Industrial Engineering</option>
+                                    <option value="10">10 Marine Engineering</option>
+                                    <option value="11">11 Material and Metrolog Engineering</option>
+                                    <option value="12">12 Mechanical Engineering</option>
+                                    <option value="13">13 Mechatronics Engineering</option>
+                                    <option value="14">14 Metallurgical and Material Engineering</option>
+                                    <option value="15">15 Petroleum Engineering</option>
+                                    <option value="16">16 Production Engineering</option>
+                                    <option value="17">17 Structural Engineering</option>
+                                    <option value="19">19 Geomatics</option>
+                                    <option value="20">20 Vocational and Technical Education</option>
+                                    
+                                    
+                                    <option value="2">2. Diploma in Computing and Computer Technology</option>
+                                    <option value="3">3	Diploma In  Marine Drilling And Production Technology</option>
+                                    <option value="4">4	Diploma In  Maritime Studies, Information & Communication Technology</option>
+                                    <option value="0">0	Generic Department</option>
+
                                   </select>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -123,51 +148,39 @@
                                 </div>
                             </div>
 
-                            <!-- <label for="student_dept_idr"><b>Department ID (e.g 1 for CPE, 2 for ...)</b></label>
-                            <input type="text" placeholder="1" name="student_dept_idr" id="student_dept_idr" required>
-                            <label for="email"><b>Department ID (e.g 1 for CPE, 2 for ...)</b></label>
-                            <input type="text" placeholder="1" name="dept_idr" id="dept_idr" required>
-                            <label for="status"><b>Status (e.g Successful, Probation)</b></label>
-                            <input type="text" placeholder="Successful" name="status" id="status" required>
-                            <label for="email"><b>Year of Entry (e.g 2019)</b></label>
-                            <input type="text" placeholder="year_of_entry" name="year_of_entry" id="year_of_entry" required>
-                            <label for="email"><b>Session of Entry (Session you gained admission eg 2019/2020)</b></label>
-                            <input type="text" placeholder="session_idr_of_entry" name="session_idr_of_entry" id="session_idr_of_entry" required>
-                            <label for="mode_of_entry"><b>Mode of Entry (UME or DE)</b></label>
-                            <input type="text" placeholder="mode_of_entry" name="mode_of_entry" id="mode_of_entry" required>
-                            <label for="session_idr"><b>Session (e.g 2020/2021)</b></label>
-                            <input type="text" placeholder="session_idr" name="session_idr" id="session_idr" required> -->
-
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                   <label for="year_of_entry">Year of Entry (e.g 2019)</label>
                                   <select id="dept_idr" name="dept_idr" class="form-control">
-                                    <option selected>2019</option>
-                                    <option>2020</option>
+                                    <option value = "2016" selected>2016</option>
+                                    <option value = "2017">2017</option>
+                                    <option value = "2018">2018</option>
+                                    <option value = "2019">2019</option>
+                                    <option value = "2020">2020</option>
+                                    <option value = "2021">2021</option>
+                                    <option value = "2022">2022</option>
                                   </select>
                                 </div>
                                 <div class="form-group col-md-4">
                                   <label for="session_idr_of_entry">Session of Entry</label>
                                   <select id="session_idr_of_entry" name="session_idr_of_entry" class="form-control">
-                                    <option selected>2020/2021</option>
-                                    <option>2021/2022</option>
-                                    <option>2022/2023</option>
-                                    <option>2023/2024</option>
+                                    <option selected>2016/2017</option>
+                                    <option value="2017/2018">2017/2018</option>
+                                    <option value="2018/2019">2018/2019</option>
+                                    <option value="2019/2020">2019/2020</option>
+                                    <option value="2020/2021">2020/2021</option>
                                   </select>
                                 </div>
                                 <div class="form-group col-md-4">
                                   <label for="mode_of_entry">Mode of Entry (UME or DE)</label>
                                   <select id="mode_of_entry" name="mode_of_entry" class="form-control">
-                                    <option selected>UME</option>
-                                    <option>DE</option>
+                                    <option value="UME" selected>UME</option>
+                                    <option value="DE">DE</option>
+                                    <option value="TRANSFER">TRANSFER</option>
                                   </select>
                                 </div>
                             </div>
 
-                            <!-- <label for="Fees_Status"><b>Fees_Status</b></label> -->
-                            <!-- <input type="text" placeholder="Fees_Status" name="Fees_Status" id="Fees_Status" required> -->
-                            <!-- <label for="level"><b>level</b></label> -->
-                            <!-- <input type="text" placeholder="level" name="level" id="level" required> -->
                             <div class="form-row">
 
                                 <div class="form-group col-md-6">
@@ -183,14 +196,7 @@
 
 
                             <hr>
-                            <!-- <label for="dob"><b>Date of birth *</b></label>
-                            <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required >
-                            <br>
-                            <label for="phone"><b>Phone number *</b></label>                        
-                            <input type="text" placeholder="Phone number *" name="phone" id="phone" required >
-                            <label for="email"><b>Email *</b></label>               
-                            <input type="email" placeholder="Your email *" name="email" required >                        
-                             -->
+
                              <p>Bio Data</p>
                              <label for="dob"><b>Date of birth *</b></label>
                              <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required>
@@ -236,26 +242,15 @@
                                 </div>
                             </div>
 
-                            <p>Upload Passport Photo (Max size 12kb)</p><input id="file_info"></input>
+                            <p>Upload recent passport size Photo (Must be on red background; Max size 12kb)</p><input id="file_info"></input>
                             <input type="file" id="file" required>
                             <br><hr>
                             <h3>Add/Remove Courses</h3>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input class="btn btn-outline-info btn-lg btn-block" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList(91,0)" />
-                                    <nav aria-label="...">
-                                        <ul class="pagination">
-                                          <!-- <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                          </li> -->
-                                          <li class="page-item active"><a class="page-link" onclick="PopulateDropDownList(90,180)">1<span class="sr-only">(current)</span></a></li>
-                                          <li class="page-item" onclick="PopulateDropDownList(90,90)" ><a class="page-link">2 </a></li>
-                                          <li class="page-item" onclick="PopulateDropDownList(90,180)"><a class="page-link" >3</a></li>
-                                          <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                          </li>
-                                        </ul>
-                                      </nav>
+                                    <input class="btn btn-outline-info btn-lg btn-block" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList(900,0)" />
+                                    <div class="spinner-border"></div>
+
                                 </div>
                                
                             </div>
@@ -269,7 +264,8 @@
                                     <h5>First Semester Courses</h5>
                                     <input type="text" name="CourseCode_1" id="CourseCode_1" class="CourseCode_1" readonly />
 
-                                    <div class="input-group mb-3"><select select class="w-75 p-1"  id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
+                                    <!-- class="js-example-basic-single w-75 p-1"  -->
+                                    <div class="input-group mb-3"><select class="js-example-basic-single w-75 p-1"  id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
                                 </div>
                                 <div class="input_fields_wrap_2 col-md-6">
                                     <h5>Second Semester Courses</h5>
@@ -280,24 +276,57 @@
                                 
                                 <hr />
                                 <br>
-                                <p>TODO: NA Courses</p>
+                                <!-- <p>TODO: NA Courses</p> -->
                             </div>
+                             
+                            <p>Cross check the entries you made on the form before you submit</p>
+                            <div id="buttonsDiv">
+                         
+                            
+                                <!-- <button class="btn btn-primary btn-lg btn-block" id="btnSave" type="button" onclick='$(btnPreview).attr("disabled","true"); $(btnSave).attr("hidden","true");'>
+                                    Save Incomplete Form
+                                </button> -->
 
-                            <p>Review before you click register</p>
-                            <button type="submit" class="registerbtn">Register</button>
+                                
+                                <br>
+
+    
+                                
+                                <p class = "text text-info" hidden>Before you submit you must agree to the terms and conditions</p><a href="regulations.pdf">Download PDF</a>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="chkTAR" onclick='if($(chkTAR).is(":checked")) {$(btnFinalSubmit).attr("disabled", "false");}else{$(btnFinalSubmit).attr("disabled", "true");}'>
+                                    <label class="form-check-label" for="chkTAR">
+                                    I have downloaded and read the terms and condition
+                                    </label>
+                                </div>
+                                <button type="submit"  class="btn btn-success btn-lg btn-block" id=" btnPreview" type="button">
+                                    Preview before Submitting
+                                </button>
+                            </div>
+                            <!-- <button type="submit" id="btnFinalSubmit"  class="registerbtn">Submit to Course Adviser</button> -->
                         </form>
+
+
                     </div>
                     <div class="col-md-2">
-
+                        <!-- Right side -->
                     </div>
 
             </div>
         </div>
         <hr>
         
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
         <!-- JavaScript add new form and respond to select(combo) changes-->
         <script>
             $(document).ready(function() {
+                //config
+                urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                url_global = urlLocal;
+                glb_Course_1 ="";
+
                 var max_fields      = 15; //maximum input boxes allowed
                 var wrapper_1   		= $(".input_fields_wrap_1"); //Fields wrapper
                 var wrapper_2   		= $(".input_fields_wrap_2"); //Fields wrapper
@@ -306,16 +335,34 @@
                 // var update_button      = $(".update_field_button"); //Update button ID
                 var x_1 = 1; //initlal text box count
                 var x_2 = 1; //initlal text box count
-                var dCredit =0;
-                var glb_Course_1 ="";
+                
+                dCredit = 0;
+                //var nameArr = names.split(',');
+
+                doc = new jsPDF(); 
+                var specialElementHandlers = { 
+                    '#editor': function (element, renderer) { 
+                        return true; 
+                    } 
+                };
+                //or regForm or message
+                $('#printForm').click(function () { 
+                    alert("printing...");
+                    doc.fromHTML($('#regForm').html(), 15, 15, { 
+                            'width': 190, 
+                            'elementHandlers': specialElementHandlers 
+                    }); 
+                    doc.save('onlineCourseRegistration.pdf'); 
+                });
+                //Add course
                 $(add_button_1).click(function(e){ //on add input button click
                     e.preventDefault();
-                    if(x_1 < max_fields){ //max input box allowed
+                    if(x_1 < max_fields && $("#comboCourses_1").val()!==null){ //max input box allowed
                         x_1++; //text box increment
+
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
-                        //var dCredit = $("option").data("course_unit") //"built in" todo: selected index
-                        //todo compute credit
+                        // //todo compute credit
                         // if (dCredit + getCredit(dValue_1, glb_Course_1)>50){
                         //     alert("Exceeded 50 credits");
                         //     return;
@@ -345,15 +392,14 @@
                     }
                 });
 
-
+                //remove courses
                 $(wrapper_1).on("click",".remove_field_1", function(e){ //user click on remove text
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_1--;
                     //removeCourse_1(x_1);
                     removeCourse(1);
                     });
-
-                
+     
                 $(wrapper_2).on("click",".remove_field_2", function(e){ //user click on remove text
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_2--;
@@ -382,23 +428,189 @@
                     console.log(approvedHTML);
                 });
                 
-                //combo event
-                $("#comboCourses").change(function(){
-                    alert ("Course selected: " + $("#comboCourses").val() )
+
+                //ajax for posting form data
+                $("#regForm").submit(function (event) {
+
+                    //getData().done(handleData);
+                    //data: form.serialize(),
+                    // data: formData,
+                    $("#topButtonsDiv").hide();
+                    var selDept= $('#dept_idr :selected').text();
+                    //var selDept2= $("#dept_idr").children("option").filter(":selected").text();
+
+
+                    var form = $( this );
+                    var MatNo = $("#matno").val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "store_reg",
+                        data: form.serialize(),
+                        dataType: "json",
+                        encode: true,
+                        success: function (data) {
+
+                            //fetch data to verify if post was successful
+                            $.ajax({
+                                type: "GET",
+                                url: url_global + "get_reg/"+ MatNo,
+                                data: form.serialize(),
+                                dataType: "json",
+                                encode: true,
+                                success: function (data) 
+                                        {
+                                            //alert("Successful"); 
+                                            console.log("get succeeded \n");
+                                            //console.log(data);
+
+                                            let text = '';
+                                            text += '<h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>';
+                                            text += '<h4 class="text-center">FACULTY OF ENGINEERING</h4>';
+                                            text += '<h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h5>';
+                                            text += '<br>';
+                                            text += '<table class="table" border="1">';
+                                            // let formatedCourses1 = "";
+                                            // let formatedCourses2 = "";
+                                            let matno = "ENG999000";
+                                            let surname= "OLA";
+                                            let course='CPE000';
+                                            let course2='CPE000';
+                                            let credit ='0';
+
+                                            if(data.lenght>0){alert("data returned");}
+                                            console.log("coursecode \n" + data[0].CourseCode_1);
+                                            let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
+                                            let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
+                                            
+                                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="'+ url_global + 'jpg/img.png" /></td></tr>';
+                                            text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
+                                            text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
+                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + selDept + '</td></tr>';
+                                            text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].mode_of_entry  + '</td></tr>';
+                                            text += '<tr><td>LEVEL</td><td colspan="2">' + data[0].level  + '</td></tr>';
+                                            text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].phone  + '</td></tr>';
+                                            text += '<tr><td>GENDER</td><td colspan="2">' + data[0].gender  + '</td></tr>';
+                                            // text += "<tr>";
+                                            // text += "<td class='text-wrap'><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
+                                            // text += "<td class='text-wrap' colspan='2'> <p class='text-wrap'>" + formatedCourses2 + "</p></td>";
+                                            // text += "</tr>";
+                                            text += '</table>';
+
+                                            text += '<h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>';
+                                            text += '<table class="table" border="1" width="100%">';
+                                            text += '<table class="table" border="1">';
+                                            text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>'; 
+                                            text += '<tr><td  class="mw-30" style="width: 100px;">COURSE CODE</td><td>CREDIT</td><td class="mw-30" style="width: 100px;>COURSE CODE</td><td ">CREDIT</td></tr>';
+                                            //for (let x in data) {
+                                                course=formatedCourses1;
+                                                course2=formatedCourses2;
+                                                text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            //}
+                                            text += '</table>';
+
+                                            //signatures
+                                            text += '<br>';
+                                            text += '<table class="table table-borderless" >';
+                                            text += '<tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>';
+                                            text += '<tr><td colspan=2 class="text-center">Student\'s signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser\'s signature</td></tr>';
+                                            text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
+                                            text += '</table>';
+
+                                            //buttons
+                                            text += ("<p>Print this slip and submit it to your Course Adviser.</p>");
+                                            text += ('<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>');
+                                            text += ('<p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p>');
+                                            text += '<div id="previewButtons">';
+                                                //todo if (data.submitted) editbutton.hidden = true
+                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>');
+                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onclick="$("#previewButtons").attr("hidden"); window.print();" > Print Form</button> <br>');
+                                            text += ('<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>');
+                                            text += '</div>';
+                                            $("#regForm").html("<div id='message'></div>");
+                                            $("#message")
+                                                .html('<h2 class="text-center">Online Departmental Course Registration</h2>')
+                                                .append("<p></p>")
+
+                                                .append(text)
+                                                .hide()
+                                                .fadeIn(1500, function () {
+                                                    $("#message").append(
+                                                    "<p><a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a></p>" );
+                                                });
+                                        },
+                                        error: function (data) {
+                                            console.log(data);
+                                            alert("An error occured fetching data \n" + data.responseJSON.message);
+                                        }
+                            });
+                            //console.log(data); //no need to do this again
+
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            alert("An error occured posting data\n" + data.responseJSON.message);
+
+                        }
+                    });
+
+                    event.preventDefault();
+                    });
+
+
+                //load registration data
+                $(load_reg_data_button).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    $("#topButtonsDiv").attr("hidden"); //hide em
+
+                    // grab the ID and send AJAX request if not (empty / only whitespace)
+                    var MatNo = $("#searchMatno").val();
+                    if (/\S/.test(MatNo)) {
+
+                    // using the ajax() method directly
+                    $.ajax({
+                        type : "GET",
+                        url : url_global + "get_reg/" + MatNo,
+                        cache : false,
+                        dataType : "json",
+                        data : "{matno: 1}",
+                        success : load_returnd_records_into_fields,
+                        error: function(xhr) { alert("No record found in database, start registration from scratch" + xhr.status); }
+                    });
+
+                    }
+                    else {
+                        alert("No MATNO supplied");
+                    }
 
                 });
+                
+                //todo: load images
+                $('#btn').on('click', function() {
+                    var img = $('<img />', {src : 'http://webpage.com/images/' + $('#imagename').val() +'.png'});
+                    img.appendTo('body');
+                });
 
+                //validate button
+
+
+                  // Submit button
+                  $("#submitbtn").click(function () {
+                    validateUsername();
+                    validateMatNo();
+                    //validateConfirmPassword();
+                    //validateEmail();
+                    if (
+                      usernameError == true &&
+                      matnoError == true
+                    ) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
             });
 
-            
-            function getCredit(dCourse, glb_Course_1){
-                
-                var dCredit = glb_Course_1.find(dCourse).course_unit;
-                if (dCredit==undefined){
-                    dCredit=0;
-                }
-                return dCredit
-            }
             function removeCourse(semester) {
                 if(semester==1){
                     var rows = document.getElementsByName('mytext_1[]');
@@ -429,6 +641,7 @@
                     }
                 }
             }
+            
             // function removeCourse_1() {
             //         var rows_1 = document.getElementsByName('mytext_1[]');
             //         var selectedRows = [];
@@ -472,21 +685,21 @@
                 //load combos
                 $("#btnGenerate").attr("disabled", "true");
                 var courses_1 = [
-                    { course_code: "CPE211", course_title: "CPE211-Title"},
-                    { course_code: "CPE311", course_title: "CPE311"},
-                    { course_code: "CPE321", course_title: "CPE321" },
-                    { course_code: "CPE481", course_title: "CPE481"}
+                    { course_code: "CPE211", course_title: "CPE211-Title", course_unit: 3},
+                    { course_code: "CPE311", course_title: "CPE311", course_unit: 3},
+                    { course_code: "CPE321", course_title: "CPE321", course_unit: 3 },
+                    { course_code: "CPE481", course_title: "CPE481", course_unit: 3}
                 ];
                 var courses_2 = [
-                    { course_code: "CPE212", course_title: "CPE212-Title"},
-                    { course_code: "CPE313", course_title: "CPE313" },
-                    { course_code: "CPE82", course_title: "CPE82"},
-                    { course_code: "CPE572", course_title: "CPE572"}
+                    { course_code: "CPE212", course_title: "CPE212-Title", course_unit: 3},
+                    { course_code: "CPE313", course_title: "CPE313" , course_unit: 3},
+                    { course_code: "CPE82", course_title: "CPE82", course_unit: 3},
+                    { course_code: "CPE572", course_title: "CPE572", course_unit: 3}
                 ];
                     // using the ajax() method directly to get data for comco
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost/rtps/web/back-end/public/index.php/api/get_table/courses/"+limits+"/"+ offset,
+                        url: url_global + "get_table/courses/"+ limits +"/"+ offset,
                         data: {},
                         dataType: "json",
                         encode: true,
@@ -494,6 +707,7 @@
                             courses_1=data;
                             courses_2=data;
                             glb_Course_1 =data;
+
                             fillcomboWithReturnedData(data);
                             console.log(data);
                             $("#btnGenerate").removeAttr("disabled");
@@ -502,42 +716,16 @@
                 //Build an array containing course records.
                 fillcomboWithReturnedData(courses_1);
                 
-    //             //first clear all courses
-    //             $("#CourseCode_1").val(  "");
-    //             $("#CourseCode_2").val(  "");
-
-    //             //<select id="comboCourses_1"></select>
-    //             $("#comboCourses_1").empty();
-    //             $("#comboCourses_2").empty();
-
-    //             var comboCourses_1 = $("#comboCourses_1");
-    //             var comboCourses_2 = $("#comboCourses_2");
-    //             $(courses_1).each(function () {
-    //                 var option = $("<option />");
-    //  
-    //                 //Set course_title in Text part.
-    //                 option.html(this.course_title);
-    //  
-    //                 //Set  course_code in Value part.
-    //                 option.val(this.course_code);
-    //  
-    //                 //Add the Option element to DropDownList.
-    //                 comboCourses_1.append(option);
-    //             });
-    //             $(courses_2).each(function () {
-    //                 var option = $("<option />");
-    //  
-    //                 //Set course_title in Text part.
-    //                 option.html(this.course_title);
-    //  
-    //                 //Set  course_code in Value part.
-    //                 option.val(this.course_code);
-    //  
-    //                 //Add the Option element to DropDownList.
-    //                 comboCourses_2.append(option);
-    //             });
             }
 
+            function getCredit(dCourse, glb_Course_1){
+                
+                var dCredit = glb_Course_1.find(dCourse).course_unit;
+                if (dCredit==undefined){
+                    dCredit=0;
+                }
+                return dCredit
+            }
             function fillcomboWithReturnedData(courses_1){
                 //first clear all courses
                 $("#CourseCode_1").val(  "");
@@ -551,17 +739,13 @@
                 var comboCourses_2 = $("#comboCourses_2");
                 $(courses_1).each(function () {
                     
-                    var option = $("<option data-course_unit='" + this.course_unit + "' />");
+                    var option = $("<option />");
                     //Set course_title in Text part.
                     option.html(this.course_code + "-" + this.course_title + " (" + this.course_unit + ")");
      
                     //Set  course_code in Value part.
                     option.val(this.course_code);
-                    // option.data("course_unit").val(this.course_unit);
-                    //$("#myname").find(':selected').attr('course_unit');
-                    //<option data-course_unit="CommonLi"></option
-                    //$("option").data("course_unit") //"built in"
-
+     
                     //Add the Option element to DropDownList.
                     if(this.course_semester=="1") comboCourses_1.append(option);
                     if(this.course_semester=="2") comboCourses_2.append(option);
@@ -569,295 +753,10 @@
                     //comboCourses_2.append(option);
                 });
             }
-            function editReg(){
-                location.reload();
-            }
-            function finalSubmit(){
-                $(btnEdit).hide();
-                $(btnFinalSubmit).hide();
-                $(previewButtons).hide(); //hide the whole thing
-                
-            }
-        </script>
-        <!-- AJAX -->
-        <script>     
 
-
-            //ajax for posting form data
-            $(document).ready(function () {
-
-                //var selDept= $('#dept_idr :selected').text();
-                //alert(selDept);
-                var selDept2= $("#dept_idr").children("option").filter(":selected").text();
-                alert(selDept2);
-                console.log($("#dept_idr").children);
-                // //using deffered
-                // function getData() {
-                //     var formData = {
-                //         matno: $("#matno").val(),
-                //         student_firstname: $("#student_firstname").val(),
-                //         student_surname: $("#student_surname").val(),
-                //         student_othernames: $("#student_othernames").val(),
-                //         student_dept_idr: $("#student_dept_idr").val(),
-                //         status: $("#status").val(),
-                //         year_of_entry: $("#year_of_entry").val(),
-                //         student_firstname: $("#student_firstname").val(),
-                //         mode_of_entry: $("#mode_of_entry").val(),
-                //         dob: $("#dob").val(),
-                //         phone: $("#phone").val(),
-                //         email: $("#email").val(),
-                //         gender: $("#gender").val(),
-                //         session_idr: $("#session_idr").val(),
-                //         CourseCode_1: $("#CourseCode_1").val(),
-                //         CourseCode_2: $("#CourseCode_2").val(),
-                //         NA_CourseCode: $("#NA_CourseCode").val(),
-                //         Fees_Status: $("#Fees_Status").val(),
-                //         level: $("#level").val(),
-                //         dept_idr: $("#dept_idr").val()
-                //         };
-                //     var form = $( this );
-                //     //data: form.serialize(),
-                //     $.ajax({
-                //         type: "POST",
-                //         url: "http://localhost/rtps/web/back-end/public/index.php/api/store_reg",
-                //         data: formData,
-                //         dataType: "json",
-                //         encode: true,
-                //         });
-                // }
-
-                // function handleData(data /* , textStatus, jqXHR */ ) {
-                //     alert(data);
-                //     //do some stuff
-                //        let text = '<table class="table" border="1">';
-                //                 for (let x in data) {
-                //                     let formatedCourses1 = data[x].CourseCode_1 .replace(/;/g, "; ");
-                //                     let formatedCourses2 = data[x].CourseCode_2 .replace(/;/g, "; ");
-                //                     text += "<tr><td>MAT. NO.</td><td>" + data[x].matno + "</td></tr>";
-                //                     text += "<tr><td>SURNAME</td><td>" + data[x].student_surname + "</td></tr>";
-                //                     text += "<tr><td>First Name</td><td>" + data[x].student_firstname + "</td></tr>";
-                //                     text += "<tr><td>Dept ID</td><td>Dept ID: " + data[x].student_dept_idr + "</td></tr>";
-                                    
-                //                     text += "<tr>";
-                //                     text += "<td>Fist Semester Courses</td>";
-                //                     text += "<td>Second Semester Courses</td>";
-                //                     text += "</tr>";
-
-                //                     text += "<tr>";
-                //                     text += "<td><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
-                //                     text += "<td><p class='text-wrap'>" + formatedCourses2+ "</p></td>";
-                //                     text += "</tr>";
-                //                 }
-                //                 text += "</table>"
-                //                 $("#regForm").html("<div id='message'></div>");
-                //                     $("#message")
-                //                     .html("<h2>Reg Form Submitted!</h2>")
-                //                     .append("<p>Print this slip and submit it to Course Adviser.</p>")
-                //                     .append("<p>Student Registration Record (Awaiting Approval)</p>")
-                //                     .append(text)
-                //                     .hide()
-                //                     .fadeIn(1500, function () {
-                //                         $("#message").append(
-                //                         "<a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a>" );
-                //                 });
-                //                 console.log(data);
-                //                 //alert("Success. data: " + data);
-                // }
-
-
-                $("#regForm").submit(function (event) {
-
-                    //getData().done(handleData);
-                    //data: form.serialize(),
-                    // data: formData,
-                    ///                        data: new FormData(this),
-
-                    //handle image
-                    //$.ajax({
-                        //url: "http://localhost/rtps/web/back-end/public/index.php/api/ajax_upload",
-                        //data: new FormData(this),
-                    //});
-                    
-                        var form = $( this );
-                    var MatNo = $("#matno").val();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost/rtps/web/back-end/public/index.php/api/store_reg",
-                        data: form.serialize(),
-                        dataType: "json",
-                        encode: true,
-                        success: function (data) {
-
-                            //fetch data to verify if post was successful
-                            $.ajax({
-                                type: "GET",
-                                url: "http://localhost/rtps/web/back-end/public/index.php/api/get_reg/"+ MatNo,
-                                data: form.serialize(),
-                                dataType: "json",
-                                encode: true,
-                                success: function (data) 
-                                        {
-                                            alert("Successful"); 
-                                            console.log("get succeeded \n");
-                                            console.log(data);
-
-
-
-                                            let text = '';
-                                            text += '<h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>';
-                                            text += '<h4 class="text-center">FACULTY OF ENGINEERING</h4>';
-                                            text += '<h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h5>';
-                                            text += '<br>';
-                                            text += '<table class="table" border="1">';
-                                            // let formatedCourses1 = "";
-                                            // let formatedCourses2 = "";
-                                            let matno = "ENG999000";
-                                            let surname= "OLA";
-                                            let course='CPE000';
-                                            let course2='CPE000';
-                                            let credit ='3';
-
-                                            if(data.lenght>0){alert("data returned");}
-                                            console.log("coursecode \n" + data[0].CourseCode_1);
-                                            let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
-                                            let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
-
-                                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="https://rtps.keminsoft.site/public/images/img.png" /></td></tr>';
-                                            text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
-                                            text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
-                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + data[0].student_dept_idr  + '</td></tr>';
-                                            text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].phone  + '</td></tr>';
-                                            text += '<tr><td>LEVEL</td><td colspan="2">' + data[0].level  + '</td></tr>';
-                                            text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].student_surname  + '</td></tr>';
-                                            text += '<tr><td>GENDER</td><td colspan="2">' + data[0].student_surname  + '</td></tr>';
-                                            // text += "<tr>";
-                                            // text += "<td class='text-wrap'><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
-                                            // text += "<td class='text-wrap' colspan='2'> <p class='text-wrap'>" + formatedCourses2 + "</p></td>";
-                                            // text += "</tr>";
-                                            text += '</table>';
-
-                                            text += '<h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>';
-                                            text += '<table class="table" border="1">';
-                                            text += '<table class="table" border="1">';
-                                            text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>'; 
-                                            text += '<tr><td  class="mw-30" style="width: 100px;">COURSE CODE</td><td>CREDIT</td><td class="mw-30" style="width: 100px;>COURSE CODE</td><td ">CREDIT</td></tr>';
-                                            //for (let x in data) {
-                                                course=formatedCourses1;
-                                                course2=formatedCourses2;
-                                                text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
-                                            //}
-                                            text += '</table>';
-
-                                            //signatures
-                                            text += '<br>';
-                                            text += '<table class="table table-borderless" >';
-                                            text += '<tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>';
-                                            text += '<tr><td colspan=2 class="text-center">Student\'s signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser\'s signature</td></tr>';
-                                            text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
-                                            text += '</table>';
-
-                                            //buttons
-                                            text += ("<p>Print this slip and submit it to your Course Adviser.</p>");
-                                            text += ('<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>');
-                                            text += ('<p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p>');
-                                            text += '<div id="previewButtons">';
-                                                //todo if (data.submitted) editbutton.hidden = true
-                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>');
-                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" onclick="doPrint();" disabled> Print Form</button> <br>');
-                                            text += ('<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>');
-                                            text += '</div>';
-                                            $("#regForm").html("<div id='message'></div>");
-                                            $("#message")
-                                                .html('<h2 class="text-center">Online Departmental Course Registration</h2>')
-                                                .append("<p></p>")
-
-                                                .append(text)
-                                                .hide()
-                                                .fadeIn(1500, function () {
-                                                    $("#message").append(
-                                                    "<p><a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a></p>" );
-                                                });
-                                        },
-                                        error: function (data) {
-                                            console.log(data);
-                                            alert("An error occured fetching data \n" + data.responseJSON.message);
-                                        }
-                            });
-                            //console.log(data); //no need to do this again
-
-                        },
-                        error: function (data) {
-                            console.log(data);
-                            alert("An error occured posting data\n" + data.responseJSON.message);
-
-                        }
-                    });
-
-                    event.preventDefault();
-                });
-
-                
-                $(load_reg_data_button).click(function(e){ //on add input button click
-                    e.preventDefault();
-                    // grab the ID and send AJAX request if not (empty / only whitespace)
-                    var MatNo = $("#matno").val();
-                    if (/\S/.test(MatNo)) {
-
-                    // using the ajax() method directly
-                    $.ajax({
-                        type : "GET",
-                        url : "http://localhost/rtps/web/back-end/public/index.php/api/get_reg/" + MatNo,
-                        cache : false,
-                        dataType : "json",
-                        data : "{matno: 1}",
-                        success : load_returnd_records_into_fields,
-                        error: function(xhr) { alert("AJAX request failed: " + xhr.status); }
-                    });
-
-                    }
-                    else {
-                        alert("No MATNO supplied");
-                    }
-
-                });
-
-
-            });
-            
-            
-
-            /**
-            * process the response, populating the form fields from the JSON data
-            * @param {Object} response the JSON data parsed into an object
-            */
             function load_returnd_records_into_fields(data) {
                 var frm = $("#regForm");
                 var i;
-
-                // data= [
-                //         {   "matno": "ENG390ajax",
-                //             "student_firstname": "Ed",
-                //             "student_surname": "OLAP",
-                //             "student_othernames": "Prod",
-                //             "student_dept_idr": "1",
-                //             "status": "Successful",
-                //             "year_of_entry": "0",
-                //             "session_idr_of_entry": "Ed",
-                //             "mode_of_entry": "UME",
-                //             "dob": "2022-12-13",
-                //             "phone": "333",
-                //             "email": "eddie.olaye@gmail.com",
-                //             "gender": "male",
-                //             "session_idr": "2020/2021",
-                //             "CourseCode_1": "CPE311",
-                //             "CourseCode_2": "CPE311",
-                //             "NA_CourseCode": "0",
-                //             "Fees_Status": "paid",
-                //             "level": "200",
-                //             "dept_idr": "1"
-                //         }
-                //     ];
 
                 console.dir(data);      // for debug
 
@@ -869,10 +768,65 @@
                         frm.find('[name="' + field + '"]').val(data[i][field]);
                     }
                 }
+
+                frm.removeAttr("hidden");
+                $("#continueRegDiv").attr("hidden");
+                
+            }
+      
+            //todo: validations
+              function validateUsername() {
+                let usernameValue = $("#usernames").val();
+                if (usernameValue.length == "") {
+                  $("#usercheck").show();
+                  usernameError = false;
+                  return false;
+                } else if (usernameValue.length < 3 || usernameValue.length > 10) {
+                  $("#usercheck").show();
+                  $("#usercheck").html("**length of username must be between 3 and 10");
+                  usernameError = false;
+                  return false;
+                } else {
+                  $("#usercheck").hide();
+                }
+              }
+             
+              // Validate Email
+              function validateMatNo() {
+                  const matno = document.getElementById("matno");
+                matno.addEventListener("blur", () => {
+                    //let regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+                    let regex = /^ENG([0-9]){2,7}$/;
+                    let s = matno.value;
+                    if (regex.test(s)) {
+                    matno.classList.remove("is-invalid");
+                          matnoError = true;
+                    } else {
+                    matno.classList.add("is-invalid");
+                          matnoError = false;
+                    }
+                  });
+             }
+
+            function doPrint(){
+                printJS({ printable: 'regForm', type: 'html', header: 'Online Course Registration (c)2023' });
+            }
+
+
+            function editReg(){
+                location.reload();
+            }
+            function finalSubmit(){
+                $(btnEdit).hide();
+                $(btnFinalSubmit).hide();
+                //todo set submit at backend
             }
 
 
         </script>
+
+
+
         <!-- Extra JavaScript Send form data as json-->
         <script>
             // function convertFormToJSON(form) {
@@ -895,7 +849,7 @@
             //     test: $( "#test" ).val()
             //     };
             //     var options = {
-            //     url: "http://localhost/rtps/web/back-end/public/index.php/api/store_reg",
+            //     url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
             //     dataType: "text",
             //     type: "POST",
             //     data: { test: JSON.stringify( data ) }, // Our valid JSON string
@@ -918,7 +872,7 @@
             //   $(document).ready( function() {
             //     $.ajax({
             //         type: 'POST',
-            //         url:  'http://localhost/rtps/web/back-end/public/index.php/api/store_reg',  //evaluates to ->svr/model.php?parent_idr<6'
+            //         url:  'https://www.rtps.keminsoft.site/public/index.php/api/store_reg',  //evaluates to ->svr/model.php?parent_idr<6'
             //         data: {'parent_idr' : '0'},
             //         dataType: 'json',
             //         cache: false,
