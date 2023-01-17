@@ -326,6 +326,11 @@
                 urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
                 url_global = urlCloud;
                 glb_Course_1 ="";
+                glbCredit = 0;
+                glbCredit_1 = 0;
+                glbCredit_2 = 0;
+                doc = new jsPDF();
+
 
                 var max_fields      = 15; //maximum input boxes allowed
                 var wrapper_1   		= $(".input_fields_wrap_1"); //Fields wrapper
@@ -336,20 +341,16 @@
                 var x_1 = 1; //initlal text box count
                 var x_2 = 1; //initlal text box count
                 
-                dCredit = 0;
+
                 //var nameArr = names.split(',');
 
-                // Default export is a4 paper, portrait, using milimeters for units
-                doc = new jsPDF()
+
+
 
                 // doc.text('Hello world!', 10, 10)
                 // doc.save('a4.pdf')
-
-
-                var specialElementHandlers = { 
-                    '#editor': function (element, renderer) { 
-                        return true; 
-                    } 
+                 specialElementHandlers = { 
+                    '#editor': function (element, renderer) {  return true;  } 
                 };
                 //or regForm or message
                 $('#printForm').click(function () { 
@@ -368,12 +369,17 @@
 
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
-                        // //todo compute credit
-                        // if (dCredit + getCredit(dValue_1, glb_Course_1)>50){
-                        //     alert("Exceeded 50 credits");
-                        //     return;
-                        // }
-                        // dCredit=dCredit+getCredit(dValue_1);
+                        var dCreditTmp = getCredit(dValue_1);
+                        //todo compute credit
+                        if (glbCredit + parseInt(dCreditTmp) >50){
+                            alert("You cannot register more than 50 credits " );
+                            return;
+                        }else{
+                           
+                            glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+
                         $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
                         if (prevValue_1==""){
                             $("#CourseCode_1").val(  dValue_1 ); //change value   
@@ -483,12 +489,16 @@
                                             let course='CPE000';
                                             let course2='CPE000';
                                             let credit ='0';
+                                            let credit2 ='0';
 
                                             if(data.lenght>0){alert("data returned");}
                                             console.log("coursecode \n" + data[0].CourseCode_1);
                                             let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
                                             let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
                                             
+                                            let arrayCourse1 = data[0].CourseCode_1 .split(";");
+                                            let arrayCourse2 = data[0].CourseCode_2 .split(";");
+
                                             text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="'+ url_global + 'jpg/img.png" /></td></tr>';
                                             text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
                                             text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
@@ -507,12 +517,26 @@
                                             text += '<table class="table" border="1" width="100%">';
                                             text += '<table class="table" border="1">';
                                             text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>'; 
-                                            text += '<tr><td  class="mw-30" style="width: 100px;">COURSE CODE</td><td>CREDIT</td><td class="mw-30" style="width: 100px;>COURSE CODE</td><td ">CREDIT</td></tr>';
-                                            //for (let x in data) {
-                                                course=formatedCourses1;
-                                                course2=formatedCourses2;
-                                                text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
-                                            //}
+                                            //text += '<tr><td  class="mw-30" style="width: 100px;">COURSE CODE</td><td>CREDIT</td><td class="mw-30" style="width: 100px;>COURSE CODE</td><td ">CREDIT</td></tr>';
+                                            glbCredit_1=0;
+                                            let strCourses1 = ""
+                                            let strCourses2 = ""
+                                            for (let i = 0; i < arrayCourse1.length; i++ ) {
+                                                course = arrayCourse1[i];
+                                                credit=getCredit(course);
+                                                strCourses1 = strCourses1 + course + "  -  " + credit + "\n";
+                                                glbCredit_1 = parseInt(glbCredit_1) + parseInt(credit);
+                                               // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            }
+                                            for (let i = 0; i < arrayCourse2.length; i++ ) {
+                                                course2=arrayCourse2[i];
+                                                credit2=getCredit(course2);
+                                                strCourses2 = strCourses2 + course2 + "  -  " + credit2 + "\n";
+                                                glbCredit_2 = parseInt(glbCredit_2) + parseInt(credit2);
+                                               // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            }
+                                            text += '<tr><td class="text-wrap">' + strCourses1 + '</td><td>'+ '</td><td>' + strCourses2 + '</td><td class="mw-40" style="width: 180px;">'  + '</td></tr>';
+                                            text += '<tr><td>' + 'Total' + '</td><td>'+ glbCredit_1 + '</td><td>' + 'Total' + '</td><td class="mw-40" style="width: 180px;">' + glbCredit_2 + '</td></tr>';
                                             text += '</table>';
 
                                             //signatures
@@ -530,7 +554,7 @@
                                             text += '<div id="previewButtons">';
                                                 //todo if (data.submitted) editbutton.hidden = true
                                             text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>');
-                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onclick="$("#previewButtons").attr("hidden"); window.print();" > Print Form/ Download PDF</button> <br>');
+                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onclick="$("#previewButtons").attr("hidden"); window.print();" > Print Form</button> <br>');
                                             text += ('<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>');
                                             text += '</div>';
                                             $("#regForm").html("<div id='message'></div>");
@@ -723,10 +747,24 @@
                 fillcomboWithReturnedData(courses_1);
                 
             }
+            function findElement(arr, propName, propValue) {
+                for (var i=0; i < arr.length; i++)
+                    if (arr[i][propName] == propValue)
+                    return arr[i];
 
-            function getCredit(dCourse, glb_Course_1){
-                
-                var dCredit = glb_Course_1.find(dCourse).course_unit;
+                // will return undefined if not found; you could return a default instead
+            }
+
+
+
+            function getCredit(paramCourse){
+
+                //var dCredit = glb_Course_1.find(paramCourse).course_unit;
+                var x = findElement(glb_Course_1, "course_code", paramCourse); // x is {"name":"k2", "value":"hi"}
+                console.log(x);
+                //alert(x["course_unit"]); // displays "hi"
+                dCredit = x["course_unit"];
+
                 if (dCredit==undefined){
                     dCredit=0;
                 }
