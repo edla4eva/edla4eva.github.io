@@ -339,11 +339,13 @@
                 dCredit = 0;
                 //var nameArr = names.split(',');
 
-                doc = new jsPDF(); 
-                var specialElementHandlers = { 
-                    '#editor': function (element, renderer) { 
-                        return true; 
-                    } 
+
+                doc = new jsPDF()
+
+                // doc.text('Hello world!', 10, 10)
+                // doc.save('a4.pdf')
+                 specialElementHandlers = { 
+                    '#editor': function (element, renderer) {  return true;  } 
                 };
                 //or regForm or message
                 $('#printForm').click(function () { 

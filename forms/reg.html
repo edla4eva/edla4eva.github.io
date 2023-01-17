@@ -339,7 +339,13 @@
                 dCredit = 0;
                 //var nameArr = names.split(',');
 
-                doc = new jsPDF(); 
+                // Default export is a4 paper, portrait, using milimeters for units
+                doc = new jsPDF()
+
+                // doc.text('Hello world!', 10, 10)
+                // doc.save('a4.pdf')
+
+
                 var specialElementHandlers = { 
                     '#editor': function (element, renderer) { 
                         return true; 
@@ -524,7 +530,7 @@
                                             text += '<div id="previewButtons">';
                                                 //todo if (data.submitted) editbutton.hidden = true
                                             text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>');
-                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onclick="$("#previewButtons").attr("hidden"); window.print();" > Print Form</button> <br>');
+                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onclick="$("#previewButtons").attr("hidden"); window.print();" > Print Form/ Download PDF</button> <br>');
                                             text += ('<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>');
                                             text += '</div>';
                                             $("#regForm").html("<div id='message'></div>");
