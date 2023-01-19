@@ -25,46 +25,13 @@
                     </div>
                     <!-- p-l-5 padding - left - size5 -->
                     <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
-                        <!-- <h1 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h1>
-                         <h3 class="text-center">FACULTY OF ENGINEERING</h3>
-                         <h4 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h3>
-                        <br>
-                        <table class="table" border="1">
-                            <tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>ENG09099922</td><td rowspan="4"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>
-                            <tr><td>SURNAME</td><td>NOGHAYIN</td></tr>
-                            <tr><td>OTHER NAMES</td><td>Andrew</td></tr>
-                            <tr><td>DEPARTMENT</td><td>Computer Engineering</td></tr>
-                            <tr><td>MODE OF ENTRY</td><td>UME</td><td rowspan="4"><img width="150" height="150" src="http://localhost/rtps/web/back-end/public/index.php/api/jpg/img.png" /></td></tr>
-                            <tr><td>LEVEL</td><td>100</td></tr>
-                            <tr><td>PHONE NO.</td><td>08011122285</td></tr>
-                            <tr><td>GENDER</td><td></td></tr>
-                        </table>
-
-                         <h3 class="text-center">REGISTER CARRY OVER COURSES FIRST</h3>
-                        <table class="table" border="1">
-                            <tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>
-                            <tr><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td></tr>
-                            <tr><td>CED300</td><td>3</td><td>PEE233</td><td class="mw-40" style="width: 180px;">2</td></tr>
-                            <tr><td>CPE300</td><td>3</td><td>-</td><td class="mw-40" style="width: 180px;">-</td></tr>
-
-                        </table>
-                        <br>
-                        <table class="table table-borderless" >
-                            <tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>
-                            <tr><td colspan=2 class="text-center">Student's signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser's signature</td></tr>
-                            <tr><td colspan=2></td><td colspan=2 class="text-center">Dean's Signature</td><td colspan=2></td></tr>
-
-                        </table> -->
-
-                        
-
-   
-                        <form id="reg-form" action="" method="post" class="ml-5 mb-3 mr-5 mt-5">
+                        <form id="reg-form" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" enctype="multipart/form-data">
                             <h1>Course Registration</h1>
                              <h3>Fill the form below and press the submit button!</h3>
-                            
-
-
+                            <p>Upload recent passport size Photo (Must be on red background; Max size 12kb)</p><input id="file_info"></input>
+                            <input type="file" id="file" name="file" required>
+                            <br><hr>
+                            <button type ="submit">Upload</button>
                         </form>
                     </div>
                     <div class="col-md-2">
@@ -80,94 +47,62 @@
             //ajax for posting form data
             $(document).ready(function () {
              
-                            let text = '<table class="table" border="1">';
-                            let formatedCourses1 = "</p></td> dfgdf dfdf dfgdf dfgdf dfgdf dfgdf dfgdf";
-                            let formatedCourses2 = "</p></td> dfgdf dfdf dfgdf dfgdf dfgdf dfgdf dfgdf";
-                            let matno = "ENG999000";
-                            let surname= "OLAp";
-                            let course='CPE000';
-                            let credit ='3';
+               //ajax for posting form data
+                urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                url_global = urlLocal;
 
-                            text += '<h1 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h1>';
-                            text += '<h3 class="text-center">FACULTY OF ENGINEERING</h1>';
-                            text += '<h4 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h1>';
-                            text += '<br>';
+                $("#file").on("change", function (e) {
 
-
-                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + matno + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="rtps.keminsoft.site/public/index.php/api/jpg/img.png" /></td></tr>';
-                            text += '<tr><td>SURNAME</td><td>' + surname + '</td></tr>';
-                            text += '<tr><td>OTHER NAMES</td><td>' + surname + '</td></tr>';
-                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + surname + '</td></tr>';
-                            text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + surname + '</td></tr>';
-                            text += '<tr><td>LEVEL</td><td colspan="2">' + surname + '</td></tr>';
-                            text += '<tr><td>PHONE NO.</td><td colspan="2">' + surname + '</td></tr>';
-                            text += '<tr><td>GENDER</td><td colspan="2">' + surname + '</td></tr>';
-                            text += '</table>';
-
-                            text += '<h3 class="text-center">REGISTER CARRY OVER COURSES FIRST</h3>';
-                            text += '<table class="table" border="1">';
-                            
-                            text += '<table class="table" border="1">';
-                            text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>';
-                            
-                            text += '<tr><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td><td>COURSE CODE</td><td class="mw-30" style="width: 100px;">CREDIT</td></tr>';
-                            text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
-                            
-                            text += '</table>';
-                            text += '<br>';
-                            text += '<table class="table table-borderless" >';
-                            text += '<tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>';
-                            text += '<tr><td colspan=2 class="text-center">Student\'s signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser\'s signature</td></tr>';
-                            text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
-
-                        $("#reg-form").html("<div id='message'></div>");
-                            $("#message")
-                            .html(text)
-                            .append("")
-                            .append("")
-
-                            .hide()
-                            .fadeIn(1500, function () {
-                                $("#message").append(
-                                "<a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a>" );
-                        });
-                        console.log(data);
-                        //alert("Success. data: " + data);
-
-
-
-
-                                        //ajax for posting form data
-                $("#regForm").submit(function (event) {
-
-
-                    //test image
-                var selDept= $('#dept_idr :selected').text();
-                //var selDept2= $("#dept_idr").children("option").filter(":selected").text();
-                var form = $( this );
-                var MatNo = $("#matno").val();
-
-                $.ajax({
-                    type: "POST",
-                    url: "http://localhost/rtps/web/back-end/public/index.php/api/jpg",
-                    data: form.serialize(),
-                    dataType: "json",
-                    encode: true,
-                    success: function (data) {
-                        //fetch data to verify if post was successful
-                    },
-                    error: function (data) {
-                        console.log(data);
-                        alert("An error occured posting data \n" + data.responseJSON.message);
+                    uploadPix(this);
+                    alert("Changed");
+                    var count=1;
+                    var files = e.currentTarget.files; // puts all files into an array
+                    var approvedHTML="";
+                    // call them as such; files[0].size will get you the file size of the 0th file
+                    for (var x in files) {
+                        var filesize = ((files[x].size/1024)/1024).toFixed(4); // MB
+                        if (files[x].name != "item" && typeof files[x].name != "undefined" && filesize <= 10) { 
+                            if (count > 1) {
+                                approvedHTML += ", "+files[x].name;
+                            }
+                            else {
+                                approvedHTML += files[x].name;
+                            }
+                            count++;
+                        }
                     }
+                    $("#file_info").val(approvedHTML);
+                    console.log(approvedHTML);
                 });
-
-                event.preventDefault();
-                });
-
             });
 
+            function uploadPix(frm) {
+                    alert("Submit");
+                    //e.preventDefault();
+                    //test image
+                    var form = $( this );
+                    var MatNo = $("#matno").val();
+                    var storeImg = url_global + 'upload';
+                    var getImg = url_global + 'jpg/img.png';
+                    $.ajax({
+                        type: "POST",
+                        url: storeImg,
+                        data: new FormData(frm),
+                        encode: true,
+                        success: function (data) {
+                            console.log(data);
+                            //fetch data to verify if post was successful
+                            text = '<img width="150" height="150" src="'+ url_global + 'jpg/' + picMatno + '.png" />';
+                            $("#regForm").append(text)
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            alert("An error occured posting data \n" + data.responseJSON.message);
+                        }
+                    });
 
+                };
 
         </script>
 
