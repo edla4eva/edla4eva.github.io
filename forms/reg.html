@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +11,14 @@
     crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="../css/reg.css">
-    
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!--  worked <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script> -->
+    <!-- latest -->
+    <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.es.min.js"></script>
+    <!-- <script src="https://unpkg.com/jspdf-autotable@3.5.28/dist/jspdf.plugin.autotable.js"></script> -->
+    <!-- <script src="jspdf.plugin.autotable.js"></script> -->
+
+
     <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,7 +72,50 @@
 
                         </div>
 
-                        
+                        <div id='message_print_all' hidden>
+                            <div id="bypassme">
+                                <h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>
+                                <h4 class="text-center">FACULTY OF ENGINEERING</h4>
+                                <h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h5>
+                                <br>
+                            </div>
+                            <div style="float: right;" >
+                                <img class="rounded mx-auto d-block" width="150" height="150" src="../images/usr.jpg" />
+                            </div>
+                            <table class="table" border="1">
+                            <!-- <tr><td class="mw-40" style="width: 180px;">-</td><td>-</td></tr> -->
+                            <tr><td>MAT. NO.</td><td  id="td_matno">data[0].matno </td></tr>
+                            <tr><td>SURNAME</td><td id="td_surname">data[0].student_surname</td></tr>
+                            <tr><td>OTHER NAMES</td><td id="td_firstname">data[0].student_firstname </td></tr>
+                            <tr><td>DEPARTMENT</td><td id="td_department">selDept</td></tr>
+                            <tr><td>MODE OF ENTRY</td><td id="td_mode">data[0].mode_of_entry </td></tr>
+                            <tr><td>LEVEL</td><td id="td_level">data[0].level </td></tr>
+                            <tr><td>PHONE NO.</td><td id="td_phone">data[0].phone </td></tr>
+                            <tr><td>GENDER</td><td id="td_gender">data[0].gender </td></tr>
+                            </table>
+                            <h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>
+                            <table class="table" border="1" id="table_courses">
+                                <tr><td>FIRST SEMESTER</td><td>SECOND SEMESTER</td></tr>     
+
+                                <tr><td><pre id="td_courses1">course1</pre></td><td><pre id="td_courses2">course2</pre></td></tr>
+                                <tr><td id ="td_total1">Total"  -  "glbCredit_1</td><td id ="td_total2">Total"  -  "glbCredit_2</td> </tr>
+                            </table>
+                            <!-- <p>Print this slip and submit it to your Course Adviser.</p>");
+                            <p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>
+                            <p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p> -->
+                            <div id="previewButtons">
+                                <button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>
+                                <button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form</button> <br>
+                                <button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>
+
+                            </div>
+
+                        </div>
+                        <div id='message_print'>
+
+                        </div>
+
+
                         <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" enctype="multipart/form-data" hidden>
                             <h1>Online Course Registration</h1>
                              <h5>Carefully fill the form below then preview before submission!</h5>
@@ -331,11 +379,14 @@
                 urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
                 urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
                 url_global = urlLocal;
-                glb_Course_1 ="";
+                glb_Courses ="";
                 glbCredit = 0;
                 glbCredit_1 = 0;
                 glbCredit_2 = 0;
                 
+                glb_table_data = []; // Creating a new array object
+                glb_table_data['matno'] = "ENG7777777"; // Setting the attribute a to 200
+                glb_table_data['student_surname'] = "Json"; // Setting the attribute b to 300
 
 
                 var max_fields      = 15; //maximum input boxes allowed
@@ -551,16 +602,39 @@
                                             text += '</table>';
 
                                             //buttons
-                                            text += ("<p>Print this slip and submit it to your Course Adviser.</p>");
-                                            text += ('<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>');
-                                            text += ('<p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p>');
+                                            text += ('<p>Print this slip and submit it to your Course Adviser.</p>');
+                                            text += '<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>';
+                                            text += '<p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p>';
                                             text += '<div id="previewButtons">';
                                                 //todo if (data.submitted) editbutton.hidden = true
-                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>');
-                                            text += ('<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick=doPrintPDF();">Print Form</button> <br>');
-                                            text += ('<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>');
+                                            text += '<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>';
+                                            text += '<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form</button> <br>';
+                                            text += '<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>';
                                             text += '</div>';
-                                            $("#regForm").html("<div id='message'></div>");
+                                            //$("#regForm").html("<div id='message'></div>");
+
+                                            glb_table_data = []; // Creating a new array object
+                                            glb_table_data['matno'] = data[0].matno; // Setting the attribute a to 200
+                                            glb_table_data['student_surname'] = data[0].student_surname; // Setting the attribute b to 300
+
+
+                                            $("#td_matno").html(data[0].matno);
+                                            $("#td_firstname").html(data[0].student_firstname);
+                                            $("#td_othernames").html(data[0].other_names);
+                                            $("#td_surname").html(data[0].student_surname);
+                                            $("#td_level").html(data[0].level);
+                                            $("#td_phone").html(data[0].phone);
+                                            $("#td_gender").html(data[0].gender);
+                                            $("#td_department").html(selDept);
+                                            $("#td_mode").html(data[0].mode_of_entry);
+                                            $("#td_courses1").html(strCourses1);
+                                            $("#td_total1").html("Total - " + glbCredit_1);
+                                            
+                                            $("#td_courses2").html(strCourses2);
+                                            $("#td_total2").html("Total - " + glbCredit_2);
+                                            
+                                            $("#message_print_all").removeAttr("hidden");
+                                            $("#regForm").hide();
                                             $("#message")
                                                 .html('<h2 class="text-center">Online Departmental Course Registration</h2>')
                                                 .append("<p></p>")
@@ -739,10 +813,12 @@
                         }).done(function (data) {
                             courses_1=data;
                             courses_2=data;
-                            glb_Course_1 =data;
+                            glb_Courses =data;
 
                             fillcomboWithReturnedData(data);
                             console.log(data);
+                            console.log("glb_Courses");
+                            console.log(glb_Courses);
                             $("#btnGenerate").removeAttr("disabled");
                         });
 
@@ -762,9 +838,10 @@
 
             function getCredit(paramCourse){
 
-                //var dCredit = glb_Course_1.find(paramCourse).course_unit;
-                var x = findElement(glb_Course_1, "course_code", paramCourse); // x is {"name":"k2", "value":"hi"}
+                //var dCredit = glb_Courses.find(paramCourse).course_unit;
+                var x = findElement(glb_Courses, "course_code", paramCourse); // todo: causes error x is undefined
                 console.log(x);
+                console.log(glb_Courses);
                 //alert(x["course_unit"]); // displays "hi"
                 dCredit = x["course_unit"];
 
@@ -860,69 +937,195 @@
             }
 
             function doPrintPDF(){
-                    //alert("printing...");
-
                     $(previewButtons).hide();
+                    // autoTablePDF();
+                    //jsPDFTable();
+                    demoFromHTML();
 
+
+
+                    // // //prints correctly
+                    // doc = new jsPDF();
+                    // // doc.text('UNIVERSITY OF BENIN, BENIN CITY--', 40, 0, 'center');
+                    // // doc.text('FACULTY OF ENGINEERING--', 40, 16, 'center');
+                    // // doc.text('EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION--', 40, 32, 'center');
                     
-                    //window.print();
+                    // //var imgData = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASA....';
+                    // //doc.addImage(imgData, 'JPEG', 10, 10, 35, 35);
+                    // doc.setFontSize(18);
+                    // //doc.setTextColor(255, 200, 0);
+                    // doc.text(80, 20, "UNIVERSITY OF BENIN, BENIN CITY");
+                    // doc.text(80, 40, "FACULTY OF ENGINEERING");
+                    // doc.text(80, 60, "EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION");
 
-                    // //print custom
-                    // doc = new jsPDF();
-                    // let pdftext = 'UNIVERSITY OF BENIN, BENIN CITY \n';
-                    // pdftext += 'FACULTY OF ENGINEERING \n';
-                    // pdftext += 'EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION \n';
-                    // doc.text('UNIVERSITY OF BENIN, BENIN CITY', 10, 10);                        
-                    // doc.save('onlineCourseRegistration.pdf');           
-
-
-                    // //prints plank
-                    // doc = new jsPDF();
-                    // doc.fromHTML($('#message').html(), 15, 15, { 
+                    // doc.setLineWidth(0.5);
+                    // doc.line(100, 25, 150, 25);
+                    // doc.fromHTML($('#message_print').html(), 15, 15, { 
                     //         'width': 190 
                     // }); 
+
+                    // doc.text('_____________________________________', 40, 250, 'center');
+                    // doc.text('_____________Sign____________________', 40, 290, 'center');
+
+                    // doc.text('_____________________________________', 40, 300, 'center');
+                    // doc.text('Course Adviser\'s Sign', 40, 310, 'center');
                     // doc.save('onlineCourseRegistration.pdf'); 
-
-
-                    ///Causes error
-                    // window.html2canvas = html2canvas;
-                    // doc = new jsPDF();
-                    // console.log(document.body);
-                    // doc.html(document.body, {
-                    // callback: function (doc) {
-                    //     doc.save('htmlonlineCourseRegistration.pdf');
-                    // }
-                    // });
-
-
-                    // //using html2pdf
-                    // var element = document.getElementById('message');
-                    // html2pdf(element);
-
-
-                    //     //print blank
-                    // doc.setFont("courier");
-                    // var elementHandler = {
-                    // '#ignorePDF': function (element, renderer) {
-                    //     return true;
-                    // }
-                    // };
-                    // var source = window.document.getElementsByTagName("body")[0];
-                    // doc.fromHTML(
-                    // source,
-                    // 15,
-                    // 0.5,
-                    // {
-                    //     'width': 180,'elementHandlers': elementHandler
-                    // });
-                    //     doc.save('abc.pdf');
-
 
 
 
 
             }
 
+            function demoFromHTML() {
+                // var glb_table_data = []; // Creating a new array object
+                // glb_table_data['matno'] = "ENG7777777"; // Setting the attribute a to 200
+                // glb_table_data['student_surname'] = "Json"; // Setting the attribute b to 300
+
+
+                var pdf = new jsPDF('p', 'pt', 'letter');
+                var pageHeight = pdf.internal.pageSize.height || pdf.internal.pageSize.getHeight();
+                var pageWidth = pdf.internal.pageSize.width || pdf.internal.pageSize.getWidth();
+                var fontSize = 14;
+                var startHeight = 150;
+
+                // Header
+                let strH = "UNIVERSITY OF BENIN, BENIN CITY";
+                pdf.setTextColor(100);
+                pdf.setFontSize(18);
+                pdf.text(strH, pageWidth / 2, 40, {align: 'center'});
+                
+                pdf.text("FACULTY OF ENGINEERING", pageWidth / 2, 60, {align: 'center'});
+                pdf.text("EXAMINATION COURSE REGISTRATION FORM", pageWidth / 2, 80, {align: 'center'});
+
+                //low performance
+                var img = new Image()
+                img.src = '../images/usr.jpg'
+                pdf.addImage(img, 'jpg', pageWidth-160, startHeight-fontSize, 100, 100)
+                //end header
+
+                //content
+                let strC = "TEMP VAL";
+                pdf.setTextColor(100);
+                pdf.setFontSize(14);
+
+//                                            $("#td_matno").html(data[0].matno);
+                                            // $("#td_firstname").html(data[0].student_firstname);
+                                            // $("#td_othernames").html(data[0].other_names);
+                                            // $("#td_surname").html(data[0].student_surname);
+                                            // $("#td_level").html(data[0].level);
+                                            // $("#td_phone").html(data[0].phone);
+                                            // $("#td_gender").html(data[0].gender);
+                                            // $("#td_department").html(selDept);
+                                            // $("#td_mode").html(data[0].mode_of_entry);
+                                            // $("#td_courses1").html(strCourses1);
+                                            // $("#td_total1").html("Total - " + glbCredit_1);
+                                            
+                                            // $("#td_courses2").html(strCourses2);
+                                            // $("#td_total2").html("Total - " + glbCredit_2);
+                                            
+
+
+                pdf.text("MAT. NO.:", 80, startHeight-(fontSize*1), {align: 'left'});
+                pdf.text($("#td_matno").html(), 300, startHeight-(fontSize*1), {align: 'left'}); //val
+
+                pdf.text("SURNAME:", 80, startHeight+(fontSize*1), {align: 'left'});
+                pdf.text($("#td_surname").html(), 300, startHeight+(fontSize*1), {align: 'left'}); //val
+
+                pdf.text("First Name:", 80, startHeight+(fontSize*3), {align: 'left'});
+                pdf.text($("#td_firstname").html(), 300, startHeight+(fontSize*3), {align: 'left'}); //val
+
+                pdf.text("OTHER NAMES:", 80, startHeight+(fontSize*5), {align: 'left'});
+                pdf.text($("#td_surname").html(), 300, startHeight+(fontSize*5), {align: 'left'}); //val
+
+                pdf.text("DEPARTMENT:", 80, startHeight+(fontSize*7), {align: 'left'});
+                pdf.text($("#td_department").html(), 300, startHeight+(fontSize*7), {align: 'left'});
+
+                pdf.text("MODE OF ENTRY:", 80, startHeight+(fontSize*9), {align: 'left'});
+                pdf.text($("#td_mode").html(), 300, startHeight+(fontSize*9), {align: 'left'}); //val
+
+                pdf.text("PHONE NO.:", 80, startHeight+(fontSize*11), {align: 'left'});
+                pdf.text($("#td_phone").html(), 300, startHeight+(fontSize*11), {align: 'left'}); //val
+
+                pdf.text("GENDER:", 80, startHeight+(fontSize*13), {align: 'left'});
+                pdf.text($("#td_gender").html(), 300, startHeight+(fontSize*13), {align: 'left'}); //val
+
+                pdf.setLineWidth(0.5);
+                pdf.line(80, startHeight+(fontSize*14), pageWidth-80, startHeight+(fontSize*14)); //x1,y1,x2,y2
+
+                //---courses
+                pdf.text("FIRST SEMESTER", 80, startHeight+(fontSize*16), {align: 'left'});
+                pdf.text("SECOND SEMESTER", 300, startHeight+(fontSize*16), {align: 'left'}); //val
+                
+                pdf.line(80, startHeight+(fontSize*17), pageWidth-80, startHeight+(fontSize*17)); //x1,y1,x2,y2
+
+                pdf.text($("#td_courses1").html(), 80, startHeight+(fontSize*19), {align: 'left'});
+                pdf.text($("#td_courses2").html(), 300, startHeight+(fontSize*19), {align: 'left'}); //val
+            
+                pdf.line(80, pageHeight-160-fontSize, pageWidth-80, pageHeight-160-fontSize); //x1,y1,x2,y2
+                pdf.text($("#td_total2").html(), 80, pageHeight  - 160 + fontSize, {align: 'left'});
+                pdf.text($("#td_total2").html(), 300, pageHeight  - 160 + fontSize, {align: 'left'}); //val
+                pdf.line(80, pageHeight-160+fontSize*2, pageWidth-80, pageHeight-160+fontSize*2); //x1,y1,x2,y2
+            
+            //sign
+                pdf.line(80, pageHeight-100, 220, pageHeight-100); //x1,y1,x2,y2
+                pdf.text("Course Adviser\'s Sign", 80, pageHeight  - 100 + fontSize, {align: 'left'});
+                
+                pdf.line(400, pageHeight-100, 550, pageHeight-100); //x1,y1,x2,y2
+                pdf.text("Student\'s Sign", 420, pageHeight  - 100 + fontSize, {align: 'left'}); //val
+            
+                pdf.line(200,pageHeight  - 60, pageWidth-200, pageHeight  - 60); //x1,y1,x2,y2
+                pdf.text("Dean\'s Sign",  pageWidth / 2,  pageHeight  - 60+ fontSize, {align: 'center'}); //val
+            
+            
+
+
+                //end content
+
+                // FOOTER
+                
+
+                let str = "RTPS Result Software (eddie.olaye@gmail.com) " + Date();
+                pdf.setTextColor(100);
+                pdf.setFontSize(10);
+                pdf.text(str, pageWidth / 2, pageHeight  - 10, {align: 'center'});
+                //end footer
+
+                // source can be HTML-formatted string, or a reference to...
+                source = $('#message_print')[0];
+
+                // we support special element handlers. Register them with jQuery-style 
+                // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+                // There is no support for any other type of selectors 
+                // (class, of compound) at this time.
+                specialElementHandlers = {
+                    // element with id of "bypass" - jQuery style selector
+                    '#bypassme': function (element, renderer) {
+                        // true = "handled elsewhere, bypass text extraction"
+                        return true
+                    }
+                };
+                margins = {
+                    top: 80,
+                    bottom: 60,
+                    left: 40,
+                    width: 522
+                };
+                // all coords and widths are in jsPDF instance's declared units
+                // 'inches' in this case
+                pdf.fromHTML(
+                source, // HTML string or DOM elem ref.
+                margins.left+20, // x coord
+                margins.top+100, { // y coord
+                    'width': margins.width, // max width of content on PDF
+                    'elementHandlers': specialElementHandlers
+                },
+
+                function (dispose) {
+                    // dispose: object with X, Y of the last line add to the PDF 
+                    //          this allow the insertion of new lines after html
+                    pdf.save('onlineCourseRegistration.pdf');
+                }, margins);
+            }
 
             function editReg(){
                 location.reload();
@@ -940,69 +1143,7 @@
 
 
 
-        <!-- Extra JavaScript Send form data as json-->
-        <script>
-            // function convertFormToJSON(form) {
-            //     const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
-            //     const json = {};
-            //     $.each(array, function () {
-            //     json[this.name] = this.value || "";
-            //     });
-            //     return json;
-            // }
-
-            // AJAX for posting json
-            // $("#regForm").on("submit", function (e) {
-            //     e.preventDefault();
-            //     const form = $(e.target);
-            //     const json = convertFormToJSON(form);
-            //     console.log(json);
-            //     //send to backend
-            //     var data = {
-            //     test: $( "#test" ).val()
-            //     };
-            //     var options = {
-            //     url: "https://www.rtps.keminsoft.site/public/index.php/api/store_reg",
-            //     dataType: "text",
-            //     type: "POST",
-            //     data: { test: JSON.stringify( data ) }, // Our valid JSON string
-            //     success: function( data, status, xhr ) {
-            //         //...
-            //     },
-            //     error: function( xhr, status, error ) {
-            //         //...
-            //     }
-            //     };
-            //     $.ajax( options );
-
-            //     //end send
-            // });
-            
-            //Object { matno: "ENG12088909", student_firstname: "dfh", student_othernames: "h", student_surname: "fgh", student_dept_idr: "1", dept_idr: "1", status: "Succ", year_of_entry: "44", session_idr_of_entry: "323", mode_of_entry: "ume", … }
-
-
-            //AJAX for posting json
-            //   $(document).ready( function() {
-            //     $.ajax({
-            //         type: 'POST',
-            //         url:  'https://www.rtps.keminsoft.site/public/index.php/api/store_reg',  //evaluates to ->svr/model.php?parent_idr<6'
-            //         data: {'parent_idr' : '0'},
-            //         dataType: 'json',
-            //         cache: false,
-            //         success: function(result) {
-                    
-            //             console.log('Hey!' + JSON.stringify(result));
-            //             var dR;
-            //             dR= JSON.stringify(result);
-            //             dR.replace(/\s+/g,'');
-            //             alert("success");
-            //             // var Html = "<div id='myDivWM'>Copyright Obadan Family</div>";
-            //             // $("body").append(Html);
-                        
-            //         },
-            //     });
-            //   });
-        </script>
+      
 
 
 

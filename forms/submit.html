@@ -46,14 +46,12 @@
         <script>     
             //ajax for posting form data
             $(document).ready(function () {
-             
                //ajax for posting form data
                 urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
                 urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
                 url_global = urlLocal;
 
                 $("#file").on("change", function (e) {
-
                     uploadPix(this);
                     alert("Changed");
                     var count=1;
