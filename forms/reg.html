@@ -1177,6 +1177,9 @@
             }
             function editReg(){
                 location.reload();
+                //clear all courses so that student must restart
+                $("#CourseCode_1").val(  "");
+                $("#CourseCode_2").val(  "");
             }
             function finalSubmit(){
                 //console.log(document.body);
