@@ -1,3 +1,175 @@
+      //ajax for posting form data
+      $("#regForm").submit(function (event) {
+        event.preventDefault(); //stop submit
+        //getData().done(handleData);
+        //data: form.serialize(),
+        // data: formData,
+        $("#topButtonsDiv").hide();
+        var selDept= $('#dept_idr :selected').text();
+        //var selDept2= $("#dept_idr").children("option").filter(":selected").text();
+
+
+        var form = $( this );
+        var MatNo = $("#matno").val();
+
+        $.ajax({
+            type: "POST",
+            url: url_global + "store_reg",
+            data: form.serialize(),
+            dataType: "json",
+            encode: true,
+            success: function (data) {
+
+                //fetch data to verify if post was successful
+                $.ajax({
+                    type: "GET",
+                    url: url_global + "get_reg/"+ MatNo,
+                    data: form.serialize(),
+                    dataType: "json",
+                    encode: true,
+                    success: function (data) 
+                            {
+                                //alert("Successful"); 
+                                console.log("get succeeded \n");
+                                //console.log(data);
+
+                                let text = '';
+                                text += '<h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>';
+                                text += '<h4 class="text-center">FACULTY OF ENGINEERING</h4>';
+                                text += '<h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h5>';
+                                text += '<br>';
+                                text += '<table class="table" border="1">';
+                                // let formatedCourses1 = "";
+                                // let formatedCourses2 = "";
+                                let matno = "ENG999000";
+                                let surname= "OLA";
+                                let course='CPE000';
+                                let course2='CPE000';
+                                let credit ='0';
+                                let credit2 ='0';
+
+                                if(data.lenght>0){alert("data returned");}
+                                console.log("coursecode \n" + data[0].CourseCode_1);
+                                let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
+                                let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
+                                
+                                let arrayCourse1 = data[0].CourseCode_1 .split(";");
+                                let arrayCourse2 = data[0].CourseCode_2 .split(";");
+                                let picMatno =  data[0].matno ;  //img                
+                                text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="'+ url_global + 'jpg/' + picMatno + '.png" /></td></tr>';
+                                text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
+                                text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
+                                text += '<tr><td>DEPARTMENT</td><td colspan="2">' + selDept + '</td></tr>';
+                                text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].mode_of_entry  + '</td></tr>';
+                                text += '<tr><td>LEVEL</td><td colspan="2">' + data[0].level  + '</td></tr>';
+                                text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].phone  + '</td></tr>';
+                                text += '<tr><td>GENDER</td><td colspan="2">' + data[0].gender  + '</td></tr>';
+                                // text += "<tr>";
+                                // text += "<td class='text-wrap'><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
+                                // text += "<td class='text-wrap' colspan='2'> <p class='text-wrap'>" + formatedCourses2 + "</p></td>";
+                                // text += "</tr>";
+                                text += '</table>';
+
+                                text += '<h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>';
+                                text += '<table class="table" border="1" width="100%">';
+                                text += '<table class="table" border="1">';
+                                text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>'; 
+                                //text += '<tr><td  class="mw-30" style="width: 100px;">COURSE CODE</td><td>CREDIT</td><td class="mw-30" style="width: 100px;>COURSE CODE</td><td ">CREDIT</td></tr>';
+                                glbCredit_1=0;
+                                glbCredit_2=0;
+                                let strCourses1 = ""
+                                let strCourses2 = ""
+                                for (let i = 0; i < arrayCourse1.length; i++ ) {
+                                    course = arrayCourse1[i];
+                                    credit=getCredit(course);
+                                    strCourses1 = strCourses1 + course + "  -  " + credit + "\n";
+                                    glbCredit_1 = parseInt(glbCredit_1) + parseInt(credit);
+                                   // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                }
+                                for (let i = 0; i < arrayCourse2.length; i++ ) {
+                                    course2=arrayCourse2[i];
+                                    credit2=getCredit(course2);
+                                    strCourses2 = strCourses2 + course2 + "  -  " + credit2 + "\n";
+                                    glbCredit_2 = parseInt(glbCredit_2) + parseInt(credit2);
+                                   // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                }
+                                text += '<tr><td class="text-wrap" colspan=2><pre>' + strCourses1 + '</pre></td>'+ '<td colspan=2><pre>' + strCourses2 + '</pre></td>'  + '</tr>';
+                                text += '<tr><td colspan=2>' + 'Total' + "  -  " + glbCredit_1 + '</td>' + '<td colspan=2>' + 'Total' + "  -  " + glbCredit_2 + '</td>' + '</tr>';
+                                text += '</table>';
+
+                                //signatures
+                                text += '<br>';
+                                text += '<table class="table table-borderless" >';
+                                text += '<tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>';
+                                text += '<tr><td colspan=2 class="text-center">Student\'s signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser\'s signature</td></tr>';
+                                text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
+                                text += '</table>';
+
+                                //buttons
+                                text += ('<p>Print this slip and submit it to your Course Adviser.</p>');
+                                text += '<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>';
+                                text += '<p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p>';
+                                text += '<div id="previewButtons">';
+                                    //todo if (data.submitted) editbutton.hidden = true
+                                text += '<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>';
+                                text += '<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form</button> <br>';
+                                text += '<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>';
+                                text += '</div>';
+                                //$("#regForm").html("<div id='message'></div>");
+
+                                glb_table_data = []; // Creating a new array object
+                                glb_table_data['matno'] = data[0].matno; // Setting the attribute a to 200
+                                glb_table_data['student_surname'] = data[0].student_surname; // Setting the attribute b to 300
+
+
+                                $("#td_matno").html(data[0].matno);
+                                $("#td_firstname").html(data[0].student_firstname);
+                                $("#td_othernames").html(data[0].other_names);
+                                $("#td_surname").html(data[0].student_surname);
+                                $("#td_level").html(data[0].level);
+                                $("#td_phone").html(data[0].phone);
+                                $("#td_gender").html(data[0].gender);
+                                $("#td_department").html(selDept);
+                                $("#td_mode").html(data[0].mode_of_entry);
+                                $("#td_courses1").html(strCourses1);
+                                $("#td_total1").html("Total - " + glbCredit_1);
+                                
+                                $("#td_courses2").html(strCourses2);
+                                $("#td_total2").html("Total - " + glbCredit_2);
+                                
+                                $("#message_print_all").removeAttr("hidden");
+                                $("#regForm").hide();
+                                $("#message")
+                                    .html('<h2 class="text-center">Online Departmental Course Registration</h2>')
+                                    .append("<p></p>")
+
+                                    .append(text)
+                                    .hide()
+                                    .fadeIn(1500, function () {
+                                        $("#message").append(
+                                        "<p><a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a></p>" );
+                                    });
+                            },
+                            error: function (data) {
+                                console.log(data);
+                                alert("An error occured fetching data \n" + data.responseJSON.message);
+                            }
+                });
+                //console.log(data); //no need to do this again
+
+            },
+            error: function (data) {
+                console.log(data);
+                alert("An error occured posting data\n" + data.responseJSON.message);
+
+            }
+        });
+
+
+        });
+
+
+
 function autoTablePDF(){
     const doc = new jsPDF()
 

@@ -6,10 +6,9 @@
     <title>Registration Form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous">
-    </script>
+    src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/reg.css">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <!--  worked <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script> -->
@@ -80,13 +79,13 @@
                                 <br>
                             </div>
                             <div style="float: right;" >
-                                <img class="rounded mx-auto d-block" width="150" height="150" src="../images/usr.jpg" />
+                                <img id ="img-pix" class="rounded mx-auto d-block" width="150" height="150" src="../images/usr.jpg" />
                             </div>
                             <table class="table" border="1">
                             <!-- <tr><td class="mw-40" style="width: 180px;">-</td><td>-</td></tr> -->
                             <tr><td>MAT. NO.</td><td  id="td_matno">data[0].matno </td></tr>
                             <tr><td>SURNAME</td><td id="td_surname">data[0].student_surname</td></tr>
-                            <tr><td>OTHER NAMES</td><td id="td_firstname">data[0].student_firstname </td></tr>
+                            <tr><td>OTHER NAMES</td><td id="td_othernames">data[0].student_firstname </td></tr>
                             <tr><td>DEPARTMENT</td><td id="td_department">selDept</td></tr>
                             <tr><td>MODE OF ENTRY</td><td id="td_mode">data[0].mode_of_entry </td></tr>
                             <tr><td>LEVEL</td><td id="td_level">data[0].level </td></tr>
@@ -114,7 +113,12 @@
                         <div id='message_print'>
 
                         </div>
-
+                        <form id="hiddenForm">
+                            <input type="text" id="glbCredits" name="glbCredits" value="0" hidden/>
+                            <input type="text" id="glbCredits_1" name="glbCredits_1" value="0" hidden/>
+                            <input type="text" id="glbCredits_2" name="glbCredits_2" value="0" hidden/>
+                            <input type="text" id="glbCourses" name="glbCourses" value="ECP281;CPE311" hidden/>
+                        </form>
 
                         <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" enctype="multipart/form-data" hidden>
                             <h1>Online Course Registration</h1>
@@ -124,6 +128,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="name">MAT. NO.</label>
                                     <input type="text" id="matno" name="matno" placeholder="ENG..." required autofocus />
+
                                 </div>
                                 <div class="form-group col-md-6">
                                 </div>
@@ -179,20 +184,20 @@
                                 <div class="form-group col-md-3">
                                   <label for="inputState">Session</label>
                                   <select id="session_idr" name="session_idr" class="form-control">
-                                    <option selected>2020/2021</option>
-                                    <option>2021/2022</option>
-                                    <option>2022/2023</option>
-                                    <option>2023/2024</option>
+                                    <option value="2020/2021" selected>2020/2021</option>
+                                    <option value="2021/2022">2021/2022</option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
                                   </select>
                                 </div>
                                 <div class="form-group col-md-3">
                                   <label for="level">Level</label>
                                   <select id="level" name="level" class="form-control">
-                                    <option selected>100</option>
-                                    <option>200</option>
-                                    <option>300</option>
-                                    <option>400</option>
-                                    <option>500</option>
+                                    <option value="100" selected>100</option>
+                                    <option value="200" >200</option>
+                                    <option value="300" >300</option>
+                                    <option value="400" >400</option>
+                                    <option value="500" >500</option>
                                   </select>
                                 </div>
                             </div>
@@ -291,9 +296,9 @@
                                 </div>
                             </div>
 
-                            <p>Upload recent passport size Photo (Must be on red background; Max size 12kb)</p><input id="file_info"></input>
+                            <p>Upload recent passport size Photo (Must be on red background; Max size 1024kb)</p><input id="file_info"></input>
                             <!-- <button onClick="upload.php">Upload</button> -->
-                            <input type="file" id="file" required>
+                            <input type="file" id="file_pix" name="file_pix" class="form-control"  required>
                             <br><hr>
                             <h3>Add/Remove Courses</h3>
                             <div class="row">
@@ -378,7 +383,7 @@
                 //config
                 urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
                 urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
-                url_global = urlCloud;
+                url_global = urlLocal;
                 glb_Courses ="";
                 glbCredit = 0;
                 glbCredit_1 = 0;
@@ -426,11 +431,20 @@
                         var dCreditTmp = getCredit(dValue_1);
                         //todo compute credit
                         if ((glbCredit + parseInt(dCreditTmp) >50) && $('#level').val()!=='500'){
-                            alert("You cannot register more than 50 credits " );
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
                         }else{
                            
                             glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+
+                        if ((glbCredit_1 + parseInt(dCreditTmp) >30) && $('#level').val()!=='500'){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        }else{
+                           
+                            glbCredit_1 = parseInt(glbCredit_1) + parseInt(dCreditTmp);
                             //alert("within 50 credits. Total credits: " + glbCredit);  
                         }
 
@@ -445,10 +459,29 @@
 
                 $(add_button_2).click(function(e){ //on add input button click
                 e.preventDefault();
-                    if(x_2 < max_fields){ //max input box allowed
+                    if(x_2 < max_fields && $("#comboCourses_2").val()!==null){ //max input box allowed
                         x_2++; //text box increment
                         var prevValue_2 = $("#CourseCode_2").val();
                         var dValue_2 = $("#comboCourses_2").val();
+
+                        var dCreditTmp2 = getCredit(dValue_2);
+                        //todo compute credit
+                        if ((glbCredit + parseInt(dCreditTmp2) >50) && $('#level').val()!=='500'){
+                            alert("You cannot register more than 50 credits and 30 credits per semester" );
+                            return;
+                        }else{              
+                            glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp2);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+
+                        if ((glbCredit_2 + parseInt(dCreditTmp2) >30) && $('#level').val()!=='500'){
+                            alert("You cannot register more than 50 credits and 30 credits per semester" );
+                            return;
+                        }else{              
+                            glbCredit_2 = parseInt(glbCredit_2) + parseInt(dCreditTmp2);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+
                         $(wrapper_2).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
                         if (prevValue_2==""){
                             $("#CourseCode_2").val(  dValue_2 ); //change value   
@@ -463,14 +496,26 @@
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_1--;
                     //removeCourse_1(x_1);
-                    removeCourse(1);
+                    $('#glbCredits').val(glbCredit);
+                    $('#glbCredits_1').val(glbCredit_1);
+                    $('#glbCredits_2').val(glbCredit_2);
+                    glbCredit_1 = removeCourse(1, glbCredit_1);
+                    // glbCredit=glbCredit_1+parseInt($('#glbCredits_2').val()); //recompute
+                    // console.log("Total Cred " + glbCredit);
                     });
      
                 $(wrapper_2).on("click",".remove_field_2", function(e){ //user click on remove text
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_2--;
                     //removeCourse_1(x_2);
-                    removeCourse(2);
+                    $('#glbCredits').val(glbCredit);
+                    $('#glbCredits_1').val(glbCredit_1);
+                    $('#glbCredits_2').val(glbCredit_2);
+
+                    glbCredit_2 = removeCourse(2, glbCredit_2);
+                    // glbCredit=parseInt($('#glbCredits_1').val()) + glbCredit_2; //recompute
+                    // console.log("Total Cred " + glbCredit);
+                    
                     });
                 
                 $("#file").on("change", function (e) {
@@ -503,12 +548,25 @@
                     // data: formData,
                     $("#topButtonsDiv").hide();
                     var selDept= $('#dept_idr :selected').text();
-                    //var selDept2= $("#dept_idr").children("option").filter(":selected").text();
-
-
-                    var form = $( this );
                     var MatNo = $("#matno").val();
-
+                    var form = $( this );
+                    //upload picture
+                    //saveFile(url_global + "upload/"+ MatNo);
+                    // let formData = new FormData(this);
+                    // formData.append($("#file_pix").prop('files')[0]);
+                    let formData = new FormData();
+                    var dFile =  $("#file_pix")[0].files[0];
+                    formData.append('file_pix', dFile);
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "upload/"+ MatNo,
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        encode: true,
+                        success: function (data) {}
+                    });
+                    //upload records
                     $.ajax({
                         type: "POST",
                         url: url_global + "store_reg",
@@ -534,8 +592,8 @@
                                             text += '<h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>';
                                             text += '<h4 class="text-center">FACULTY OF ENGINEERING</h4>';
                                             text += '<h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h5>';
-                                            text += '<br>';
-                                            text += '<table class="table" border="1">';
+                                            // text += '<br>';
+                                            // text += '<table class="table" border="1">';
                                             // let formatedCourses1 = "";
                                             // let formatedCourses2 = "";
                                             let matno = "ENG999000";
@@ -553,26 +611,72 @@
                                             let arrayCourse1 = data[0].CourseCode_1 .split(";");
                                             let arrayCourse2 = data[0].CourseCode_2 .split(";");
                                             let picMatno =  data[0].matno ;  //img                
-                                            text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="'+ url_global + 'jpg/' + picMatno + '.png" /></td></tr>';
-                                            text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
-                                            text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
-                                            text += '<tr><td>DEPARTMENT</td><td colspan="2">' + selDept + '</td></tr>';
-                                            text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].mode_of_entry  + '</td></tr>';
-                                            text += '<tr><td>LEVEL</td><td colspan="2">' + data[0].level  + '</td></tr>';
-                                            text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].phone  + '</td></tr>';
-                                            text += '<tr><td>GENDER</td><td colspan="2">' + data[0].gender  + '</td></tr>';
-                                            // text += "<tr>";
-                                            // text += "<td class='text-wrap'><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
-                                            // text += "<td class='text-wrap' colspan='2'> <p class='text-wrap'>" + formatedCourses2 + "</p></td>";
-                                            // text += "</tr>";
-                                            text += '</table>';
+                                            // text += '<tr><td class="mw-40" style="width: 180px;">MATNO/ REG. NO</td><td>' + data[0].matno  + '</td><td rowspan="3" class="mw-40" style="width: 100px;"> <img width="150" height="150" src="'+ url_global + 'jpg/' + picMatno + '" /></td></tr>';
+                                            // text += '<tr><td>SURNAME</td><td>' + data[0].student_surname  + '</td></tr>';
+                                            // text += '<tr><td>OTHER NAMES</td><td>' + data[0].student_firstname  + '</td></tr>';
+                                            // text += '<tr><td>DEPARTMENT</td><td colspan="2">' + selDept + '</td></tr>';
+                                            // text += '<tr><td>MODE OF ENTRY</td><td colspan="2">' + data[0].mode_of_entry  + '</td></tr>';
+                                            // text += '<tr><td>LEVEL</td><td colspan="2">' + data[0].level  + '</td></tr>';
+                                            // text += '<tr><td>PHONE NO.</td><td colspan="2">' + data[0].phone  + '</td></tr>';
+                                            // text += '<tr><td>GENDER</td><td colspan="2">' + data[0].gender  + '</td></tr>';
+                                            // // text += "<tr>";
+                                            // // text += "<td class='text-wrap'><p class='text-wrap'>" + formatedCourses1+ "</p></td>";
+                                            // // text += "<td class='text-wrap' colspan='2'> <p class='text-wrap'>" + formatedCourses2 + "</p></td>";
+                                            // // text += "</tr>";
+                                            // text += '</table>';
 
-                                            text += '<h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>';
-                                            text += '<table class="table" border="1" width="100%">';
-                                            text += '<table class="table" border="1">';
-                                            text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>'; 
-                                            //text += '<tr><td  class="mw-30" style="width: 100px;">COURSE CODE</td><td>CREDIT</td><td class="mw-30" style="width: 100px;>COURSE CODE</td><td ">CREDIT</td></tr>';
+                                            // text += '<h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>';
+                                            // text += '<table class="table" border="1" width="100%">';
+                                            // text += '<table class="table" border="1">';
+                                            // text += '<tr><td colspan=2>FIRST SEMESTER</td><td colspan=2>SECOND SEMESTER</td></tr>'; 
+                                            // //text += '<tr><td  class="mw-30" style="width: 100px;">COURSE CODE</td><td>CREDIT</td><td class="mw-30" style="width: 100px;>COURSE CODE</td><td ">CREDIT</td></tr>';
+                                            // glbCredit_1=0;
+                                            // glbCredit_2=0;
+                                            // let strCourses1 = ""
+                                            // let strCourses2 = ""
+                                            // for (let i = 0; i < arrayCourse1.length; i++ ) {
+                                            //     course = arrayCourse1[i];
+                                            //     credit=getCredit(course);
+                                            //     strCourses1 = strCourses1 + course + "  -  " + credit + "\n";
+                                            //     glbCredit_1 = parseInt(glbCredit_1) + parseInt(credit);
+                                            //    // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            // }
+                                            // for (let i = 0; i < arrayCourse2.length; i++ ) {
+                                            //     course2=arrayCourse2[i];
+                                            //     credit2=getCredit(course2);
+                                            //     strCourses2 = strCourses2 + course2 + "  -  " + credit2 + "\n";
+                                            //     glbCredit_2 = parseInt(glbCredit_2) + parseInt(credit2);
+                                            //    // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            // }
+                                            // text += '<tr><td class="text-wrap" colspan=2><pre>' + strCourses1 + '</pre></td>'+ '<td colspan=2><pre>' + strCourses2 + '</pre></td>'  + '</tr>';
+                                            // text += '<tr><td colspan=2>' + 'Total' + "  -  " + glbCredit_1 + '</td>' + '<td colspan=2>' + 'Total' + "  -  " + glbCredit_2 + '</td>' + '</tr>';
+                                            // text += '</table>';
+
+                                            // //signatures
+                                            // text += '<br>';
+                                            // text += '<table class="table table-borderless" >';
+                                            // text += '<tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>';
+                                            // text += '<tr><td colspan=2 class="text-center">Student\'s signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser\'s signature</td></tr>';
+                                            // text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
+                                            // text += '</table>';
+
+                                            // //buttons
+                                            // text += ('<p>Print this slip and submit it to your Course Adviser.</p>');
+                                            // text += '<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>';
+                                            // text += '<p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p>';
+                                            // text += '<div id="previewButtons">';
+                                            //     //todo if (data.submitted) editbutton.hidden = true
+                                            // text += '<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>';
+                                            // text += '<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form</button> <br>';
+                                            // text += '<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>';
+                                            // text += '</div>';
+                                            // //$("#regForm").html("<div id='message'></div>");
+
+                                            // glb_table_data = []; // Creating a new array object
+                                            // glb_table_data['matno'] = data[0].matno; // Setting the attribute a to 200
+                                            // glb_table_data['student_surname'] = data[0].student_surname; // Setting the attribute b to 300
                                             glbCredit_1=0;
+                                            glbCredit_2=0;
                                             let strCourses1 = ""
                                             let strCourses2 = ""
                                             for (let i = 0; i < arrayCourse1.length; i++ ) {
@@ -589,38 +693,10 @@
                                                 glbCredit_2 = parseInt(glbCredit_2) + parseInt(credit2);
                                                // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
                                             }
-                                            text += '<tr><td class="text-wrap" colspan=2><pre>' + strCourses1 + '</pre></td>'+ '<td colspan=2><pre>' + strCourses2 + '</pre></td>'  + '</tr>';
-                                            text += '<tr><td colspan=2>' + 'Total' + "  -  " + glbCredit_1 + '</td>' + '<td colspan=2>' + 'Total' + "  -  " + glbCredit_2 + '</td>' + '</tr>';
-                                            text += '</table>';
-
-                                            //signatures
-                                            text += '<br>';
-                                            text += '<table class="table table-borderless" >';
-                                            text += '<tr><td colspan=2 class="text-center">________________________</td><td colspan=2></td><td colspan=2 class="text-center">________________________</td></tr>';
-                                            text += '<tr><td colspan=2 class="text-center">Student\'s signature</td><td colspan=2 class="text-center">________________________</td><td colspan=2 class="text-center">Course Adviser\'s signature</td></tr>';
-                                            text += '<tr><td colspan=2></td><td colspan=2 class="text-center">Dean\'s Signature</td><td colspan=2></td></tr>';                     
-                                            text += '</table>';
-
-                                            //buttons
-                                            text += ('<p>Print this slip and submit it to your Course Adviser.</p>');
-                                            text += '<p class = "text text-info" hidden>Form Saved successfully! You can continue filling the form and submit later</p>';
-                                            text += '<p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p>';
-                                            text += '<div id="previewButtons">';
-                                                //todo if (data.submitted) editbutton.hidden = true
-                                            text += '<button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>';
-                                            text += '<button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form</button> <br>';
-                                            text += '<button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>';
-                                            text += '</div>';
-                                            //$("#regForm").html("<div id='message'></div>");
-
-                                            glb_table_data = []; // Creating a new array object
-                                            glb_table_data['matno'] = data[0].matno; // Setting the attribute a to 200
-                                            glb_table_data['student_surname'] = data[0].student_surname; // Setting the attribute b to 300
-
 
                                             $("#td_matno").html(data[0].matno);
-                                            $("#td_firstname").html(data[0].student_firstname);
-                                            $("#td_othernames").html(data[0].other_names);
+                                            //no firstname $("#td_firstname").html(data[0].student_firstname);
+                                            $("#td_othernames").html(data[0].student_othernames);
                                             $("#td_surname").html(data[0].student_surname);
                                             $("#td_level").html(data[0].level);
                                             $("#td_phone").html(data[0].phone);
@@ -632,7 +708,7 @@
                                             
                                             $("#td_courses2").html(strCourses2);
                                             $("#td_total2").html("Total - " + glbCredit_2);
-                                            
+                                            $('#img-pix').attr("src", url_global + 'jpg/' + picMatno);
                                             $("#message_print_all").removeAttr("hidden");
                                             $("#regForm").hide();
                                             $("#message")
@@ -718,7 +794,7 @@
                   });
             });
 
-            function removeCourse(semester) {
+            function removeCourse(semester, glbCredit_n) {
                 if(semester==1){
                     var rows = document.getElementsByName('mytext_1[]');
                     var Course_Code_Input =$("#CourseCode_1");
@@ -740,6 +816,18 @@
                         selectedRows.push(rows[i]);
                     }
 
+                    //compute credits
+                    console.log("In remove course Computing credit for "+ rows[i].value);
+                    // glbCredit = glbCredit - getCredit(rows[i].value);
+                    // if(semester==1) glbCredit_1 = glbCredit_1 - getCredit(rows[i].value);
+                    // else glbCredit_2 = glbCredit_2 - getCredit(rows[i].value);
+                    // console.log("Total Credits "+ glbCredit);
+
+                    glbCredit_n = glbCredit_n - getCredit(rows[i].value);
+                    console.log("Sem. Credits "+ glbCredit_n);
+                    console.log("In fxn Total. Credits "+ parseInt($('#glbCredits').val()));
+                    //$('#glbCredits')
+
                     var prevValue = Course_Code_Input.val( );
                     if (prevValue==""){
                         Course_Code_Input.val(  rows[i].value );
@@ -747,6 +835,7 @@
                         Course_Code_Input.val( prevValue + ";" + rows[i].value  ); //change value                        
                     }
                 }
+                return glbCredit_n;
             }
             
             // function removeCourse_1() {
@@ -834,14 +923,13 @@
                 // will return undefined if not found; you could return a default instead
             }
 
-
-
             function getCredit(paramCourse){
 
                 //var dCredit = glb_Courses.find(paramCourse).course_unit;
                 var x = findElement(glb_Courses, "course_code", paramCourse); // todo: causes error x is undefined
+                console.log('finding ' + paramCourse);
                 console.log(x);
-                console.log(glb_Courses);
+                //console.log(glb_Courses);
                 //alert(x["course_unit"]); // displays "hi"
                 dCredit = x["course_unit"];
 
@@ -936,52 +1024,13 @@
                 printJS({ printable: 'regForm', type: 'html', header: 'Online Course Registration (c)2023' });
             }
 
-            function doPrintPDF(){
-                    $(previewButtons).hide();
-                    // autoTablePDF();
-                    //jsPDFTable();
-                    demoFromHTML();
-
-
-
-                    // // //prints correctly
-                    // doc = new jsPDF();
-                    // // doc.text('UNIVERSITY OF BENIN, BENIN CITY--', 40, 0, 'center');
-                    // // doc.text('FACULTY OF ENGINEERING--', 40, 16, 'center');
-                    // // doc.text('EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION--', 40, 32, 'center');
-                    
-                    // //var imgData = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASA....';
-                    // //doc.addImage(imgData, 'JPEG', 10, 10, 35, 35);
-                    // doc.setFontSize(18);
-                    // //doc.setTextColor(255, 200, 0);
-                    // doc.text(80, 20, "UNIVERSITY OF BENIN, BENIN CITY");
-                    // doc.text(80, 40, "FACULTY OF ENGINEERING");
-                    // doc.text(80, 60, "EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION");
-
-                    // doc.setLineWidth(0.5);
-                    // doc.line(100, 25, 150, 25);
-                    // doc.fromHTML($('#message_print').html(), 15, 15, { 
-                    //         'width': 190 
-                    // }); 
-
-                    // doc.text('_____________________________________', 40, 250, 'center');
-                    // doc.text('_____________Sign____________________', 40, 290, 'center');
-
-                    // doc.text('_____________________________________', 40, 300, 'center');
-                    // doc.text('Course Adviser\'s Sign', 40, 310, 'center');
-                    // doc.save('onlineCourseRegistration.pdf'); 
-
-
-
-
-            }
-
-            function demoFromHTML() {
+            function doPrintPDF() {
                 // var glb_table_data = []; // Creating a new array object
                 // glb_table_data['matno'] = "ENG7777777"; // Setting the attribute a to 200
                 // glb_table_data['student_surname'] = "Json"; // Setting the attribute b to 300
-
-
+                urlPDF = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                urlPDF = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                $(previewButtons).hide();
                 var pdf = new jsPDF('p', 'pt', 'letter');
                 var pageHeight = pdf.internal.pageSize.height || pdf.internal.pageSize.getHeight();
                 var pageWidth = pdf.internal.pageSize.width || pdf.internal.pageSize.getWidth();
@@ -999,31 +1048,22 @@
 
                 //low performance
                 var img = new Image()
-                img.src = '../images/usr.jpg'
-                pdf.addImage(img, 'jpg', pageWidth-160, startHeight-fontSize, 100, 100)
+                //img.src = '../images/usr.jpg'
+                try{
+                    img.src  = urlPDF + 'jpg/' + $("#td_matno").html();
+                    pdf.addImage(img, 'jpg', pageWidth-160, startHeight-fontSize, 100, 100);
+                }catch(err){
+                    img.src = '../images/usr.jpg';
+                    pdf.addImage(img, 'jpg', pageWidth-160, startHeight-fontSize, 100, 100);
+                }
+
                 //end header
 
                 //content
                 let strC = "TEMP VAL";
                 pdf.setTextColor(100);
                 pdf.setFontSize(14);
-
-//                                            $("#td_matno").html(data[0].matno);
-                                            // $("#td_firstname").html(data[0].student_firstname);
-                                            // $("#td_othernames").html(data[0].other_names);
-                                            // $("#td_surname").html(data[0].student_surname);
-                                            // $("#td_level").html(data[0].level);
-                                            // $("#td_phone").html(data[0].phone);
-                                            // $("#td_gender").html(data[0].gender);
-                                            // $("#td_department").html(selDept);
-                                            // $("#td_mode").html(data[0].mode_of_entry);
-                                            // $("#td_courses1").html(strCourses1);
-                                            // $("#td_total1").html("Total - " + glbCredit_1);
-                                            
-                                            // $("#td_courses2").html(strCourses2);
-                                            // $("#td_total2").html("Total - " + glbCredit_2);
-                                            
-
+                        
 
                 pdf.text("MAT. NO.:", 80, startHeight-(fontSize*1), {align: 'left'});
                 pdf.text($("#td_matno").html(), 300, startHeight-(fontSize*1), {align: 'left'}); //val
@@ -1031,11 +1071,11 @@
                 pdf.text("SURNAME:", 80, startHeight+(fontSize*1), {align: 'left'});
                 pdf.text($("#td_surname").html(), 300, startHeight+(fontSize*1), {align: 'left'}); //val
 
-                pdf.text("First Name:", 80, startHeight+(fontSize*3), {align: 'left'});
-                pdf.text($("#td_firstname").html(), 300, startHeight+(fontSize*3), {align: 'left'}); //val
+                // pdf.text("First Name:", 80, startHeight+(fontSize*3), {align: 'left'});
+                // pdf.text($("#td_firstname").html(), 300, startHeight+(fontSize*3), {align: 'left'}); //val
 
                 pdf.text("OTHER NAMES:", 80, startHeight+(fontSize*5), {align: 'left'});
-                pdf.text($("#td_surname").html(), 300, startHeight+(fontSize*5), {align: 'left'}); //val
+                pdf.text($("#td_othernames").html(), 300, startHeight+(fontSize*5), {align: 'left'}); //val
 
                 pdf.text("DEPARTMENT:", 80, startHeight+(fontSize*7), {align: 'left'});
                 pdf.text($("#td_department").html(), 300, startHeight+(fontSize*7), {align: 'left'});
@@ -1062,7 +1102,7 @@
                 pdf.text($("#td_courses2").html(), 300, startHeight+(fontSize*19), {align: 'left'}); //val
             
                 pdf.line(80, pageHeight-160-fontSize, pageWidth-80, pageHeight-160-fontSize); //x1,y1,x2,y2
-                pdf.text($("#td_total2").html(), 80, pageHeight  - 160 + fontSize, {align: 'left'});
+                pdf.text($("#td_total1").html(), 80, pageHeight  - 160 + fontSize, {align: 'left'});
                 pdf.text($("#td_total2").html(), 300, pageHeight  - 160 + fontSize, {align: 'left'}); //val
                 pdf.line(80, pageHeight-160+fontSize*2, pageWidth-80, pageHeight-160+fontSize*2); //x1,y1,x2,y2
             
@@ -1127,6 +1167,13 @@
                 }, margins);
             }
 
+            async function saveFile(url){
+
+                let formData = new FormData();
+                var dFile =  $("#file_pix").get(0).files;
+                formData.append('file_pix', dFile[0]);
+                await fetch(url, {method: "POST", body: formData});
+            }
             function editReg(){
                 location.reload();
             }

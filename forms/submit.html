@@ -29,7 +29,7 @@
                             <h1>Course Registration</h1>
                              <h3>Fill the form below and press the submit button!</h3>
                             <p>Upload recent passport size Photo (Must be on red background; Max size 12kb)</p><input id="file_info"></input>
-                            <input type="file" id="file" name="file" required>
+                            <input type="file" id="file-pix" name="file-pix" required>
                             <br><hr>
                             <button type ="submit">Upload</button>
                         </form>
@@ -51,7 +51,8 @@
                 urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
                 url_global = urlLocal;
 
-                $("#file").on("change", function (e) {
+                $("#file-pix").on("change", function (e) {
+                    e.preventDefault();
                     uploadPix(this);
                     alert("Changed");
                     var count=1;
@@ -76,7 +77,7 @@
             });
 
             function uploadPix(frm) {
-                    alert("Submit");
+                    alert("Submit ch");
                     //e.preventDefault();
                     //test image
                     var form = $( this );
@@ -93,6 +94,7 @@
                             //fetch data to verify if post was successful
                             text = '<img width="150" height="150" src="'+ url_global + 'jpg/' + picMatno + '.png" />';
                             $("#regForm").append(text)
+                            alert("Susuccbmit");
                         },
                         error: function (data) {
                             console.log(data);
