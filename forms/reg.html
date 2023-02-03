@@ -85,6 +85,7 @@
                             <!-- <tr><td class="mw-40" style="width: 180px;">-</td><td>-</td></tr> -->
                             <tr><td>MAT. NO.</td><td  id="td_matno">data[0].matno </td></tr>
                             <tr><td>SURNAME</td><td id="td_surname">data[0].student_surname</td></tr>
+                            <tr><td>FIRST NAME</td><td id="td_firstname">data[0].student_firstname </td></tr>
                             <tr><td>OTHER NAMES</td><td id="td_othernames">data[0].student_firstname </td></tr>
                             <tr><td>DEPARTMENT</td><td id="td_department">selDept</td></tr>
                             <tr><td>MODE OF ENTRY</td><td id="td_mode">data[0].mode_of_entry </td></tr>
@@ -104,7 +105,7 @@
                             <p class = "text text-info" id ="infoSubmited" hidden>Form Submitted successfully!</p> -->
                             <div id="previewButtons">
                                 <button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>
-                                <button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form</button> <br>
+                                <button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form (Download PDF)</button> <br>
                                 <button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>
 
                             </div>
@@ -695,7 +696,7 @@
                                             }
 
                                             $("#td_matno").html(data[0].matno);
-                                            //no firstname $("#td_firstname").html(data[0].student_firstname);
+                                            $("#td_firstname").html(data[0].student_firstname);
                                             $("#td_othernames").html(data[0].student_othernames);
                                             $("#td_surname").html(data[0].student_surname);
                                             $("#td_level").html(data[0].level);
@@ -1072,8 +1073,8 @@
                 pdf.text("SURNAME:", 80, startHeight+(fontSize*1), {align: 'left'});
                 pdf.text($("#td_surname").html(), 300, startHeight+(fontSize*1), {align: 'left'}); //val
 
-                // pdf.text("First Name:", 80, startHeight+(fontSize*3), {align: 'left'});
-                // pdf.text($("#td_firstname").html(), 300, startHeight+(fontSize*3), {align: 'left'}); //val
+                pdf.text("FIRST NAME:", 80, startHeight+(fontSize*3), {align: 'left'});
+                pdf.text($("#td_firstname").html(), 300, startHeight+(fontSize*3), {align: 'left'}); //val
 
                 pdf.text("OTHER NAMES:", 80, startHeight+(fontSize*5), {align: 'left'});
                 pdf.text($("#td_othernames").html(), 300, startHeight+(fontSize*5), {align: 'left'}); //val
