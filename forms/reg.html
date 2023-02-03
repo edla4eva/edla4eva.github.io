@@ -383,7 +383,7 @@
                 //config
                 urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
                 urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
-                url_global = urlLocal;
+                url_global = urlCloud;
                 glb_Courses ="";
                 glbCredit = 0;
                 glbCredit_1 = 0;
@@ -1028,8 +1028,9 @@
                 // var glb_table_data = []; // Creating a new array object
                 // glb_table_data['matno'] = "ENG7777777"; // Setting the attribute a to 200
                 // glb_table_data['student_surname'] = "Json"; // Setting the attribute b to 300
-                urlPDF = 'https://www.rtps.keminsoft.site/public/index.php/api/';
-                urlPDF = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlPDFCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                urlPDFLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlPDF = urlPDFCloud;
                 $(previewButtons).hide();
                 var pdf = new jsPDF('p', 'pt', 'letter');
                 var pageHeight = pdf.internal.pageSize.height || pdf.internal.pageSize.getHeight();
