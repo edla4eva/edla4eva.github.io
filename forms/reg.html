@@ -90,16 +90,16 @@
                             </div>
                             <table class="table" border="1">
                             <!-- <tr><td class="mw-40" style="width: 180px;">-</td><td>-</td></tr> -->
-                            <tr><td>MAT. NO.</td><td  id="td_matno">data[0].matno </td></tr>
-                            <tr><td>SURNAME</td><td id="td_surname">data[0].student_surname</td></tr>
-                            <tr><td>FIRST NAME</td><td id="td_firstname">data[0].student_firstname </td></tr>
-                            <tr><td>OTHER NAMES</td><td id="td_othernames">data[0].student_firstname </td></tr>
+                            <tr><td>MAT. NO.</td><td  id="td_matno">matno </td></tr>
+                            <tr><td>SURNAME</td><td id="td_surname">student_surname</td></tr>
+                            <tr><td>FIRST NAME</td><td id="td_firstname">student_firstname </td></tr>
+                            <tr><td>OTHER NAMES</td><td id="td_othernames">student_firstname </td></tr>
                             <tr><td>DEPARTMENT</td><td id="td_department">selDept</td></tr>
-                            <tr><td>MODE OF ENTRY</td><td id="td_mode">data[0].mode_of_entry </td></tr>
-                            <tr><td>LEVEL</td><td id="td_level">data[0].level </td></tr>
-                            <tr><td>Session</td><td id="td_session">data[0].level </td></tr>
-                            <tr><td>PHONE NO.</td><td id="td_phone">data[0].phone </td></tr>
-                            <tr><td>GENDER</td><td id="td_gender">data[0].gender </td></tr>
+                            <tr><td>MODE OF ENTRY</td><td id="td_mode">mode_of_entry </td></tr>
+                            <tr><td>LEVEL</td><td id="td_level">level </td></tr>
+                            <tr><td>Session</td><td id="td_session">level </td></tr>
+                            <tr><td>PHONE NO.</td><td id="td_phone">phone </td></tr>
+                            <tr><td>GENDER</td><td id="td_gender">gender </td></tr>
                             </table>
                             <h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>
                             <table class="table" border="1" id="table_courses">
@@ -894,7 +894,12 @@
                 console.log(x);
                 //console.log(glb_Courses);
                 //alert(x["course_unit"]); // displays "hi"
-                dCredit = x["course_unit"];
+                if (x==undefined){
+                    dCredit=0;
+                }else{
+                    dCredit = x["course_unit"];
+                }
+
 
                 if (dCredit==undefined){
                     dCredit=0;
@@ -1185,6 +1190,19 @@
                 $(btnFinalSubmit).hide();
                 $(printForm).show(); //this line causes error DOM?
                 //todo set submit at backend
+
+                let formData = new FormData();
+                var MatNo = $("#matno").val();
+                $.ajax({
+                        type: "POST",
+                        url: url_global + "final_submit_reg/" + MatNo,
+                        data: formData,
+                        encode: true,
+                        success: function (data) {
+
+                        }
+                    });
+
             }
 
 
