@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request for Exam Pass Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/reg.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!--  worked <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script> -->
+    <!-- latest -->
+    <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.es.min.js"></script>
+    <!-- <script src="https://unpkg.com/jspdf-autotable@3.5.28/dist/jspdf.plugin.autotable.js"></script> -->
+    <!-- <script src="jspdf.plugin.autotable.js"></script> -->
+
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- todo re enable caching after deployment of stable version -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- end disable cache -->
+</head>
+    <body>
+
+        <div class="container .bg-primary">
+
+            <!-- Add/Remove -->
+            <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <!-- p-l-5 padding - left - size5 -->
+                    <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
+                        <div id="topButtonsDiv">
+                            
+                            <h1 class="text-center">EXAM PASS REQUEST FORM</h1>
+                            <h1 class="text-center">University Of Benin, Benin City</h1>
+                            <h1 class="text-center">Faculty of Engineering </h1>
+
+                           
+                            <button class="btn btn-primary btn-lg btn-block" type="button" id="btnStart" 
+                            onclick='startRegView();'>
+                                Start Online Course Registration
+                            </button>
+                            <button class="btn btn-primary btn-lg btn-block" type="button" id="btnContinue" 
+                            onclick='continueRegView();'>
+                                Continue Registration
+                            </button>
+                            <div class="form-row" id="continueRegDiv">
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">MAT. NO.</label>
+                                        <input type="text" id="searchMatno" name="searchMatno" placeholder="ENG..." required autofocus />
+                                        <label for="psw"><b>Password</b></label>
+                                        <input type="password" placeholder="Enter Password" name="pswSearch" id="pswSearch" required>       
+
+                                        <label for="load_data_button">Click to load your personal data</label>
+    
+                                        <button class="btn btn-outline-primary btn-block load_data_button" id="load_reg_data_button" type="button">Load Personal Data</button>
+                                        <!-- <button class="btn btn-outline-success btn-block load_data_button" onClick="initialize" type="button">Cancel</button> -->
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <p></p>
+
+                                    </div>
+                                </div>
+                            </div>    
+
+                        </div>
+
+                        <div id='message_print_all'>
+                            <div id="bypassme">
+                                <h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>
+                                <h4 class="text-center">FACULTY OF ENGINEERING</h4>
+                                <h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2022/2023 SESSION</h5>
+                                <br>
+                            </div>
+                            <div style="float: right;" >
+                                <img id ="img-pix" class="rounded mx-auto d-block" width="150" height="150" src="../images/usr.jpg" />
+                            </div>
+                            <table class="table" border="1">
+                            <!-- <tr><td class="mw-40" style="width: 180px;">-</td><td>-</td></tr> -->
+                            <tr><td>MAT. NO.</td><td  id="td_matno">matno </td></tr>
+                            <tr><td>SURNAME</td><td id="td_surname">student_surname</td></tr>
+                            <tr><td>FIRST NAME</td><td id="td_firstname">student_firstname </td></tr>
+                            <tr><td>OTHER NAMES</td><td id="td_othernames">student_firstname </td></tr>
+                            <tr><td>DEPARTMENT</td><td id="td_department">selDept</td></tr>
+                            </table>
+                            <h5 class="text-center">ADMIT THIS STUDENT </h5>
+                            <table class="table" border="1" id="table_courses">
+                                <tr><td><pre id="td_courses1">course1</pre></td>/tr>
+                                <tr><td id ="td_total1">Total"  -  "glbCredit_1</td></tr>
+                            </table>
+
+                            <div id="previewButtons">
+                                <button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form (Download PDF)</button> <br>
+
+                            </div>
+
+                        </div>
+                        <div id='message_print'>
+
+                        </div>
+                        <form id="hiddenForm">
+                            <input type="text" id="glbCredits" name="glbCredits" value="0" hidden/>
+                            <input type="text" id="glbCredits_1" name="glbCredits_1" value="0" hidden/>
+                            <input type="text" id="glbCredits_2" name="glbCredits_2" value="0" hidden/>
+                            <input type="text" id="glbCourses" name="glbCourses" value="ECP281;CPE311" hidden/>
+                        </form>
+
+                        <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" enctype="multipart/form-data">
+                            <h1>Online Course Registration</h1>
+
+                                <button type="submit"  class="btn btn-primary btn-lg btn-block" id=" btnPreview" type="button">
+                                    Preview before Submitting
+                                </button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                    <div class="col-md-2">
+                        <!-- Right side -->
+                    </div>
+
+            </div>
+        </div>
+        <hr>
+        
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script> -->
+        <!-- Worked -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+        <!-- causes error -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+        <!-- JavaScript add new form and respond to select(combo) changes-->
+        <script>
+            $(document).ready(function() {
+                //config
+                urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                url_global = urlCloud;
+                glb_Courses ="";
+                glbCredit = 0;
+                glbCredit_1 = 0;
+                glbCredit_2 = 0;
+
+                
+                //setup view
+                initializeFormView();
+
+
+                //load registration data
+                $(load_reg_data_button).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    $("#topButtonsDiv").hide(); //hide em
+
+                    // grab the ID and send AJAX request if not (empty / only whitespace)
+                    var MatNo = $("#searchMatno").val();
+                    if (/\S/.test(MatNo)) {
+
+                        // using the ajax() method directly
+                        $.ajax({
+                            type : "GET",
+                            url : url_global + "get_reg/" + MatNo,
+                            cache : false,
+                            dataType : "json",
+                            data : "{matno: 1}",
+                            success : load_returnd_records_into_fields,
+                            error: function(xhr) { alert("No record found in database, start registration from scratch \n" + xhr.status); }
+                        });
+
+                    }
+                    else {
+                        alert("No MATNO supplied");
+                    }
+
+                });
+                
+
+
+
+
+
+
+            });
+
+
+            function fillcomboWithReturnedData(courses_1, clearPrevious){
+                //first clear all courses
+                if (clearPrevious){
+                    $("#CourseCode_1").val(  "");
+                    $("#CourseCode_2").val(  "");
+                }
+
+
+                //<select id="comboCourses_1"></select>
+                $("#comboCourses_1").empty();
+                $("#comboCourses_2").empty();
+     
+                var comboCourses_1 = $("#comboCourses_1");
+                var comboCourses_2 = $("#comboCourses_2");
+                $(courses_1).each(function () {
+                    
+                    var option = $("<option />");
+                    //Set course_title in Text part.
+                    option.html(this.course_code + "-" + this.course_title + " (" + this.course_unit + ")");
+     
+                    //Set  course_code in Value part.
+                    option.val(this.course_code);
+     
+                    //Add the Option element to DropDownList.
+                    if(this.course_semester=="1") comboCourses_1.append(option);
+                    if(this.course_semester=="2") comboCourses_2.append(option);
+                    //comboCourses_1.append(option);
+                    //comboCourses_2.append(option);
+                });
+            }
+
+            function load_returnd_records_into_fields(data) {
+                var frm = $("#regForm");
+                var i;
+
+                console.dir(data);      // for debug
+
+                for (i in data) {
+                    console.log(i); 
+                    frm.find('[name="' + i + '"]').val(data[i]);
+                    for (field in data[i]) {
+                        console.log(data[i][field]); 
+                        frm.find('[name="' + field + '"]').val(data[i][field]);
+                    }
+                }
+
+                frm.show();
+                $("#continueRegDiv").show();
+                
+            }
+      
+
+            function doPrint(){
+                printJS({ printable: 'regForm', type: 'html', header: 'Online Course Registration (c)2023' });
+            }
+
+            function doPrintPDF() {
+                urlPDFCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                urlPDFLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlPDF = urlPDFCloud;
+                $(previewButtons).hide();
+                var pdf = new jsPDF('p', 'pt', 'letter');
+                var pageHeight = pdf.internal.pageSize.height || pdf.internal.pageSize.getHeight();
+                var pageWidth = pdf.internal.pageSize.width || pdf.internal.pageSize.getWidth();
+                var fontSize = 14;
+                var startHeight = 150;
+
+                // Header
+                let strH = "UNIVERSITY OF BENIN";
+                pdf.setTextColor(100);
+                pdf.setFontSize(18);
+                pdf.text(strH, pageWidth / 2, 40, {align: 'center'});
+                
+                pdf.text("FACULTY OF ENGINEERING", pageWidth / 2, 60, {align: 'center'});
+                pdf.text("EXAM PASS" + $("#td_session").html(), pageWidth / 2, 80, {align: 'center'});
+
+
+                //content
+                let strC = "TEMP VAL";
+                pdf.setTextColor(100);
+                pdf.setFontSize(14);
+                        
+
+                pdf.text("MAT. NO.:", 80, startHeight-(fontSize*1), {align: 'left'});
+                pdf.text($("#td_matno").html(), 300, startHeight-(fontSize*1), {align: 'left'}); //val
+
+                pdf.text("SURNAME:", 80, startHeight+(fontSize*1), {align: 'left'});
+                pdf.text($("#td_surname").html(), 300, startHeight+(fontSize*1), {align: 'left'}); //val
+
+                pdf.text("FIRST NAME:", 80, startHeight+(fontSize*3), {align: 'left'});
+                pdf.text($("#td_firstname").html(), 300, startHeight+(fontSize*3), {align: 'left'}); //val
+
+                pdf.text("OTHER NAMES:", 80, startHeight+(fontSize*5), {align: 'left'});
+                pdf.text($("#td_othernames").html(), 300, startHeight+(fontSize*5), {align: 'left'}); //val
+
+                pdf.text("DEPARTMENT:", 80, startHeight+(fontSize*7), {align: 'left'});
+                pdf.text($("#td_department").html(), 300, startHeight+(fontSize*7), {align: 'left'});
+
+               
+                pdf.text("LEVEL:", 300, startHeight+(fontSize*13), {align: 'left'});
+                pdf.text($("#td_level").html(), 380, startHeight+(fontSize*13), {align: 'left'}); //val
+
+                pdf.setLineWidth(0.5);
+                pdf.line(80, startHeight+(fontSize*14), pageWidth-80, startHeight+(fontSize*14)); //x1,y1,x2,y2
+
+                //---courses
+                pdf.line(80, startHeight+(fontSize*17), pageWidth-80, startHeight+(fontSize*17)); //x1,y1,x2,y2
+
+                pdf.text($("#td_courses1").html(), 80, startHeight+(fontSize*19), {align: 'left'});
+
+
+            
+            //sign
+                pdf.line(80, pageHeight-100, 220, pageHeight-100); //x1,y1,x2,y2
+                pdf.text("Course Adviser\'s Sign", 80, pageHeight  - 100 + fontSize, {align: 'left'});
+
+                //end content
+
+                // FOOTER
+                
+
+                let str = "RTPS Online Registration Software (eddie.olaye@gmail.com) Olaye, E. and Taiwo O." + Date();
+                pdf.setTextColor(100);
+                pdf.setFontSize(10);
+                pdf.text(str, pageWidth / 2, pageHeight  - 10, {align: 'center'});
+                //end footer
+
+                // source can be HTML-formatted string, or a reference to...
+                source = $('#message_print')[0];
+
+                // we support special element handlers. Register them with jQuery-style 
+                // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+                // There is no support for any other type of selectors 
+                // (class, of compound) at this time.
+                specialElementHandlers = {
+                    // element with id of "bypass" - jQuery style selector
+                    '#bypassme': function (element, renderer) {
+                        // true = "handled elsewhere, bypass text extraction"
+                        return true
+                    }
+                };
+                margins = {
+                    top: 80,
+                    bottom: 60,
+                    left: 40,
+                    width: 522
+                };
+                // all coords and widths are in jsPDF instance's declared units
+                // 'inches' in this case
+                pdf.fromHTML(
+                source, // HTML string or DOM elem ref.
+                margins.left+20, // x coord
+                margins.top+100, { // y coord
+                    'width': margins.width, // max width of content on PDF
+                    'elementHandlers': specialElementHandlers
+                },
+
+                function (dispose) {
+                    // dispose: object with X, Y of the last line add to the PDF 
+                    //          this allow the insertion of new lines after html
+                    pdf.save('onlineCourseRegistration.pdf');
+                }, margins);
+            }
+
+
+
+            function initializeFormView(){
+                $("#regForm").hide();
+                $("#message_print_all").hide();
+                
+                $("#continueRegDiv").hide();
+
+            }
+            function startRegView(){
+
+                $("#btnContinue").attr("disabled","true"); 
+                $("#regForm").show(); 
+                $("#topButtonsDiv").hide(); 
+                $("#continueRegDiv").hide();
+            }
+            function continueRegView(){
+                $("#continueRegDiv").show();
+            }
+            function previewRegForm(){
+                $("#message_print_all").show();
+                $(btnFinalSubmit).show();
+                $("#regForm").hide();
+            }
+            function editReg(){
+
+                //method 1
+                //$(btnEdit).hide();
+                $(btnFinalSubmit).hide();
+                $(message_print_all).hide();
+                $(regForm).show();
+
+            }
+            function finalSubmit(){
+                //console.log(document.body);
+                $(btnEdit).hide();
+                $(btnFinalSubmit).hide();
+                $(printForm).show(); //this line causes error DOM?
+                //todo set submit at backend
+
+                let formData = new FormData();
+                var MatNo = $("#matno").val();
+                $.ajax({
+                        type: "POST",
+                        url: url_global + "final_submit_reg/" + MatNo,
+                        data: formData,
+                        encode: true,
+                        success: function (data) {
+
+                        }
+                    });
+
+            }
+
+
+
+
+        </script>
+
+
+
+      
+
+
+
+    </body>
+</html>
