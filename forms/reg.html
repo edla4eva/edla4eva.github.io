@@ -921,11 +921,11 @@
                 return dCredit
             }
             function fillcomboWithReturnedData(courses_1, clearPrevious){
-                //first clear all courses
-                if (clearPrevious){
-                    $("#CourseCode_1").val(  "");
-                    $("#CourseCode_2").val(  "");
-                }
+                //todo: first clear all courses
+                // if (clearPrevious){
+                //     $("#CourseCode_1").val(  "");
+                //     $("#CourseCode_2").val(  "");
+                // }
 
 
                 //<select id="comboCourses_1"></select>
@@ -934,21 +934,36 @@
      
                 var comboCourses_1 = $("#comboCourses_1");
                 var comboCourses_2 = $("#comboCourses_2");
-                $(courses_1).each(function () {
+    //             $(courses_1).each(function () {
                     
-                    var option = $("<option />");
-                    //Set course_title in Text part.
-                    option.html(this.course_code + "-" + this.course_title + " (" + this.course_unit + ")");
-     
-                    //Set  course_code in Value part.
-                    option.val(this.course_code);
-     
-                    //Add the Option element to DropDownList.
-                    if(this.course_semester=="1") comboCourses_1.append(option);
-                    if(this.course_semester=="2") comboCourses_2.append(option);
-                    //comboCourses_1.append(option);
-                    //comboCourses_2.append(option);
+    //                 var option = $("<option />");
+    //                 //Set course_title in Text part.
+    //                 option.html(this.course_code + "-" + this.course_title + " (" + this.course_unit + ")");
+    //  
+    //                 //Set  course_code in Value part.
+    //                 option.val(this.course_code);
+    //  
+    //                 //Add the Option element to DropDownList.
+    //                 if(this.course_semester=="1") comboCourses_1.append(option);
+    //                 if(this.course_semester=="2") comboCourses_2.append(option);
+    //                 //comboCourses_1.append(option);
+    //                 //comboCourses_2.append(option);
+    //             });
+
+                var dValues = $("#CourseCode_1").val().split(';');
+                    // Iterate through the array and append input elements for each text
+                $.each(dValues, function(index, dValue_2) {
+                    // Append a new input element to the wrapper
+                    $(wrapper_2).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>');
                 });
+
+                // You may also need to handle the "Remove" button click event if required
+                $(wrapper_2).on("click", ".remove_field_2", function(e) {
+                    e.preventDefault();
+                    $(this).parent().parent().remove(); // Remove the input group
+                });
+
+
             }
 
             function load_returnd_records_into_fields(data) {
