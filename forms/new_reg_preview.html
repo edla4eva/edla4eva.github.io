@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Course Registration Form - Preview</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/reg.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!--  worked <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script> -->
+    <!-- latest -->
+    <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.es.min.js"></script>
+    <!-- <script src="https://unpkg.com/jspdf-autotable@3.5.28/dist/jspdf.plugin.autotable.js"></script> -->
+    <!-- <script src="jspdf.plugin.autotable.js"></script> -->
+
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- todo re enable caching after deployment of stable version -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- end disable cache -->
+</head>
+    <body>
+
+        <div class="container .bg-primary">
+
+            <!-- Add/Remove -->
+            <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <!-- p-l-5 padding - left - size5 -->
+                    <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
+                        <div id='message_print_all'>
+                            <div id="bypassme">
+                                <h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>
+                                <h4 class="text-center">FACULTY OF ENGINEERING</h4>
+                                <h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h5>
+                                <br>
+                            </div>
+                            <div style="float: right;" >
+                                <img id ="img-pix" class="rounded mx-auto d-block" width="150" height="150" src="../images/usr.jpg" />
+                            </div>
+                            <table class="table" border="1">
+                            <!-- <tr><td class="mw-40" style="width: 180px;">-</td><td>-</td></tr> -->
+                            <tr><td>MAT. NO.</td><td  id="td_matno">matno </td></tr>
+                            <tr><td>SURNAME</td><td id="td_surname">student_surname</td></tr>
+                            <tr><td>FIRST NAME</td><td id="td_firstname">student_firstname </td></tr>
+                            <tr><td>OTHER NAMES</td><td id="td_othernames">student_firstname </td></tr>
+                            <tr><td>DEPARTMENT</td><td id="td_department">selDept</td></tr>
+                            <tr><td>MODE OF ENTRY</td><td id="td_mode">mode_of_entry </td></tr>
+                            <tr><td>LEVEL</td><td id="td_level">level </td></tr>
+                            <tr><td>Session</td><td id="td_session">level </td></tr>
+                            <tr><td>PHONE NO.</td><td id="td_phone">phone </td></tr>
+                            <tr><td>GENDER</td><td id="td_gender">gender </td></tr>
+                            </table>
+                            <h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>
+                            <table class="table" border="1" id="table_courses">
+                                <tr><td>FIRST SEMESTER</td><td>SECOND SEMESTER</td></tr>     
+
+                                <tr><td><pre id="td_courses1">course1</pre></td><td><pre id="td_courses2">course2</pre></td></tr>
+                                <tr><td id ="td_total1">Total"  -  "glbCredit_1</td><td id ="td_total2">Total"  -  "glbCredit_2</td> </tr>
+                            </table>
+
+                            <div id="previewButtons">
+                                <button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>
+                                <button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form (Download PDF)</button> <br>
+                                <button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>
+
+                            </div>
+
+                        </div>
+                        <div id='message_print'>
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-md-2">
+                        <!-- Right side -->
+                    </div>
+
+            </div>
+        </div>
+        <hr>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Worked -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+        <!-- causes error -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+        <!-- JavaScript add new form and respond to select(combo) changes-->
+        <script>
+            $(document).ready(function() {
+                //config
+                urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                url_global = urlCloud;
+                glb_Courses ="";
+                glbCredit = 0;
+                glbCredit_1 = 0;
+                glbCredit_2 = 0;
+
+                var max_fields      = 18; //maximum input boxes allowed
+                var wrapper_1   		= $(".input_fields_wrap_1"); //Fields wrapper
+                var wrapper_2   		= $(".input_fields_wrap_2"); //Fields wrapper
+                var add_button_1      = $(".add_field_button_1"); //Add button ID
+                var add_button_2      = $(".add_field_button_2"); //Add button ID
+                // var update_button      = $(".update_field_button"); //Update button ID
+                var x_1 = 1; //initlal text box count
+                var x_2 = 1; //initlal text box count
+                
+                //setup view
+                initializeFormView();
+
+
+                //ajax for posting form data
+                $("#regForm").submit(function (event) {
+                    event.preventDefault(); //stop submit
+                    //getData().done(handleData);
+                    //data: form.serialize(),
+                    // data: formData,
+                    $("#topButtonsDiv").hide();
+                    var selDept= $('#dept_idr :selected').text();
+                    var MatNo = $("#matno").val();
+                    var form = $( this );
+                    //upload picture
+                    //saveFile(url_global + "upload/"+ MatNo);
+                    // let formData = new FormData(this);
+                    // formData.append($("#file_pix").prop('files')[0]);
+                    let formData = new FormData();
+                    var dFile =  $("#file_pix")[0].files[0];
+                    //upload records
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "store_reg",
+                        data: form.serialize(),
+                        dataType: "json",
+                        encode: true,
+                        success: function (data) {
+
+                            //fetch data to verify if post was successful
+                            $.ajax({
+                                type: "GET",
+                                url: url_global + "get_reg/"+ MatNo,
+                                data: form.serialize(),
+                                dataType: "json",
+                                encode: true,
+                                success: function (data) 
+                                        {
+                                            //alert("Successful"); 
+                                            console.log("get succeeded \n");
+                                            //console.log(data);
+
+                                            let text = '';
+                                            let matno = "ENG999000";
+                                            let surname= "OLA";
+                                            let course='CPE000';
+                                            let course2='CPE000';
+                                            let credit ='0';
+                                            let credit2 ='0';
+
+                                            if(data.lenght>0){alert("data returned");}
+                                            console.log("coursecode \n" + data[0].CourseCode_1);
+                                            let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
+                                            let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
+                                            
+                                            let arrayCourse1 = data[0].CourseCode_1 .split(";");
+                                            let arrayCourse2 = data[0].CourseCode_2 .split(";");
+                                            let picMatno =  data[0].matno ;  //img                
+
+                                            glbCredit_1=0;
+                                            glbCredit_2=0;
+                                            let strCourses1 = ""
+                                            let strCourses2 = ""
+                                            for (let i = 0; i < arrayCourse1.length; i++ ) {
+                                                course = arrayCourse1[i];
+                                                credit=getCredit(course);
+                                                strCourses1 = strCourses1 + course + "  -  " + credit + "\n";
+                                                glbCredit_1 = parseInt(glbCredit_1) + parseInt(credit);
+                                               // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            }
+                                            for (let i = 0; i < arrayCourse2.length; i++ ) {
+                                                course2=arrayCourse2[i];
+                                                credit2=getCredit(course2);
+                                                strCourses2 = strCourses2 + course2 + "  -  " + credit2 + "\n";
+                                                glbCredit_2 = parseInt(glbCredit_2) + parseInt(credit2);
+                                               // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            }
+
+                                            $("#td_matno").html(data[0].matno);
+                                            $("#td_firstname").html(data[0].student_firstname);
+                                            $("#td_othernames").html(data[0].student_othernames);
+                                            $("#td_surname").html(data[0].student_surname);
+                                            $("#td_level").html(data[0].level);
+                                            $("#td_session").html(data[0].session_idr);
+                                            $("#td_phone").html(data[0].phone);
+                                            $("#td_gender").html(data[0].gender);
+                                            $("#td_department").html(selDept);
+                                            $("#td_mode").html(data[0].mode_of_entry);
+                                            $("#td_courses1").html(strCourses1);
+                                            $("#td_total1").html("Total - " + glbCredit_1);
+                                            
+                                            $("#td_courses2").html(strCourses2);
+                                            $("#td_total2").html("Total - " + glbCredit_2);
+                                            $('#img-pix').attr("src", url_global + 'jpg/' + picMatno);
+
+                                            previewRegForm();
+                                            $("#message")
+                                                .html('<h2 class="text-center">Online Departmental Course Registration</h2>')
+                                                .append("<p></p>")
+                                                .hide()
+                                                .fadeIn(1500, function () {
+                                                    $("#message").append(
+                                                    "<p><a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a></p>" );
+                                                });
+                                        },
+                                        error: function (data) {
+                                            console.log(data);
+                                            alert("An error occured while fetching data \n" + data.responseJSON.message);
+                                        }
+                            });
+                            //console.log(data); //no need to do this again
+
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            alert("An error occured posting data\n" + data.responseJSON.message);
+
+                        }
+                    });
+
+                    validateUsername();
+                    validateMatNo();
+                    //validateConfirmPassword();
+                    //validateEmail();
+                    if (
+                      usernameError == true &&
+                      matnoError == true
+                    ) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
+
+    
+            function finalSubmit(){
+                //console.log(document.body);
+                $(btnEdit).hide();
+                $(btnFinalSubmit).hide();
+                $(printForm).show(); //this line causes error DOM?
+                //todo set submit at backend
+
+                let formData = new FormData();
+                var MatNo = $("#matno").val();
+                $.ajax({
+                        type: "POST",
+                        url: url_global + "final_submit_reg/" + MatNo,
+                        data: formData,
+                        encode: true,
+                        success: function (data) {
+
+                        }
+                    });
+
+            }
+
+
+
+
+        </script>
+
+
+
+      
+
+
+
+    </body>
+</html>
