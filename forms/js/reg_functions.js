@@ -11,8 +11,7 @@
             var results = regex.exec(location.search);
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
           }
-
-          //usage
+                    //usage
         //   var session = getUrlParameters('session');
         //   var level = getUrlParameters('level');
           
@@ -20,6 +19,363 @@
         //   console.log('Session: ' + session);
         //   console.log('Level: ' + level);
 
+        function generateCourseInputs(jsonData) {
+            // Assuming you have a container with the id "wrapper_1" to append the elements to
+            var wrapper_1 = $(".input_fields_wrap_1"); 
+
+            // //suppose we neet to iterate through array in json
+            // jsonData.forEach(function (item) {
+            //     var id = item.id;
+            // });
+
+            var item = jsonData.find(item => item.id === 100);  //note: integer not string
+            var courses = item.courses.split(";");
+
+            courses.forEach(function (myCourse) {
+                var inputGroup = $('<div class="input-group mb-3"></div>');
+                var inputElement = $('<input type="text" class="form-control" name="mytext_1[]" value="' + myCourse + '">');
+                var removeButton = $('<button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button>');
+
+                inputGroup.append(inputElement);
+                inputGroup.append(removeButton);
+
+                wrapper_1.append(inputGroup);
+            });
+
+        }
+
+
+
+        //these were inside ready()
+ //Add course
+            // formController.addButton1.click(function(e){
+                $(add_button_1).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    if(x_1 < max_fields && $("#comboCourses_1").val()!==null){ //max input box allowed
+                        x_1++; //text box increment
+    
+                        var prevValue_1 = $("#CourseCode_1").val();
+                        var dValue_1 = $("#comboCourses_1").val();
+                        var dCreditTmp = getCredit(dValue_1);
+                        //todo compute credit
+                        if ((glbCredit + parseInt(dCreditTmp) >50) && $('#level').val()!=='500'){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        }else{
+                           
+                            glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+    
+                        if ((glbCredit_1 + parseInt(dCreditTmp) >30) && $('#level').val()!=='500'){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        }else{
+                           
+                            glbCredit_1 = parseInt(glbCredit_1) + parseInt(dCreditTmp);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+    
+                        $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
+                        if (prevValue_1==""){
+                            $("#CourseCode_1").val(  dValue_1 ); //change value   
+                        }else{
+                            $("#CourseCode_1").val( prevValue_1 + ";" + dValue_1 ); //change value                        
+                        }
+                    }
+                });
+    
+                $(add_button_2).click(function(e){ //on add input button click
+                e.preventDefault();
+                    if(x_2 < max_fields && $("#comboCourses_2").val()!==null){ //max input box allowed
+                        x_2++; //text box increment
+                        var prevValue_2 = $("#CourseCode_2").val();
+                        var dValue_2 = $("#comboCourses_2").val();
+    
+                        var dCreditTmp2 = getCredit(dValue_2);
+                        //todo compute credit
+                        if ((glbCredit + parseInt(dCreditTmp2) >50) && $('#level').val()!=='500'){
+                            alert("You cannot register more than 50 credits and 30 credits per semester" );
+                            return;
+                        }else{              
+                            glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp2);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+    
+                        if ((glbCredit_2 + parseInt(dCreditTmp2) >30) && $('#level').val()!=='500'){
+                            alert("You cannot register more than 50 credits and 30 credits per semester" );
+                            return;
+                        }else{              
+                            glbCredit_2 = parseInt(glbCredit_2) + parseInt(dCreditTmp2);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+    
+                        $(wrapper_2).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
+                        if (prevValue_2==""){
+                            $("#CourseCode_2").val(  dValue_2 ); //change value   
+                        }else{
+                            $("#CourseCode_2").val( prevValue_2 + ";" + dValue_2 ); //change value                        
+                        }
+                    }
+                });
+    
+                //remove courses
+                $(wrapper_1).on("click",".remove_field_1", function(e){ //user click on remove text
+                    e.preventDefault(); 
+                    $(this).parent('div').parent('div').remove(); x_1--;
+                    //removeCourse_1(x_1);
+                    $('#glbCredits').val(glbCredit);
+                    $('#glbCredits_1').val(glbCredit_1);
+                    $('#glbCredits_2').val(glbCredit_2);
+                    glbCredit_1 = removeCourse(1, glbCredit_1);
+                    // glbCredit=glbCredit_1+parseInt($('#glbCredits_2').val()); //recompute
+                    // console.log("Total Cred " + glbCredit);
+                    });
+     
+                $(wrapper_2).on("click",".remove_field_2", function(e){ //user click on remove text
+                    e.preventDefault(); 
+                    $(this).parent('div').parent('div').remove(); x_2--;
+                    //removeCourse_1(x_2);
+                    $('#glbCredits').val(glbCredit);
+                    $('#glbCredits_1').val(glbCredit_1);
+                    $('#glbCredits_2').val(glbCredit_2);
+    
+                    glbCredit_2 = removeCourse(2, glbCredit_2);
+                    // glbCredit=parseInt($('#glbCredits_1').val()) + glbCredit_2; //recompute
+                    // console.log("Total Cred " + glbCredit);
+                    
+                    });
+                
+                $("#file").on("change", function (e) {
+                    var count=1;
+                    var files = e.currentTarget.files; // puts all files into an array
+                    var approvedHTML="";
+                    // call them as such; files[0].size will get you the file size of the 0th file
+                    for (var x in files) {
+                        var filesize = ((files[x].size/1024)/1024).toFixed(4); // MB
+                        if (files[x].name != "item" && typeof files[x].name != "undefined" && filesize <= 10) { 
+                            if (count > 1) {
+                                approvedHTML += ", "+files[x].name;
+                            }
+                            else {
+                                approvedHTML += files[x].name;
+                            }
+                            count++;
+                        }
+                    }
+                    $("#file_info").val(approvedHTML);
+                    console.log(approvedHTML);
+    
+    
+                    //todo run upload here
+                    $("#previewPix").attr("src", url_global + "jpg/"+ $("#matno").val());
+                    let formData = new FormData();
+                    var dFile =  $("#file_pix")[0].files[0];
+                    formData.append('file_pix', dFile);
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "upload/"+ MatNo,
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        encode: true,
+                        success: function (data) {
+                            //show the uploaded image
+                            $("#previewPix").attr("src", url_global + "jpg/"+ $("#matno").val());
+                        }
+                    });
+                    
+                });
+                
+    
+                //ajax for posting form data
+                $("#regForm").submit(function (event) {
+                    event.preventDefault(); //stop submit
+                    //getData().done(handleData);
+                    //data: form.serialize(),
+                    // data: formData,
+                    $("#topButtonsDiv").hide();
+                    var selDept= $('#dept_idr :selected').text();
+                    var MatNo = $("#matno").val();
+                    var form = $( this );
+                    //upload picture
+                    //saveFile(url_global + "upload/"+ MatNo);
+                    // let formData = new FormData(this);
+                    // formData.append($("#file_pix").prop('files')[0]);
+                    let formData = new FormData();
+                    var dFile =  $("#file_pix")[0].files[0];
+                    formData.append('file_pix', dFile);
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "upload/"+ MatNo,
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        encode: true,
+                        success: function (data) {
+                            //show the uploaded image
+                            $("#previewPix").attr("src", url_global + "jpg/"+ MatNo);
+                        }
+                    });
+                    //upload records
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "store_reg",
+                        data: form.serialize(),
+                        dataType: "json",
+                        encode: true,
+                        success: function (data) {
+    
+                            //fetch data to verify if post was successful
+                            $.ajax({
+                                type: "GET",
+                                url: url_global + "get_reg/"+ MatNo,
+                                data: form.serialize(),
+                                dataType: "json",
+                                encode: true,
+                                success: function (data) 
+                                        {
+                                            //alert("Successful"); 
+                                            console.log("get succeeded \n");
+                                            //console.log(data);
+    
+                                            let text = '';
+                                            let matno = "ENG999000";
+                                            let surname= "OLA";
+                                            let course='CPE000';
+                                            let course2='CPE000';
+                                            let credit ='0';
+                                            let credit2 ='0';
+    
+                                            if(data.lenght>0){alert("data returned");}
+                                            console.log("coursecode \n" + data[0].CourseCode_1);
+                                            let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
+                                            let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
+                                            
+                                            let arrayCourse1 = data[0].CourseCode_1 .split(";");
+                                            let arrayCourse2 = data[0].CourseCode_2 .split(";");
+                                            let picMatno =  data[0].matno ;  //img                
+    
+                                            glbCredit_1=0;
+                                            glbCredit_2=0;
+                                            let strCourses1 = ""
+                                            let strCourses2 = ""
+                                            for (let i = 0; i < arrayCourse1.length; i++ ) {
+                                                course = arrayCourse1[i];
+                                                credit=getCredit(course);
+                                                strCourses1 = strCourses1 + course + "  -  " + credit + "\n";
+                                                glbCredit_1 = parseInt(glbCredit_1) + parseInt(credit);
+                                               // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            }
+                                            for (let i = 0; i < arrayCourse2.length; i++ ) {
+                                                course2=arrayCourse2[i];
+                                                credit2=getCredit(course2);
+                                                strCourses2 = strCourses2 + course2 + "  -  " + credit2 + "\n";
+                                                glbCredit_2 = parseInt(glbCredit_2) + parseInt(credit2);
+                                               // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            }
+    
+                                            $("#td_matno").html(data[0].matno);
+                                            $("#td_firstname").html(data[0].student_firstname);
+                                            $("#td_othernames").html(data[0].student_othernames);
+                                            $("#td_surname").html(data[0].student_surname);
+                                            $("#td_level").html(data[0].level);
+                                            $("#td_session").html(data[0].session_idr);
+                                            $("#td_phone").html(data[0].phone);
+                                            $("#td_gender").html(data[0].gender);
+                                            $("#td_department").html(selDept);
+                                            $("#td_mode").html(data[0].mode_of_entry);
+                                            $("#td_courses1").html(strCourses1);
+                                            $("#td_total1").html("Total - " + glbCredit_1);
+                                            
+                                            $("#td_courses2").html(strCourses2);
+                                            $("#td_total2").html("Total - " + glbCredit_2);
+                                            $('#img-pix').attr("src", url_global + 'jpg/' + picMatno);
+    
+                                            previewRegForm();
+                                            $("#message")
+                                                .html('<h2 class="text-center">Online Departmental Course Registration</h2>')
+                                                .append("<p></p>")
+                                                .hide()
+                                                .fadeIn(1500, function () {
+                                                    $("#message").append(
+                                                    "<p><a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a></p>" );
+                                                });
+                                        },
+                                        error: function (data) {
+                                            console.log(data);
+                                            alert("An error occured while fetching data \n" + data.responseJSON.message);
+                                        }
+                            });
+                            //console.log(data); //no need to do this again
+    
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            alert("An error occured posting data\n" + data.responseJSON.message);
+    
+                        }
+                    });
+    
+    
+                    });
+    
+    
+                //load registration data
+                $(load_reg_data_button).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    $("#topButtonsDiv").hide(); //hide em
+    
+                    // grab the ID and send AJAX request if not (empty / only whitespace)
+                    var MatNo = $("#searchMatno").val();
+                    if (/\S/.test(MatNo)) {
+    
+                        // using the ajax() method directly
+                        $.ajax({
+                            type : "GET",
+                            url : url_global + "get_reg/" + MatNo,
+                            cache : false,
+                            dataType : "json",
+                            data : "{matno: 1}",
+                            success : load_returnd_records_into_fields,
+                            error: function(xhr) { alert("No record found in database, start registration from scratch \n" + xhr.status); }
+                        });
+    
+                    }
+                    else {
+                        alert("No MATNO supplied");
+                    }
+    
+                });
+                
+                //todo: load images
+                $('#btn').on('click', function() {
+                    var img = $('<img />', {src : 'http://webpage.com/images/' + $('#imagename').val() +'.png'});
+                    img.appendTo('body');
+                });
+    
+                
+                $('#chkTAR').change(function() {
+                    if(this.checked) {
+                        //var returnVal = confirm("Are you sure?");
+                        $(this).prop("checked", true);
+                        $("#btnPreview").removeAttr("disabled");
+                        $("#btnPreview").prop('disabled', false)
+                    }
+                    $("#btnPreview").removeAttr("disabled");
+                    
+                });
+    
+                //validate button
+
+        //end ready()
+
+        function initializeFormView(){
+            $("#regForm").hide();
+            $("#message_print_all").hide();
+            
+            $("#continueRegDiv").hide();
+        }
         function removeCourse(semester, glbCredit_n) {
             if(semester==1){
                 var rows = document.getElementsByName('mytext_1[]');
@@ -64,44 +420,44 @@
             return glbCredit_n;
         }
         
-        // function removeCourse_1() {
-        //         var rows_1 = document.getElementsByName('mytext_1[]');
-        //         var selectedRows = [];
+        function removeCourse_1() {
+                var rows_1 = document.getElementsByName('mytext_1[]');
+                var selectedRows = [];
 
-        //         $("#CourseCode_1").val("" ); //clear it
-        //         for (var i = 0, l = rows_1.length; i < l; i++) {
-        //             if (!rows_1[i].value=="") {
-        //                 selectedRows.push(rows_1[i]);
-        //             }
+                $("#CourseCode_1").val("" ); //clear it
+                for (var i = 0, l = rows_1.length; i < l; i++) {
+                    if (!rows_1[i].value=="") {
+                        selectedRows.push(rows_1[i]);
+                    }
 
-        //             var prevValue_1 = $("#CourseCode_1").val( );
-        //             if (prevValue_1==""){
-        //                 $("#CourseCode_1").val(  rows_1[i].value );
-        //             }else{
-        //                 $("#CourseCode_1").val( prevValue_1 + ";" + rows_1[i].value  ); //change value                        
-        //             }
-        //         }
-        // }
+                    var prevValue_1 = $("#CourseCode_1").val( );
+                    if (prevValue_1==""){
+                        $("#CourseCode_1").val(  rows_1[i].value );
+                    }else{
+                        $("#CourseCode_1").val( prevValue_1 + ";" + rows_1[i].value  ); //change value                        
+                    }
+                }
+        }
         
-        // function removeCourse_2() {
+        function removeCourse_2() {
 
-        //         var rows = document.getElementsByName('mytext_2[]');
-        //         var selectedRows = [];
+                var rows = document.getElementsByName('mytext_2[]');
+                var selectedRows = [];
 
-        //         $("#CourseCode_2").val("" ); //clear it
-        //         for (var i = 0, l = rows.length; i < l; i++) {
-        //             if (!rows[i].value=="") {
-        //                 selectedRows.push(rows[i]);
-        //             }
+                $("#CourseCode_2").val("" ); //clear it
+                for (var i = 0, l = rows.length; i < l; i++) {
+                    if (!rows[i].value=="") {
+                        selectedRows.push(rows[i]);
+                    }
 
-        //             var prevValue_2 = $("#CourseCode_2").val( );
-        //             if (prevValue_2==""){
-        //                 $("#CourseCode_2").val(  rows[i].value );
-        //             }else{
-        //                 $("#CourseCode_2").val( prevValue_2 + ";" + rows[i].value  ); //change value                        
-        //             }
-        //         }
-        // }
+                    var prevValue_2 = $("#CourseCode_2").val( );
+                    if (prevValue_2==""){
+                        $("#CourseCode_2").val(  rows[i].value );
+                    }else{
+                        $("#CourseCode_2").val( prevValue_2 + ";" + rows[i].value  ); //change value                        
+                    }
+                }
+        }
              
         function PopulateDropDownList(limits, offset) {
             //load combos
@@ -407,13 +763,6 @@
             await fetch(url, {method: "POST", body: formData});
         }
 
-        function initializeFormView(){
-            $("#regForm").hide();
-            $("#message_print_all").hide();
-            
-            $("#continueRegDiv").hide();
-
-        }
         function startRegView(){
 
             $("#btnContinue").attr("disabled","true"); 
@@ -445,11 +794,3 @@
             // $("#CourseCode_2").val(  "");
         }
 
-        //last
-        $(document).ready(function() {
-            // Get the 'session' parameter from the URL
-            var sessionParameter = getUrlParameter('session');
-
-            // Fill the input element with the session parameter value
-            $('#session_idr').val(sessionParameter);
-        });
