@@ -1,6 +1,7 @@
-
- [
+[
     { "id": 100, "courses": "CVE211;CVE341;PRE211", "credits": "2;3;3" },
     { "id": 200, "courses": "CVE211;CVE341;PRE211", "credits": "2;3;3" },
-    { "id": 300, "courses": "CVE211;CVE341;PRE211", "credits": "2;3;3" }
+    { "id": 300, "courses": "CVE211;CVE341;PRE211", "credits": "2;3;3" },
+    { "id": 400, "courses": "CVE211;CVE341;PRE211", "credits": "2;3;3" },
+    { "id": 500, "courses": "CVE211;CVE341;PRE211", "credits": "2;3;3" }
 ]
