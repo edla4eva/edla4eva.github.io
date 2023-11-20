@@ -10,7 +10,9 @@
 
 
         var form = $( this );
-        var MatNo = $("#matno").val();
+        var MatNox = $("#matno").val();
+        var MatNo = MatNox.toUpperCase();
+        
 
         $.ajax({
             type: "POST",
