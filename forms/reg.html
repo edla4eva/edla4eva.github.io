@@ -133,11 +133,13 @@
                             <br>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="name">MAT. NO.</label>
+                                    <label for="name">MAT. NO. or REG NO. (For D.E)</label>
                                     <!-- <input type="text" id="matno" name="matno" placeholder="ENG..." required autofocus /> -->
-                                    <input type="text" id="matno" name="matno" pattern="^[A-Za-z]{3}\d{7}$" title="Matriculation number should start with 3 letters followed by 7 digits." required autofocus>
+                                    <input type="text" id="matno" name="matno" pattern="^[A-Z]{3}\d{7}$|^\d{12}[A-Z]{2}$" 
+                                    title="Matriculation number should start with 3 capital letters followed by 7 digits or 12 digits followed by 2 capital letters." 
+                                    required autofocus>
                                     <label for="name">Student ID (eg B1...)</label>
-                                    <input type="text" id="student_id" name="student_id" placeholder="B1" required autofocus />
+                                    <input type="text" id="student_id" name="student_id" placeholder="B1" required />
 
                                 </div>
                                 <div class="form-group col-md-6">
