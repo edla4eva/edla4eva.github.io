@@ -423,7 +423,7 @@
                         var dValue_1 = $("#comboCourses_1").val();
                         var dCreditTmp = getCredit(dValue_1);
                         //todo compute credit
-                        if ((glbCredit + parseInt(dCreditTmp) >50) && $('#level').val()!=='500'){
+                        if ((glbCredit + parseInt(dCreditTmp) >50) && $('#level').val()!=='400'){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
                         }else{
@@ -432,7 +432,7 @@
                             //alert("within 50 credits. Total credits: " + glbCredit);  
                         }
 
-                        if ((glbCredit_1 + parseInt(dCreditTmp) >30) && $('#level').val()!=='500'){
+                        if ((glbCredit_1 + parseInt(dCreditTmp) >30) && $('#level').val()!=='400'){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
                         }else{
