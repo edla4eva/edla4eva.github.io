@@ -850,9 +850,10 @@
                     { course_code: "CPE572", course_title: "CPE572", course_unit: 3}
                 ];
                     // using the ajax() method directly to get data for comco
+                    //                        url: url_global + "get_courses_where/3/"+ limits +"/"+ offset,
                     $.ajax({
                         type: "POST",
-                        url: url_global + "get_courses_where/3/"+ limits +"/"+ offset,
+                        url: url_global + "get_table/courses/"+ limits +"/"+ offset,
                         data: {},
                         dataType: "json",
                         encode: true,
