@@ -332,11 +332,11 @@
                             <div class="row p-l-5">
                                 <div class="col-md-6">
                                     <h5>First Semester Courses</h5>
-                                    <p>TODO: Imple calcTotalCredits() iterate courses, clear buttons and re-add them</p>
                                     <input type="text" name="CourseCode_1" id="CourseCode_1" class="CourseCode_1" readonly />
-                                    <input type="text" name="TotalCredit_1" id="TotalCredit_1" class="TotalCredit_1" value = "0" readonly />
+
                                     <!-- class="js-example-basic-single w-75 p-1"  -->
                                     <div class="input-group mb-3"><select class="js-example-basic-single w-75 p-1"  id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
+                                    <input type="text" name="TotalCredit_1" id="TotalCredit_1" class="TotalCredit_1" value = "0" readonly />
                                     <div class="input_fields_wrap_1"></div>
                                 </div>
                                 <div class="col-md-6">
@@ -428,7 +428,7 @@
                         var dCreditTmp = getCredit(dValue_1);
 
                         var trialCredit_1 = parseInt($("#TotalCredit_1").val()) + parseInt(dCreditTmp)
-                        var trialTotalCredits = parseInt(dCreditTmp2) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
+                        var trialTotalCredits = parseInt(dCreditTmp) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
                        
                         //todo compute credit
                         if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
