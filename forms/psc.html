@@ -434,9 +434,15 @@
                         if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
+                        }else if(trialTotalCredits>51 &&  $('#level').val()=='400' ){ //final year
+                            alert("You cannot register more than 51 credits (in final year - 400L)" );
+                            return;
                         }
                         if (trialCredit_1>30 &&  $('#level').val()!=='400' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        } else if (trialCredit_1>31 &&  $('#level').val()=='400' ){ //final yr
+                            alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
                             return;
                         }
 
@@ -467,17 +473,23 @@
                         var dValue_2 = $("#comboCourses_2").val();
 
                         var dCreditTmp2 = getCredit(dValue_2);
-                        //todo compute credit
-                        var trialCredit_2 = parseInt($("#TotalCredit_2").val()) + parseInt(dCreditTmp2)
-                        var trialTotalCredits = parseInt(dCreditTmp2) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
-                       
-                        //todo compute credit
+
+                        
+                        
+
+                        //
                         if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        }else if(trialTotalCredits>51 &&  $('#level').val()=='400' ){ //final year
+                            alert("You cannot register more than 51 credits (in final year - 400L)" );
                             return;
                         }
                         if (trialCredit_2>30 &&  $('#level').val()!=='400' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        } else if (trialCredit_2>31 &&  $('#level').val()=='400' ){ //final yr
+                            alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
                             return;
                         }
                         
