@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Course Registration</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Include React library -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/browse/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- <script src="https://unpkg.com/browse/react@18.3.0-next-fecc288b7-20221025/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/browse/react-dom@18.3.0-next-fecc288b7-20221025/umd/react-dom.production.min.js"></script> -->
+    
+
+    <!-- Your React components and scripts -->
+    <script type="text/javascript">
+        // Define the React component
+        // const CourseForm = () => {
+        //     const [courses, setCourses] = React.useState([]);
+        //     const [courseCode, setCourseCode] = React.useState('');
+
+        //     const addCourse = () => {
+        //         setCourses([...courses, courseCode]);
+        //         setCourseCode('');
+        //     };
+
+        //     return (
+        //         <div>
+        //             <h1>Course Registration Form</h1>
+        //             <input 
+        //                 type="text" 
+        //                 value={courseCode} 
+        //                 onChange={(e) => setCourseCode(e.target.value)}
+        //             />
+        //             <button onClick={addCourse}>Add Course</button>
+        //             <ul>
+        //                 {courses.map((course, index) => (
+        //                     <li key={index}>{course}</li>
+        //                 ))}
+        //             </ul>
+        //         </div>
+        //     );
+        // };
+
+        const root = document.getElementById('root')
+        const element = React.createElement('div', {
+            className: 'container',
+            children: "Current time: " + Date.now().toLocaleString()
+        })
+        // Render your React component to the 'root' div
+        ReactDOM.render(element, root);
+        //ReactDOM.render(React.createElement(CourseForm), root);
+    </script>
+</body>
+</html>
