@@ -426,13 +426,20 @@
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
                         var dCreditTmp = getCredit(dValue_1);
+
+                        var trialCredit_1 = parseInt($("#TotalCredit_1").val()) + parseInt(dCreditTmp)
+                        var trialTotalCredits = parseInt(dCreditTmp2) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
+                       
                         //todo compute credit
-                        if (parseInt($("#TotalCredit_1").val()+ parseInt(dCreditTmp) >50) && 
-                            $('#level').val()!=='400'
-                            ){
+                        if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
                         }
+                        if (trialCredit_1>30 &&  $('#level').val()!=='400' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        }
+
                         //note: id and name attributes are important. Funny but annoying
                         $(wrapper_1).append('<div class="input-group mb-3"><input type="text" id="mytext_1[]" name="mytext_1[]"  class="form-control" value="'+ dValue_1 + '"><input type="text" id="mycredit_1[]"  class="form-control" value="'+ dCreditTmp + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
                         //add course to string eg CPE211;CPE111
@@ -461,22 +468,18 @@
 
                         var dCreditTmp2 = getCredit(dValue_2);
                         //todo compute credit
-                        if ((glbCredit + parseInt(dCreditTmp2) >50) && $('#level').val()!=='500'){
-                            alert("You cannot register more than 50 credits and 30 credits per semester" );
+                        var trialCredit_2 = parseInt($("#TotalCredit_2").val()) + parseInt(dCreditTmp2)
+                        var trialTotalCredits = parseInt(dCreditTmp2) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
+                       
+                        //todo compute credit
+                        if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
-                        }else{              
-                            glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp2);
-                            //alert("within 50 credits. Total credits: " + glbCredit);  
                         }
-
-                        if ((glbCredit_2 + parseInt(dCreditTmp2) >30) && $('#level').val()!=='500'){
-                            alert("You cannot register more than 50 credits and 30 credits per semester" );
+                        if (trialCredit_2>30 &&  $('#level').val()!=='400' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
-                        }else{              
-                            glbCredit_2 = parseInt(glbCredit_2) + parseInt(dCreditTmp2);
-                            //alert("within 50 credits. Total credits: " + glbCredit);  
                         }
-
                         
                         $(wrapper_2).append('<div class="input-group mb-3"><input type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><input type="text" id="mycredit_2[]"  class="form-control" value="'+ dCreditTmp2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
                         if (prevValue_2==""){
