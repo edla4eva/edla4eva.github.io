@@ -820,9 +820,11 @@
                 ];
                     // using the ajax() method directly to get data for comco
                     //                        url: url_global + "get_courses_where/3/"+ limits +"/"+ offset,
+                    //https://localhost/rtps/web/back-end/public/index.php/api/get_courses_where/3/0/0
+                    //                        url: url_global + "get_table/courses_psc/"+ limits +"/"+ offset,
                     $.ajax({
                         type: "POST",
-                        url: url_global + "get_table/courses_psc/"+ limits +"/"+ offset,
+                        url: url_global + "get_courses_where/3/"+ limits +"/"+ offset,
                         data: {},
                         dataType: "json",
                         encode: true,
