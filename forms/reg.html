@@ -42,8 +42,8 @@
                             
                             <h1 class="text-center">COURSE REGISTRATION</h1>
                             <h1 class="text-center">University Of Benin, Benin City</h1>
-                            <h1 class="text-center">Faculty of Engineering </h1>
-                            <h3 class="text-center">Online Examination Course Registration Form - 2021/2022</h1>
+                            <h1 class="text-center">Faculty of Physical Science </h1>
+                            <h3 class="text-center">Online Examination Course Registration Form - 2022/2023</h1>
                            
                             <button class="btn btn-success btn-lg btn-block" type="button" id="btnStart" 
                             onclick='startRegView();'>
@@ -82,7 +82,7 @@
                             <div id="bypassme">
                                 <h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>
                                 <h4 class="text-center">FACULTY OF ENGINEERING</h4>
-                                <h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2021/2022 SESSION</h5>
+                                <h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2022/2023 SESSION</h5>
                                 <br>
                             </div>
                             <div style="float: right;" >
@@ -138,8 +138,8 @@
                                     <input type="text" id="matno" name="matno" pattern="^[A-Z]{3}\d{7}$|^\d{12}[A-Z]{2}$" 
                                     title="Matriculation number should start with 3 capital letters followed by 7 digits or 12 digits followed by 2 capital letters." 
                                     required autofocus>
-                                    <label for="name">Student ID (eg B1...)</label>
-                                    <input type="text" id="student_id" name="student_id" placeholder="B1" required />
+                                    <!-- <label for="name">Student ID (eg B1...)</label>
+                                    <input type="text" id="student_id" name="student_id" placeholder="B1" required /> -->
 
                                 </div>
                                 <div class="form-group col-md-6">
@@ -165,32 +165,15 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                  <label for="dept_idr">Dept ID (eg 1 for CPE)</label>
+                                  <label for="dept_idr">Dept ID (eg 7 for Computer Science)</label>
                                   <input type="text" class="form-control" id="student_dept_idr" name="student_dept_idr" value = "1" hidden>
                                   <select id="dept_idr" name="dept_idr" class="form-control">
-                                    <option value="1" selected>1. Computer Engineering</option>
-                                    <option value="5">5	Agricultural Engineering</option>
-                                    <option value="6">6	Chemical Engineering</option>
-                                    <option value="18">18 Civil Engineering</option>
-                                    <option value="8">8	Electrical/Electronics Engineering</option>
-                                    <option value="9">9	Industrial Engineering</option>
-                                    <option value="10">10 Marine Engineering</option>
-                                    <option value="11">11 Material and Metrolog Engineering</option>
-                                    <option value="12">12 Mechanical Engineering</option>
-                                    <option value="13">13 Mechatronics Engineering</option>
-                                    <option value="14">14 Metallurgical and Material Engineering</option>
-                                    <option value="15">15 Petroleum Engineering</option>
-                                    <option value="16">16 Production Engineering</option>
-                                    <option value="17">17 Structural Engineering</option>
-                                    <option value="19">19 Geomatics</option>
-                                    <option value="20">20 Vocational and Technical Education</option>
-                                    
-                                    
-                                    <option value="2">2. Diploma in Computing and Computer Technology</option>
-                                    <option value="3">3	Diploma In  Marine Drilling And Production Technology</option>
-                                    <option value="4">4	Diploma In  Maritime Studies, Information & Communication Technology</option>
-                                    <option value="0">0	Generic Department</option>
-
+                                    <option value="7" selected>7. Computer Science</option>
+                                    <option value="22">22	Geology</option>
+                                    <option value="22">23	Mathematics</option>
+                                    <option value="22">24	Physics</option>
+                                    <option value="21">21	Chemistry</option>
+                                    <option value="18">25   Statistics</option>
                                   </select>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -347,18 +330,22 @@
 
 
                             <div class="row p-l-5">
-                                <div class="input_fields_wrap_1 col-md-6">
+                                <div class="col-md-6">
                                     <h5>First Semester Courses</h5>
                                     <input type="text" name="CourseCode_1" id="CourseCode_1" class="CourseCode_1" readonly />
 
                                     <!-- class="js-example-basic-single w-75 p-1"  -->
                                     <div class="input-group mb-3"><select class="js-example-basic-single w-75 p-1"  id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
+                                    <input type="text" name="TotalCredit_1" id="TotalCredit_1" class="TotalCredit_1" value = "0" readonly />
+                                    <div class="input_fields_wrap_1"></div>
                                 </div>
-                                <div class="input_fields_wrap_2 col-md-6">
+                                <div class="col-md-6">
                                     <h5>Second Semester Courses</h5>
                                     <input type="text"  class="CourseCode_2" id="CourseCode_2" name="CourseCode_2" value="" readonly />
 
                                     <div class="input-group mb-3"><select class="w-75 p-1"  id="comboCourses_2"></select><div class="input-group-append_2"><button class="btn btn-outline-success add_field_button_2" type="button">Add</button></div></div>
+                                    <input type="text" name="TotalCredit_2" id="TotalCredit_2" class="TotalCredit_2" value = "0" readonly />
+                                    <div class="input_fields_wrap_2"></div>
                                 </div>
                                 
                                 <hr />
@@ -418,7 +405,7 @@
                 glbCredit_1 = 0;
                 glbCredit_2 = 0;
 
-                var max_fields      = 18; //maximum input boxes allowed
+                var max_fields      = 20; //maximum input boxes allowed
                 var wrapper_1   		= $(".input_fields_wrap_1"); //Fields wrapper
                 var wrapper_2   		= $(".input_fields_wrap_2"); //Fields wrapper
                 var add_button_1      = $(".add_field_button_1"); //Add button ID
@@ -439,65 +426,87 @@
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
                         var dCreditTmp = getCredit(dValue_1);
+
+                        var trialCredit_1 = parseInt($("#TotalCredit_1").val()) + parseInt(dCreditTmp)
+                        var trialTotalCredits = parseInt(dCreditTmp) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
+                       
                         //todo compute credit
-                        if ((glbCredit + parseInt(dCreditTmp) >50) && $('#level').val()!=='500'){
-                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                        if (trialTotalCredits>50 &&  $('#level').val()!=='500' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester except in final year" );
                             return;
-                        }else{
-                           
-                            glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp);
-                            //alert("within 50 credits. Total credits: " + glbCredit);  
                         }
-
-                        if ((glbCredit_1 + parseInt(dCreditTmp) >30) && $('#level').val()!=='500'){
-                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                        // else if(trialTotalCredits>51 &&  $('#level').val()=='500' ){ //final year
+                        //     alert("You cannot register more than 51 credits (in final year - 500L)" );
+                        //     return;
+                        // }
+                        if (trialCredit_1>30 &&  $('#level').val()!=='500' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester except in final year" );
                             return;
-                        }else{
-                           
-                            glbCredit_1 = parseInt(glbCredit_1) + parseInt(dCreditTmp);
-                            //alert("within 50 credits. Total credits: " + glbCredit);  
-                        }
+                        } 
+                        // else if (trialCredit_1>31 &&  $('#level').val()=='500' ){ //final yr
+                        //     alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
+                        //     return;
+                        // }
 
-                        $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
+                        //note: id and name attributes are important. Funny but annoying
+                        $(wrapper_1).append('<div class="input-group mb-3"><input type="text" id="mytext_1[]" name="mytext_1[]"  class="form-control" value="'+ dValue_1 + '"><input type="text" id="mycredit_1[]"  class="form-control" value="'+ dCreditTmp + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
+                        //add course to string eg CPE211;CPE111
                         if (prevValue_1==""){
                             $("#CourseCode_1").val(  dValue_1 ); //change value   
                         }else{
                             $("#CourseCode_1").val( prevValue_1 + ";" + dValue_1 ); //change value                        
                         }
+
+                        //todo costly method
+                        //reAddDeleteButtonsforSelectedCourses();
+
+                        //display total credit in form
+                        var sumCredit = calcTotalCredits($("#CourseCode_1").val()); // = parseInt(dCreditTmp) + parseInt($("#TotalCredit_1").val()); //acc
+                        $("#TotalCredit_1").val(sumCredit);
+                        
                     }
                 });
 
                 $(add_button_2).click(function(e){ //on add input button click
-                e.preventDefault();
+                    e.preventDefault();
                     if(x_2 < max_fields && $("#comboCourses_2").val()!==null){ //max input box allowed
                         x_2++; //text box increment
                         var prevValue_2 = $("#CourseCode_2").val();
                         var dValue_2 = $("#comboCourses_2").val();
 
                         var dCreditTmp2 = getCredit(dValue_2);
-                        //todo compute credit
-                        if ((glbCredit + parseInt(dCreditTmp2) >50) && $('#level').val()!=='500'){
-                            alert("You cannot register more than 50 credits and 30 credits per semester" );
-                            return;
-                        }else{              
-                            glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp2);
-                            //alert("within 50 credits. Total credits: " + glbCredit);  
-                        }
 
-                        if ((glbCredit_2 + parseInt(dCreditTmp2) >30) && $('#level').val()!=='500'){
-                            alert("You cannot register more than 50 credits and 30 credits per semester" );
-                            return;
-                        }else{              
-                            glbCredit_2 = parseInt(glbCredit_2) + parseInt(dCreditTmp2);
-                            //alert("within 50 credits. Total credits: " + glbCredit);  
-                        }
+                        
+                        
 
-                        $(wrapper_2).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
+                        //
+                        if (trialTotalCredits>50 &&  $('#level').val()!=='500' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester except in final year" );
+                            return;
+                        }
+                        // else if(trialTotalCredits>51 &&  $('#level').val()=='500' ){ //final year
+                        //     alert("You cannot register more than 51 credits (in final year - 500L)" );
+                        //     return;
+                        // }
+                        if (trialCredit_2>30 &&  $('#level').val()!=='500' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester except in final year" );
+                            return;
+                        } 
+                        // else if (trialCredit_1>31 &&  $('#level').val()=='500' ){ //final yr
+                        //     alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
+                        //     return;
+                        // }
+                        
+                        $(wrapper_2).append('<div class="input-group mb-3"><input type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><input type="text" id="mycredit_2[]"  class="form-control" value="'+ dCreditTmp2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
                         if (prevValue_2==""){
                             $("#CourseCode_2").val(  dValue_2 ); //change value   
                         }else{
                             $("#CourseCode_2").val( prevValue_2 + ";" + dValue_2 ); //change value                        
                         }
+
+                        //display total credit in form
+                        var sumCredit = calcTotalCredits($("#CourseCode_2").val()); // = parseInt(dCreditTmp) + parseInt($("#TotalCredit_1").val()); //acc
+                        $("#TotalCredit_2").val(sumCredit);
                     }
                 });
 
@@ -505,28 +514,31 @@
                 $(wrapper_1).on("click",".remove_field_1", function(e){ //user click on remove text
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_1--;
-                    //removeCourse_1(x_1);
-                    $('#glbCredits').val(glbCredit);
-                    $('#glbCredits_1').val(glbCredit_1);
-                    $('#glbCredits_2').val(glbCredit_2);
-                    glbCredit_1 = removeCourse(1, glbCredit_1);
-                    // glbCredit=glbCredit_1+parseInt($('#glbCredits_2').val()); //recompute
-                    // console.log("Total Cred " + glbCredit);
-                    });
+                     
+                    // //todo: New way
+                    // //get em
+                    // var glbCreditStored = parseInt(localStorage.getItem('glbCreditStored')) || 0;
+                    // //modify
+                    // glbCreditStored = glbCreditStored-2
+                    // // Update the global credit variable and store it in localStorage
+                    // localStorage.setItem('glbCreditStored', glbCreditStored);
+                    glbCredit_1 = removeCourse(1);
+                    var sumCredit = calcTotalCredits($("#CourseCode_1").val()); 
+                    $("#TotalCredit_1").val(sumCredit);
+                    //$("#TotalCredit_1").val("Removed credit: " + getCredit($(this).val()));
+                    
+                });
      
                 $(wrapper_2).on("click",".remove_field_2", function(e){ //user click on remove text
                     e.preventDefault(); 
                     $(this).parent('div').parent('div').remove(); x_2--;
-                    //removeCourse_1(x_2);
-                    $('#glbCredits').val(glbCredit);
-                    $('#glbCredits_1').val(glbCredit_1);
-                    $('#glbCredits_2').val(glbCredit_2);
 
-                    glbCredit_2 = removeCourse(2, glbCredit_2);
-                    // glbCredit=parseInt($('#glbCredits_1').val()) + glbCredit_2; //recompute
-                    // console.log("Total Cred " + glbCredit);
+
+                    glbCredit_2 = removeCourse(2);
+                    var sumCredit = calcTotalCredits($("#CourseCode_2").val()); 
+                    $("#TotalCredit_2").val(sumCredit);
                     
-                    });
+                });
                 
                 $("#file").on("change", function (e) {
                     var count=1;
@@ -587,6 +599,7 @@
                     let formData = new FormData();
                     var dFile =  $("#file_pix")[0].files[0];
                     formData.append('file_pix', dFile);
+                    //first upload pictures
                     $.ajax({
                         type: "POST",
                         url: url_global + "upload/"+ MatNo,
@@ -684,10 +697,10 @@
                                                     "<p><a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a></p>" );
                                                 });
                                         },
-                                        error: function (data) {
-                                            console.log(data);
-                                            alert("An error occured while fetching data \n" + data.responseJSON.message);
-                                        }
+                                error: function (data) {
+                                    console.log(data);
+                                    alert("An error occured while fetching data \n" + data.responseJSON.message);
+                                }
                             });
                             //console.log(data); //no need to do this again
 
@@ -700,7 +713,7 @@
                     });
 
 
-                    });
+                });
 
 
                 //load registration data
@@ -768,90 +781,31 @@
                   });
             });
 
-            function removeCourse(semester, glbCredit_n) {
+            function removeCourse(semester) {
                 if(semester==1){
                     var rows = document.getElementsByName('mytext_1[]');
-                    var Course_Code_Input =$("#CourseCode_1");
+                    var Course_Code_Input =$("#CourseCode_1"); 
                 } else{
                     var rows = document.getElementsByName('mytext_2[]');
                     var Course_Code_Input =$("#CourseCode_2");
                 }
                     
-                var selectedRows = [];
-                // $(wrapper_2).append('<div class="input-group mb-3">
-                //<input placeholder="Enter Course Code" type="text" id="mytext_2[]" 
-                //name="mytext_2[]" class="form-control" value="'+ dValue_2 + '">
-                //<div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 
-                //remove_field_2" type="button">Remove</button></div></div>'); //add input box
                 Course_Code_Input.val("" ); //clear it
+                //repopulate it with concatenated string of courses
                 for (var i = 0, l = rows.length; i < l; i++) {
-
-                    if (!rows[i].value=="") {
-                        selectedRows.push(rows[i]);
-                    }
-
-                    //compute credits
-                    console.log("In remove course Computing credit for "+ rows[i].value);
-                    // glbCredit = glbCredit - getCredit(rows[i].value);
-                    // if(semester==1) glbCredit_1 = glbCredit_1 - getCredit(rows[i].value);
-                    // else glbCredit_2 = glbCredit_2 - getCredit(rows[i].value);
-                    // console.log("Total Credits "+ glbCredit);
-
-                    glbCredit_n = glbCredit_n - getCredit(rows[i].value);
-                    console.log("Sem. Credits "+ glbCredit_n);
-                    console.log("In fxn Total. Credits "+ parseInt($('#glbCredits').val()));
-                    //$('#glbCredits')
-
                     var prevValue = Course_Code_Input.val( );
                     if (prevValue==""){
-                        Course_Code_Input.val(  rows[i].value );
+                        Course_Code_Input.val( rows[i].value );
                     }else{
                         Course_Code_Input.val( prevValue + ";" + rows[i].value  ); //change value                        
                     }
                 }
-                return glbCredit_n;
+                return 1;
             }
             
-            // function removeCourse_1() {
-            //         var rows_1 = document.getElementsByName('mytext_1[]');
-            //         var selectedRows = [];
-
-            //         $("#CourseCode_1").val("" ); //clear it
-            //         for (var i = 0, l = rows_1.length; i < l; i++) {
-            //             if (!rows_1[i].value=="") {
-            //                 selectedRows.push(rows_1[i]);
-            //             }
-
-            //             var prevValue_1 = $("#CourseCode_1").val( );
-            //             if (prevValue_1==""){
-            //                 $("#CourseCode_1").val(  rows_1[i].value );
-            //             }else{
-            //                 $("#CourseCode_1").val( prevValue_1 + ";" + rows_1[i].value  ); //change value                        
-            //             }
-            //         }
-            // }
-            
-            // function removeCourse_2() {
-
-            //         var rows = document.getElementsByName('mytext_2[]');
-            //         var selectedRows = [];
-
-            //         $("#CourseCode_2").val("" ); //clear it
-            //         for (var i = 0, l = rows.length; i < l; i++) {
-            //             if (!rows[i].value=="") {
-            //                 selectedRows.push(rows[i]);
-            //             }
-
-            //             var prevValue_2 = $("#CourseCode_2").val( );
-            //             if (prevValue_2==""){
-            //                 $("#CourseCode_2").val(  rows[i].value );
-            //             }else{
-            //                 $("#CourseCode_2").val( prevValue_2 + ";" + rows[i].value  ); //change value                        
-            //             }
-            //         }
-            // }
                  
             function PopulateDropDownList(limits, offset) {
+
                 //load combos
                 $("#btnGenerate").attr("disabled", "true");
                 var courses_1 = [
@@ -867,6 +821,7 @@
                     { course_code: "CPE572", course_title: "CPE572", course_unit: 3}
                 ];
                     // using the ajax() method directly to get data for comco
+                    //                        url: url_global + "get_courses_where/3/"+ limits +"/"+ offset,
                     $.ajax({
                         type: "POST",
                         url: url_global + "get_table/courses/"+ limits +"/"+ offset,
@@ -879,10 +834,17 @@
                             glb_Courses =data;
 
                             fillcomboWithReturnedData(data, true);
+                            fillcomboWithReturnedData(data, true).done(function (data2) {
+                                // This code will only execute after fillcomboWithReturnedData has finished
+                                console.log("Data received:", data2);
+                                // Perform further operations with the data
+                                reAddDeleteButtonsforSelectedCourses();
+                            });
                             console.log(data);
                             console.log("glb_Courses");
                             console.log(glb_Courses);
                             $("#btnGenerate").removeAttr("disabled");
+
                         });
                 
             }
@@ -914,15 +876,25 @@
                 }
                 return dCredit
             }
-            function fillcomboWithReturnedData(courses_1, clearPrevious){
-                //first clear all courses
-                if (clearPrevious){
-                    $("#CourseCode_1").val(  "");
-                    $("#CourseCode_2").val(  "");
+            
+            function calcTotalCredits(courses){
+
+                //courses = "DCD222;CPE444;FGD666"
+                tmpCoursesArr = courses.split(";")
+                tmpSumCredit = 0;
+                // Iterate through the elements in tmpCoursesArr
+                for (var i = 0; i < tmpCoursesArr.length; i++) {
+                    console.log(tmpCoursesArr[i]); // Print each element to the console
+                    tmpSumCredit = parseInt(tmpSumCredit) + parseInt(getCredit(tmpCoursesArr[i]))
                 }
+                if (tmpSumCredit==undefined){
+                    tmpSumCredit=0;
+                }
+                return tmpSumCredit
+            }
 
 
-                //<select id="comboCourses_1"></select>
+            function fillcomboWithReturnedData(courses_1, clearPrevious){
                 $("#comboCourses_1").empty();
                 $("#comboCourses_2").empty();
      
@@ -942,9 +914,68 @@
                     if(this.course_semester=="2") comboCourses_2.append(option);
                     //comboCourses_1.append(option);
                     //comboCourses_2.append(option);
+                    
                 });
+
+                //make it promisable :)
+                var deferred = $.Deferred();
+                // Simulating asynchronous behavior with setTimeout
+                setTimeout(function () {
+                    // return  data
+                    var data = true; //["Option 1", "Option 2", "Option 3"];
+                    var successFull = true;
+                    // Resolve the deferred object with the data
+                    deferred.resolve(data);
+                }, 100); // Adjust the timeout as needed
+
+                // Return the deferred object
+                return deferred.promise();
             }
 
+            function reAddDeleteButtonsforSelectedCourses(){
+                var wrapper_1   		= $(".input_fields_wrap_1"); //Fields wrapper
+                var wrapper_2   		= $(".input_fields_wrap_2"); //Fields wrapper
+                var tmpCoursesArr = $(CourseCode_1).val().split(";")
+                var tmpCoursesArr2 = $(CourseCode_2).val().split(";")
+                
+
+
+                //first clear 'em
+                wrapper_1.empty();
+                // Iterate through the elements in tmpCoursesArr
+                for (var i = 0; i < tmpCoursesArr.length; i++) {
+                    if ($(CourseCode_1).val().toString().trim()=="") break;
+                    var varTmpCourse = tmpCoursesArr[i];
+                    if (varTmpCourse.toString().trim().lenght<0){
+                        //invalid course
+                        console.log("empty NOT to add:" + varTmpCourse); // Print each element to the console
+                    }else{
+                        console.log("button to add:" + varTmpCourse); // Print each element to the console
+                        //tmpSumCredit = parseInt(tmpSumCredit) + parseInt(getCredit(tmpCoursesArr[i]))
+                        var dCreditTmp = getCredit(varTmpCourse);
+                        $(wrapper_1).append('<div class="input-group mb-3"><input type="text" id="mytext_1[]" name="mytext_1[]"  class="form-control" value="'+ varTmpCourse + '"><input type="text" id="mycredit_1[]"  class="form-control" value="'+ dCreditTmp + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box        
+                    }            
+                }
+
+                //second sem
+                //first clear 'em
+                wrapper_2.empty();
+                // Iterate through the elements in tmpCoursesArr
+                for (var i = 0; i < tmpCoursesArr2.length; i++) {
+                    if ($(CourseCode_2).val().toString().trim()=="") break;
+                    var varTmpCourse2 = tmpCoursesArr2[i];
+                    if (varTmpCourse2.toString().trim().lenght<0){
+                        //invalid course
+                        console.log("empty NOT to add:" + varTmpCourse); // Print each element to the console
+                    }else{
+                        console.log("button to add:" + varTmpCourse); // Print each element to the console
+                        //tmpSumCredit = parseInt(tmpSumCredit) + parseInt(getCredit(tmpCoursesArr[i]))
+                        var dCreditTmp2 = getCredit(varTmpCourse2);
+                        $(wrapper_2).append('<div class="input-group mb-3"><input type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ varTmpCourse2 + '"><input type="text" id="mycredit_2[]"  class="form-control" value="'+ dCreditTmp2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box    
+                    }            
+                }
+                
+            }
             function load_returnd_records_into_fields(data) {
                 var frm = $("#regForm");
                 var i;
