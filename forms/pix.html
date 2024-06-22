@@ -4,36 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Upload with Progress</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         #progress-wrapper {
             display: none;
             margin-top: 20px;
         }
-        #progress-bar {
-            width: 0;
-            height: 20px;
-            background-color: green;
-        }
         #image-preview {
             display: none;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 1px solid #ccc;
+        }
+        #image-container {
+            display: none;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
             margin-top: 20px;
-            max-width: 100%;
-            height: auto;
         }
     </style>
 </head>
 <body>
-    <form id="upload-form">
-        <input type="file" id="file-input" accept="image/*">
-        <div id="progress-wrapper">
-            <div id="progress-bar"></div>
-        </div>
-        <img id="image-preview" alt="Image Preview">
-        <button type="submit" id="submit-button" disabled>Submit</button>
-    </form>
+    <div class="container mt-5">
+        <form id="upload-form">
+            <div class="form-group">
+                <input type="file" class="form-control-file" id="file-input" accept="image/*">
+            </div>
+            <div id="progress-wrapper" class="progress">
+                <div id="progress-bar" class="progress-bar" role="progressbar"></div>
+            </div>
+            <div id="image-container" class="mt-3">
+                <img id="image-preview" class="img-thumbnail" alt="Image Preview">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3" id="submit-button" disabled>Submit</button>
+        </form>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#file-input').change(function() {
@@ -42,6 +53,7 @@
                         $('#progress-wrapper').show();
                         $('#progress-bar').width('0%');
                         $('#image-preview').hide();
+                        $('#image-container').hide();
                         $('#submit-button').prop('disabled', true);
                     },
                     uploadProgress: function(event, position, total, percentComplete) {
@@ -51,6 +63,7 @@
                         const reader = new FileReader();
                         reader.onload = function(e) {
                             $('#image-preview').attr('src', e.target.result).show();
+                            $('#image-container').show();
                         }
                         reader.readAsDataURL($('#file-input')[0].files[0]);
                         $('#submit-button').prop('disabled', false);
