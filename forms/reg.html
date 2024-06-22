@@ -42,8 +42,8 @@
                             
                             <h1 class="text-center">COURSE REGISTRATION</h1>
                             <h1 class="text-center">University Of Benin, Benin City</h1>
-                            <h1 class="text-center">Faculty of Physical Science </h1>
-                            <h3 class="text-center">Online Examination Course Registration Form - 2022/2023</h1>
+                            <h1 class="text-center">Faculty of Engineering </h1>
+                            <h3 class="text-center">Online Examination Course Registration Form - 2023/2024</h1>
                            
                             <button class="btn btn-success btn-lg btn-block" type="button" id="btnStart" 
                             onclick='startRegView();'>
@@ -61,7 +61,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="name">MAT. NO.</label>
                                         <input type="text" id="searchMatno" name="searchMatno" placeholder="ENG..." required autofocus />
-                                        <label for="psw"><b>Password</b></label>
+                                        <label for="pswSearch"><b>Password</b></label>
                                         <input type="password" placeholder="Enter Password" name="pswSearch" id="pswSearch" required>       
 
                                         <label for="load_data_button">Click to load your personal data</label>
@@ -163,17 +163,33 @@
 
                             </div>
 
+
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                  <label for="dept_idr">Dept ID (eg 7 for Computer Science)</label>
-                                  <input type="text" class="form-control" id="student_dept_idr" name="student_dept_idr" value = "1" hidden>
+                                  <label for="dept_idr">Department (eg 1. Computer Engineering)</label>
+                                  <input type="text" class="form-control" id="student_dept_idr" name="student_dept_idr" value="1" hidden="">
                                   <select id="dept_idr" name="dept_idr" class="form-control">
-                                    <option value="7" selected>7. Computer Science</option>
-                                    <option value="22">22	Geology</option>
-                                    <option value="22">23	Mathematics</option>
-                                    <option value="22">24	Physics</option>
-                                    <option value="21">21	Chemistry</option>
-                                    <option value="18">25   Statistics</option>
+                                    <option value="1" selected="">1. Computer Engineering</option>
+                                    <option value="5">5	Agricultural Engineering</option>
+                                    <option value="6">6	Chemical Engineering</option>
+                                    <option value="18">18 Civil Engineering</option>
+                                    <option value="8">8	Electrical/Electronics Engineering</option>
+                                    <option value="9">9	Industrial Engineering</option>
+                                    <option value="10">10 Marine Engineering</option>
+                                    <option value="11">11 Material and Metrolog Engineering</option>
+                                    <option value="12">12 Mechanical Engineering</option>
+                                    <option value="13">13 Mechatronics Engineering</option>
+                                    <option value="14">14 Metallurgical and Material Engineering</option>
+                                    <option value="15">15 Petroleum Engineering</option>
+                                    <option value="16">16 Production Engineering</option>
+                                    <option value="17">17 Structural Engineering</option>
+                                    <option value="19">19 Geomatics</option>
+                                    <option value="20">20 Vocational and Technical Education</option>
+                                    <option value="2">2. Diploma in Computing and Computer Technology</option>
+                                    <option value="3">3	Diploma In  Marine Drilling And Production Technology</option>
+                                    <option value="4">4	Diploma In  Maritime Studies, Information &amp; Communication Technology</option>
+                                    <option value="0">0	Generic Department</option>
+
                                   </select>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -181,8 +197,8 @@
                                   <select id="session_idr" name="session_idr" class="form-control">
                                     <option value="2020/2021">2020/2021</option>
                                     <option value="2021/2022">2021/2022</option>
-                                    <option value="2022/2023" selected>2022/2023</option>
-                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024" selected>2023/2024</option>
                                     <option value="2024/2025">2024/2025</option>
                                     <option value="2025/2026">2024/2025</option>
                                     <option value="2026/2027">2024/2025</option>
@@ -192,17 +208,13 @@
                                   <label for="level">Level</label>
                                   <select id="level" name="level" class="form-control">
                                     <option value="100" selected>100</option>
-                                    <option value="200" >200</option>
-                                    <option value="300" >300</option>
-                                    <option value="400" >400</option>
-                                    <option value="500" >500</option>
-                                      <option value="600" >500</option>
-                                      <option value="700" >500</option>
-                                      <option value="800" >500</option>
+                                    <option value="200">200</option>
+                                    <option value="300">300</option>
+                                    <option value="400">400</option>
+                                    <option value="500">500</option>
                                   </select>
                                 </div>
                             </div>
-
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                   <label for="year_of_entry">Year of Entry (e.g 2019)</label>
@@ -220,6 +232,9 @@
                                     <option value = "2022">2022</option>
                                     <option value = "2023">2023</option>
                                     <option value = "2024">2024</option>
+                                    <option value = "2024">2025</option>
+                                    <option value = "2024">2026</option>
+                                    <option value = "2024">2027</option>
                                   </select>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -238,6 +253,9 @@
                                     <option value="2022/2023">2022/2023</option>
                                     <option value="2023/2024">2023/2024</option>
                                     <option value="2024/2025">2024/2025</option>
+                                    <option value="2024/2025">2025/2026</option>
+                                    <option value="2024/2025">2026/2027</option>
+                                    <option value="2024/2025">2027/2028</option>
                                   </select>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -431,22 +449,20 @@
                         var trialTotalCredits = parseInt(dCreditTmp) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
                        
                         //todo compute credit
-                        if (trialTotalCredits>50 &&  $('#level').val()!=='500' ){
-                            alert("You cannot register more than 50 credits total and 30 credits per semester except in final year" );
+                        if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        }else if(trialTotalCredits>51 &&  $('#level').val()=='400' ){ //final year
+                            alert("You cannot register more than 51 credits (in final year - 400L)" );
                             return;
                         }
-                        // else if(trialTotalCredits>51 &&  $('#level').val()=='500' ){ //final year
-                        //     alert("You cannot register more than 51 credits (in final year - 500L)" );
-                        //     return;
-                        // }
-                        if (trialCredit_1>30 &&  $('#level').val()!=='500' ){
-                            alert("You cannot register more than 50 credits total and 30 credits per semester except in final year" );
+                        if (trialCredit_1>30 &&  $('#level').val()!=='400' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
-                        } 
-                        // else if (trialCredit_1>31 &&  $('#level').val()=='500' ){ //final yr
-                        //     alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
-                        //     return;
-                        // }
+                        } else if (trialCredit_1>31 &&  $('#level').val()=='400' ){ //final yr
+                            alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
+                            return;
+                        }
 
                         //note: id and name attributes are important. Funny but annoying
                         $(wrapper_1).append('<div class="input-group mb-3"><input type="text" id="mytext_1[]" name="mytext_1[]"  class="form-control" value="'+ dValue_1 + '"><input type="text" id="mycredit_1[]"  class="form-control" value="'+ dCreditTmp + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
@@ -475,27 +491,27 @@
                         var dValue_2 = $("#comboCourses_2").val();
 
                         var dCreditTmp2 = getCredit(dValue_2);
-
+                        var trialCredit_2 = parseInt($("#TotalCredit_2").val()) + parseInt(dCreditTmp2)
+                        var trialTotalCredits = parseInt(dCreditTmp2) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
+                       
                         
                         
 
                         //
-                        if (trialTotalCredits>50 &&  $('#level').val()!=='500' ){
-                            alert("You cannot register more than 50 credits total and 30 credits per semester except in final year" );
+                        if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        }else if(trialTotalCredits>51 &&  $('#level').val()=='400' ){ //final year
+                            alert("You cannot register more than 51 credits (in final year - 400L)" );
                             return;
                         }
-                        // else if(trialTotalCredits>51 &&  $('#level').val()=='500' ){ //final year
-                        //     alert("You cannot register more than 51 credits (in final year - 500L)" );
-                        //     return;
-                        // }
-                        if (trialCredit_2>30 &&  $('#level').val()!=='500' ){
-                            alert("You cannot register more than 50 credits total and 30 credits per semester except in final year" );
+                        if (trialCredit_2>30 &&  $('#level').val()!=='400' ){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
-                        } 
-                        // else if (trialCredit_1>31 &&  $('#level').val()=='500' ){ //final yr
-                        //     alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
-                        //     return;
-                        // }
+                        } else if (trialCredit_2>31 &&  $('#level').val()=='400' ){ //final yr
+                            alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
+                            return;
+                        }
                         
                         $(wrapper_2).append('<div class="input-group mb-3"><input type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><input type="text" id="mycredit_2[]"  class="form-control" value="'+ dCreditTmp2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
                         if (prevValue_2==""){
@@ -822,9 +838,11 @@
                 ];
                     // using the ajax() method directly to get data for comco
                     //                        url: url_global + "get_courses_where/3/"+ limits +"/"+ offset,
+                    //https://localhost/rtps/web/back-end/public/index.php/api/get_courses_where/3/0/0
+                    //                        url: url_global + "get_table/courses_psc/"+ limits +"/"+ offset,
                     $.ajax({
                         type: "POST",
-                        url: url_global + "get_table/courses/"+ limits +"/"+ offset,
+                        url: url_global + "get_courses_where/3/"+ limits +"/"+ offset,
                         data: {},
                         dataType: "json",
                         encode: true,
