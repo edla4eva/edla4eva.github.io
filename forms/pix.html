@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload with Progress</title>
+    <style>
+        #progress-wrapper {
+            display: none;
+            margin-top: 20px;
+        }
+        #progress-bar {
+            width: 0;
+            height: 20px;
+            background-color: green;
+        }
+        #image-preview {
+            display: none;
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <form id="upload-form">
+        <input type="file" id="file-input" accept="image/*">
+        <div id="progress-wrapper">
+            <div id="progress-bar"></div>
+        </div>
+        <img id="image-preview" alt="Image Preview">
+        <button type="submit" id="submit-button" disabled>Submit</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#file-input').change(function() {
+                $('#upload-form').ajaxForm({
+                    beforeSend: function() {
+                        $('#progress-wrapper').show();
+                        $('#progress-bar').width('0%');
+                        $('#image-preview').hide();
+                        $('#submit-button').prop('disabled', true);
+                    },
+                    uploadProgress: function(event, position, total, percentComplete) {
+                        $('#progress-bar').width(percentComplete + '%');
+                    },
+                    success: function(response) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('#image-preview').attr('src', e.target.result).show();
+                        }
+                        reader.readAsDataURL($('#file-input')[0].files[0]);
+                        $('#submit-button').prop('disabled', false);
+                    },
+                    error: function() {
+                        alert('File upload failed.');
+                    }
+                }).submit();
+            });
+        });
+    </script>
+</body>
+</html>
