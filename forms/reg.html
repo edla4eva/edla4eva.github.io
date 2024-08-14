@@ -417,15 +417,15 @@
                 //config
                 urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
                 urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
-                url_global = urlCloud;
+                url_global = urlLocal;
                 glb_Courses ="";
                 glbCredit = 0;
                 glbCredit_1 = 0;
                 glbCredit_2 = 0;
 
                 var max_fields      = 20; //maximum input boxes allowed
-                var wrapper_1   		= $(".input_fields_wrap_1"); //Fields wrapper
-                var wrapper_2   		= $(".input_fields_wrap_2"); //Fields wrapper
+                var wrapper_1   	= $(".input_fields_wrap_1"); //Fields wrapper
+                var wrapper_2   	= $(".input_fields_wrap_2"); //Fields wrapper
                 var add_button_1      = $(".add_field_button_1"); //Add button ID
                 var add_button_2      = $(".add_field_button_2"); //Add button ID
                 // var update_button      = $(".update_field_button"); //Update button ID
@@ -444,23 +444,18 @@
                         var prevValue_1 = $("#CourseCode_1").val();
                         var dValue_1 = $("#comboCourses_1").val();
                         var dCreditTmp = getCredit(dValue_1);
-
+                        console.log(dValue_1);
+                        console.log(dCreditTmp);
                         var trialCredit_1 = parseInt($("#TotalCredit_1").val()) + parseInt(dCreditTmp)
                         var trialTotalCredits = parseInt(dCreditTmp) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
                        
                         //todo compute credit
-                        if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
+                        if (trialTotalCredits>51 &&  $('#level').val()!=='500' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
-                            return;
-                        }else if(trialTotalCredits>51 &&  $('#level').val()=='400' ){ //final year
-                            alert("You cannot register more than 51 credits (in final year - 400L)" );
                             return;
                         }
-                        if (trialCredit_1>30 &&  $('#level').val()!=='400' ){
+                        if (trialCredit_1>30 &&  $('#level').val()!=='500' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
-                            return;
-                        } else if (trialCredit_1>31 &&  $('#level').val()=='400' ){ //final yr
-                            alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
                             return;
                         }
 
@@ -498,18 +493,12 @@
                         
 
                         //
-                        if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
+                        if (trialTotalCredits>50 &&  $('#level').val()!=='500' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
-                            return;
-                        }else if(trialTotalCredits>51 &&  $('#level').val()=='400' ){ //final year
-                            alert("You cannot register more than 51 credits (in final year - 400L)" );
                             return;
                         }
-                        if (trialCredit_2>30 &&  $('#level').val()!=='400' ){
+                        if (trialCredit_2>30 &&  $('#level').val()!=='500' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
-                            return;
-                        } else if (trialCredit_2>31 &&  $('#level').val()=='400' ){ //final yr
-                            alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
                             return;
                         }
                         
@@ -541,8 +530,7 @@
                     glbCredit_1 = removeCourse(1);
                     var sumCredit = calcTotalCredits($("#CourseCode_1").val()); 
                     $("#TotalCredit_1").val(sumCredit);
-                    //$("#TotalCredit_1").val("Removed credit: " + getCredit($(this).val()));
-                    
+
                 });
      
                 $(wrapper_2).on("click",".remove_field_2", function(e){ //user click on remove text
@@ -875,8 +863,30 @@
             }
 
             function getCredit(paramCourse){
+                var dCreditRetVal = 0; // Initialize dCredit with a default value
+                //proposed modification
+                // if ($('#comboCourses_1').val() == paramCourse) {
+                //     // Get credits from the selected option in comboCourses_1 if the value matches paramCourse
+                //     dCreditRetVal = $('#comboCourses_1 option[value="'+ paramCourse + '"]').data('credits');
+                // } else {
+                //     // Otherwise, get credits from the selected option in comboCourses_2
+                //     dCreditRetVal = $('#comboCourses_2').find('option:selected').data('credits');
+                // }
 
-                //var dCredit = glb_Courses.find(paramCourse).course_unit;
+                // if ($('#comboCourses_1').val() == paramCourse) {
+                //     // Get credits from the selected option in comboCourses_1 if the value matches paramCourse
+                //     dCreditRetVal = $('#comboCourses_1 option[value="'+ paramCourse + '"]').data('credits');
+                // } else {
+                //     // Otherwise, get credits from the selected option in comboCourses_2
+                //     dCreditRetVal = $('#comboCourses_2').find('option:selected').data('credits');
+                // }
+                // // Now you can use dCredit as needed
+                // console.log("Credit value: " + dCreditRetVal);
+                // //dCredit = $('#comboCourses_1 option[value="'+ paramCourse + '"]').data('credits');
+                // return dCreditRetVal;
+
+                //stable code
+                var dCredit = glb_Courses.find(paramCourse).course_unit;
                 var x = findElement(glb_Courses, "course_code", paramCourse); // todo: causes error x is undefined
                 console.log('finding ' + paramCourse);
                 console.log(x);
@@ -926,7 +936,11 @@
      
                     //Set  course_code in Value part.
                     option.val(this.course_code);
-     
+                    
+                    // Set course credits in a data attribute using attr
+                    option.attr('data-credits', this.course_unit);
+                    option.attr('data-id', this.id);
+
                     //Add the Option element to DropDownList.
                     if(this.course_semester=="1") comboCourses_1.append(option);
                     if(this.course_semester=="2") comboCourses_2.append(option);
@@ -969,7 +983,6 @@
                         console.log("empty NOT to add:" + varTmpCourse); // Print each element to the console
                     }else{
                         console.log("button to add:" + varTmpCourse); // Print each element to the console
-                        //tmpSumCredit = parseInt(tmpSumCredit) + parseInt(getCredit(tmpCoursesArr[i]))
                         var dCreditTmp = getCredit(varTmpCourse);
                         $(wrapper_1).append('<div class="input-group mb-3"><input type="text" id="mytext_1[]" name="mytext_1[]"  class="form-control" value="'+ varTmpCourse + '"><input type="text" id="mycredit_1[]"  class="form-control" value="'+ dCreditTmp + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box        
                     }            
@@ -987,7 +1000,6 @@
                         console.log("empty NOT to add:" + varTmpCourse); // Print each element to the console
                     }else{
                         console.log("button to add:" + varTmpCourse); // Print each element to the console
-                        //tmpSumCredit = parseInt(tmpSumCredit) + parseInt(getCredit(tmpCoursesArr[i]))
                         var dCreditTmp2 = getCredit(varTmpCourse2);
                         $(wrapper_2).append('<div class="input-group mb-3"><input type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ varTmpCourse2 + '"><input type="text" id="mycredit_2[]"  class="form-control" value="'+ dCreditTmp2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box    
                     }            
