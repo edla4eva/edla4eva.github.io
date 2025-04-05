@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Course Registration Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/reg.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!--  worked <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script> -->
+    <!-- latest -->
+    <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.es.min.js"></script>
+    <!-- <script src="https://unpkg.com/jspdf-autotable@3.5.28/dist/jspdf.plugin.autotable.js"></script> -->
+    <!-- <script src="jspdf.plugin.autotable.js"></script> -->
+
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- todo re enable caching after deployment of stable version -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- end disable cache -->
+</head>
+    <body>
+
+        <div class="container .bg-primary">
+
+            <!-- Add/Remove -->
+            <div class="row">
+                    <div class="col-md-2">
+                    </div>
+                    <!-- p-l-5 padding - left - size5 -->
+                    <div class="col-md-8 border border-primary  ml-3 mb-3 mr-3">
+                        <div id="topButtonsDiv">
+                            
+                            <h1 class="text-center">COURSE REGISTRATION</h1>
+                            <h1 class="text-center">University Of Benin, Benin City</h1>
+                            <h1 class="text-center">Faculty of Physical Science </h1>
+                            <h3 class="text-center">Online Examination Course Registration Form - 2022/2023</h1>
+                           
+                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnStart" 
+                            onclick='startRegView();'>
+                                Start Online Course Registration
+                            </button>
+                            <button class="btn btn-success btn-lg btn-block" type="button" id="btnContinue" 
+                            onclick='continueRegView();'>
+                                Continue Registration
+                            </button>
+                            <div class="form-row" id="continueRegDiv">
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="name">MAT. NO.</label>
+                                        <input type="text" id="searchMatno" name="searchMatno" placeholder="ENG..." required autofocus />
+                                        <label for="psw"><b>Password</b></label>
+                                        <input type="password" placeholder="Enter Password" name="pswSearch" id="pswSearch" required>       
+
+                                        <label for="load_data_button">Click to load your personal data</label>
+    
+                                        <button class="btn btn-outline-success btn-block load_data_button" id="load_reg_data_button" type="button">Load Personal Data</button>
+                                        <!-- <button class="btn btn-outline-success btn-block load_data_button" onClick="initialize" type="button">Cancel</button> -->
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <p></p>
+
+                                    </div>
+                                </div>
+                            </div>    
+
+                        </div>
+
+                        <div id='message_print_all'>
+                            <div id="bypassme">
+                                <h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>
+                                <h4 class="text-center">FACULTY OF PHYSICAL SCIENCES</h4>
+                                <h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2022/2023 SESSION</h5>
+                                <br>
+                            </div>
+                            <div style="float: right;" >
+                                <img id ="img-pix" class="rounded mx-auto d-block" width="150" height="150" src="../images/usr.jpg" />
+                            </div>
+                            <table class="table" border="1">
+                            <!-- <tr><td class="mw-40" style="width: 180px;">-</td><td>-</td></tr> -->
+                            <tr><td>MAT. NO.</td><td  id="td_matno">matno </td></tr>
+                            <tr><td>SURNAME</td><td id="td_surname">student_surname</td></tr>
+                            <tr><td>FIRST NAME</td><td id="td_firstname">student_firstname </td></tr>
+                            <tr><td>OTHER NAMES</td><td id="td_othernames">student_firstname </td></tr>
+                            <tr><td>DEPARTMENT</td><td id="td_department">selDept</td></tr>
+                            <tr><td>MODE OF ENTRY</td><td id="td_mode">mode_of_entry </td></tr>
+                            <tr><td>LEVEL</td><td id="td_level">level </td></tr>
+                            <tr><td>Session</td><td id="td_session">level </td></tr>
+                            <tr><td>PHONE NO.</td><td id="td_phone">phone </td></tr>
+                            <tr><td>GENDER</td><td id="td_gender">gender </td></tr>
+                            </table>
+                            <h5 class="text-center">REGISTER CARRY OVER COURSES FIRST</h5>
+                            <table class="table" border="1" id="table_courses">
+                                <tr><td>FIRST SEMESTER</td><td>SECOND SEMESTER</td></tr>     
+
+                                <tr><td><pre id="td_courses1">course1</pre></td><td><pre id="td_courses2">course2</pre></td></tr>
+                                <tr><td id ="td_total1">Total"  -  "glbCredit_1</td><td id ="td_total2">Total"  -  "glbCredit_2</td> </tr>
+                            </table>
+
+                            <div id="previewButtons">
+                                <button class="btn btn-primary btn-lg btn-block"  type="button" id="btnEdit" onclick="editReg()"> Edit Form </button>
+                                <button class="btn btn-primary btn-lg btn-block"  type="button" id="printForm" onClick="doPrintPDF();">Print Form (Download PDF)</button> <br>
+                                <button class="btn btn-success btn-lg btn-block" id="btnFinalSubmit" type="button" onclick="finalSubmit()">Submit to Course Adviser (Cannot be Undone)</button>
+
+                            </div>
+
+                        </div>
+                        <div id='message_print'>
+
+                        </div>
+                        <form id="hiddenForm">
+                            <input type="text" id="glbCredits" name="glbCredits" value="0" hidden/>
+                            <input type="text" id="glbCredits_1" name="glbCredits_1" value="0" hidden/>
+                            <input type="text" id="glbCredits_2" name="glbCredits_2" value="0" hidden/>
+                            <input type="text" id="glbCourses" name="glbCourses" value="ECP281;CPE311" hidden/>
+                        </form>
+
+                        <form id="regForm" action="" method="post" class="ml-5 mb-3 mr-5 mt-5" enctype="multipart/form-data">
+                            <h1>Online Course Registration</h1>
+                             <h5>Carefully fill the form below then preview before submission!</h5>
+                            <br>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="name">MAT. NO. or REG NO. (For D.E)</label>
+                                    <!-- <input type="text" id="matno" name="matno" placeholder="ENG..." required autofocus /> -->
+                                    <input type="text" id="matno" name="matno" pattern="^[A-Z]{3}\d{7}$|^\d{12}[A-Z]{2}$" 
+                                    title="Matriculation number should start with 3 capital letters followed by 7 digits or 12 digits followed by 2 capital letters." 
+                                    required autofocus>
+                                    <label for="name">Student ID (eg B1...)</label>
+                                    <input type="text" id="student_id" name="student_id" placeholder="B1" required />
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                </div>
+                            </div>
+
+                
+
+                            <br>
+                            <label for="student_surname"><b>SURNAME* (in capital letters e.g ADAMU)</b></label>
+                            <input type="text" placeholder="SURNAME" name="student_surname" id="student_surname" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="dob"><b>Firstname * (e.g Smith)</b></label>
+                                    <input type="text" placeholder="Firstname *" name="student_firstname"  id="student_firstname"  required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="student_othernames"><b>Othernames (e.g Sadiku)</b></label>               
+                                    <input type="text" placeholder="Othernames" name="student_othernames" id="student_othernames">                           
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="dept_idr">Dept ID (eg 7 for Computer Science)</label>
+                                  <input type="text" class="form-control" id="student_dept_idr" name="student_dept_idr" value = "1" hidden>
+                                  <select id="dept_idr" name="dept_idr" class="form-control">
+                                    <option value="7" selected>7. Computer Science</option>
+                                    <option value="22">22	Geology</option>
+                                    <option value="22">23	Mathematics</option>
+                                    <option value="22">24	Physics</option>
+                                    <option value="21">21	Chemistry</option>
+                                    <option value="18">25   Statistics</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="inputState">Session</label>
+                                  <select id="session_idr" name="session_idr" class="form-control">
+                                    <option value="2020/2021">2020/2021</option>
+                                    <option value="2021/2022">2021/2022</option>
+                                    <option value="2022/2023" selected>2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2024/2025">2024/2025</option>
+                                    <option value="2025/2026">2024/2025</option>
+                                    <option value="2026/2027">2024/2025</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="level">Level</label>
+                                  <select id="level" name="level" class="form-control">
+                                    <option value="100" selected>100</option>
+                                    <option value="200" >200</option>
+                                    <option value="300" >300</option>
+                                    <option value="400" >400</option>
+                                    <option value="500" >500</option>
+                                      <option value="600" >500</option>
+                                      <option value="700" >500</option>
+                                      <option value="800" >500</option>
+                                  </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                  <label for="year_of_entry">Year of Entry (e.g 2019)</label>
+                                  <select id="year_of_entry" name="year_of_entry" class="form-control">
+                                    <option value = "2012" selected>2012</option>
+                                    <option value = "2013">2013</option>
+                                    <option value = "2014">2014</option>
+                                    <option value = "2015">2015</option>
+                                    <option value = "2016">2016</option>
+                                    <option value = "2017">2017</option>
+                                    <option value = "2018">2018</option>
+                                    <option value = "2019">2019</option>
+                                    <option value = "2020">2020</option>
+                                    <option value = "2021">2021</option>
+                                    <option value = "2022">2022</option>
+                                    <option value = "2023">2023</option>
+                                    <option value = "2024">2024</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="session_idr_of_entry">Session of Entry</label>
+                                  <select id="session_idr_of_entry" name="session_idr_of_entry" class="form-control">
+                                    <option value="2012/2013" selected>2012/2013</option>
+                                    <option value="2013/2014">2013/2014</option>
+                                    <option value="2014/2015">2014/2015</option>
+                                    <option value="2015/2016">2015/2016</option>
+                                    <option value="2016/2017">2016/2017</option>
+                                    <option value="2017/2018">2017/2018</option>
+                                    <option value="2018/2019">2018/2019</option>
+                                    <option value="2019/2020">2019/2020</option>
+                                    <option value="2020/2021">2020/2021</option>
+                                    <option value="2021/2022">2021/2022</option>
+                                    <option value="2022/2023">2022/2023</option>
+                                    <option value="2023/2024">2023/2024</option>
+                                    <option value="2024/2025">2024/2025</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="mode_of_entry">Mode of Entry (UME or DE)</label>
+                                  <select id="mode_of_entry" name="mode_of_entry" class="form-control">
+                                    <option value="UME" selected>UME</option>
+                                    <option value="DE">DE</option>
+                                    <option value="TRANSFER">TRANSFER</option>
+                                  </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="psw"><b>Password</b></label>
+                                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>       
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="psw-repeat"><b>Repeat Password</b></label>
+                                    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+                                </div>
+
+                            </div>                                    
+
+
+                            <hr>
+
+                             <p>Bio Data</p>
+                             <label for="dob"><b>Date of birth *</b></label>
+                             <input type="text" placeholder="Date of birth *" name="dob"  id="dob" onfocus="(this.type = 'date')" required>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="email"><b>Email *</b></label>
+                                    <input type="text" placeholder="Email *" name="email"  id="email"  required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phone"><b>Phone</b></label>               
+                                    <input type="text" placeholder="Phone" name="phone" id="phone">                           
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="gender">Gender</label>
+                                  <select id="gender" name="gender" class="form-control">
+                                    <option selected>male</option>
+                                    <option>female</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="Fees_Status">Fees</label>
+                                  <select id="Fees_Status" name="Fees_Status" class="form-control">
+                                    <option selected>paid</option>
+                                    <option>unpaid</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="status">Status</label>
+                                  <select id="status" name="status" class="form-control">
+                                    <option selected>Successful</option>
+                                    <option>Probation</option>
+                                    <option>Carry Over</option>
+                                    <option>Transfer</option>
+                                  </select>
+                                </div>
+                            </div>
+
+                            <p>Upload recent passport size Photo (Must be on red background; Max size 20kb; tip: use pix in Kofa)</p><input id="file_info"></input>
+                            <!-- <button onClick="upload.php">Upload</button> -->
+                            <img id="previewPix" class="rounded mx-auto d-block" width="80" height="80" src="" />
+                            <input type="file" id="file_pix" name="file_pix" class="form-control"  required>
+                            <br><hr>
+                            <h3>Add/Remove Courses</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input class="btn btn-outline-info btn-lg btn-block" type="button" id="btnGenerate" value="Load Courses" onclick="PopulateDropDownList(900,0)" />
+                                    <div class="spinner-border"></div>
+
+                                </div>
+                               
+                            </div>
+
+                            
+
+
+
+                            <div class="row p-l-5">
+                                <div class="input_fields_wrap_1 col-md-6">
+                                    <h5>First Semester Courses</h5>
+                                    <input type="text" name="CourseCode_1" id="CourseCode_1" class="CourseCode_1" readonly />
+
+                                    <!-- class="js-example-basic-single w-75 p-1"  -->
+                                    <div class="input-group mb-3"><select class="js-example-basic-single w-75 p-1"  id="comboCourses_1"></select><div class="input-group-append"><button class="btn btn-outline-success add_field_button_1" type="button">Add</button></div></div>
+                                </div>
+                                <div class="input_fields_wrap_2 col-md-6">
+                                    <h5>Second Semester Courses</h5>
+                                    <input type="text"  class="CourseCode_2" id="CourseCode_2" name="CourseCode_2" value="" readonly />
+
+                                    <div class="input-group mb-3"><select class="w-75 p-1"  id="comboCourses_2"></select><div class="input-group-append_2"><button class="btn btn-outline-success add_field_button_2" type="button">Add</button></div></div>
+                                </div>
+                                
+                                <hr />
+                                <br>
+                                <!-- <p>TODO: NA Courses</p> -->
+                            </div>
+                             
+                            <p>Cross check the entries you made on the form before you submit</p>
+                            <div id="buttonsDiv">
+                         
+                        
+
+                                
+                                <br>
+
+    
+                                
+                                <p class = "text text-info">Before you submit you must agree to the terms and conditions</p><a href="regulations.pdf"  target="_blank">Download PDF (Opens in new window)</a>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="chkTAR" >
+                                    <label class="form-check-label" for="chkTAR">
+                                    I have downloaded and read the terms and condition
+                                    </label>
+                                </div>
+                                <button type="submit"  class="btn btn-success btn-lg btn-block" id=" btnPreview" type="button">
+                                    Preview before Submitting
+                                </button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                    <div class="col-md-2">
+                        <!-- Right side -->
+                    </div>
+
+            </div>
+        </div>
+        <hr>
+        
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script> -->
+        <!-- Worked -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+        <!-- causes error -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+        <!-- JavaScript add new form and respond to select(combo) changes-->
+        <script>
+            $(document).ready(function() {
+                //config
+                urlLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                url_global = urlCloud;
+                glb_Courses ="";
+                glbCredit = 0;
+                glbCredit_1 = 0;
+                glbCredit_2 = 0;
+
+                var max_fields      = 18; //maximum input boxes allowed
+                var wrapper_1   		= $(".input_fields_wrap_1"); //Fields wrapper
+                var wrapper_2   		= $(".input_fields_wrap_2"); //Fields wrapper
+                var add_button_1      = $(".add_field_button_1"); //Add button ID
+                var add_button_2      = $(".add_field_button_2"); //Add button ID
+                // var update_button      = $(".update_field_button"); //Update button ID
+                var x_1 = 1; //initlal text box count
+                var x_2 = 1; //initlal text box count
+                
+                //setup view
+                initializeFormView();
+
+                //Add course
+                $(add_button_1).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    if(x_1 < max_fields && $("#comboCourses_1").val()!==null){ //max input box allowed
+                        x_1++; //text box increment
+
+                        var prevValue_1 = $("#CourseCode_1").val();
+                        var dValue_1 = $("#comboCourses_1").val();
+                        var dCreditTmp = getCredit(dValue_1);
+                        //todo compute credit
+                        if ((glbCredit + parseInt(dCreditTmp) >50) && $('#level').val()!=='400'){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        }else{
+                           
+                            glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+
+                        if ((glbCredit_1 + parseInt(dCreditTmp) >30) && $('#level').val()!=='400'){
+                            alert("You cannot register more than 50 credits total and 30 credits per semester" );
+                            return;
+                        }else{
+                           
+                            glbCredit_1 = parseInt(glbCredit_1) + parseInt(dCreditTmp);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+
+                        $(wrapper_1).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_1[]" name="mytext_1[]" class="form-control" value="'+ dValue_1 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_1" type="button">Remove</button></div></div>'); //add input box
+                        if (prevValue_1==""){
+                            $("#CourseCode_1").val(  dValue_1 ); //change value   
+                        }else{
+                            $("#CourseCode_1").val( prevValue_1 + ";" + dValue_1 ); //change value                        
+                        }
+                    }
+                });
+
+                $(add_button_2).click(function(e){ //on add input button click
+                e.preventDefault();
+                    if(x_2 < max_fields && $("#comboCourses_2").val()!==null){ //max input box allowed
+                        x_2++; //text box increment
+                        var prevValue_2 = $("#CourseCode_2").val();
+                        var dValue_2 = $("#comboCourses_2").val();
+
+                        var dCreditTmp2 = getCredit(dValue_2);
+                        //todo compute credit
+                        if ((glbCredit + parseInt(dCreditTmp2) >50) && $('#level').val()!=='500'){
+                            alert("You cannot register more than 50 credits and 30 credits per semester" );
+                            return;
+                        }else{              
+                            glbCredit = parseInt(glbCredit) + parseInt(dCreditTmp2);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+
+                        if ((glbCredit_2 + parseInt(dCreditTmp2) >30) && $('#level').val()!=='500'){
+                            alert("You cannot register more than 50 credits and 30 credits per semester" );
+                            return;
+                        }else{              
+                            glbCredit_2 = parseInt(glbCredit_2) + parseInt(dCreditTmp2);
+                            //alert("within 50 credits. Total credits: " + glbCredit);  
+                        }
+
+                        $(wrapper_2).append('<div class="input-group mb-3"><input placeholder="Enter Course Code" type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
+                        if (prevValue_2==""){
+                            $("#CourseCode_2").val(  dValue_2 ); //change value   
+                        }else{
+                            $("#CourseCode_2").val( prevValue_2 + ";" + dValue_2 ); //change value                        
+                        }
+                    }
+                });
+
+                //remove courses
+                $(wrapper_1).on("click",".remove_field_1", function(e){ //user click on remove text
+                    e.preventDefault(); 
+                    $(this).parent('div').parent('div').remove(); x_1--;
+                    //removeCourse_1(x_1);
+                    
+                    
+                    // //todo: New way
+                    // //get em
+                    // var glbCreditStored = parseInt(localStorage.getItem('glbCreditStored')) || 0;
+                    // //modify
+                    // glbCreditStored = glbCreditStored-2
+                    // // Update the global credit variable and store it in localStorage
+                    // localStorage.setItem('glbCreditStored', glbCreditStored);
+
+
+
+                    $('#glbCredits').val(glbCredit);
+                    $('#glbCredits_1').val(glbCredit_1);
+                    $('#glbCredits_2').val(glbCredit_2);
+                    glbCredit_1 = removeCourse(1, glbCredit_1);
+                    // glbCredit=glbCredit_1+parseInt($('#glbCredits_2').val()); //recompute
+                    // console.log("Total Cred " + glbCredit);
+                    });
+     
+                $(wrapper_2).on("click",".remove_field_2", function(e){ //user click on remove text
+                    e.preventDefault(); 
+                    $(this).parent('div').parent('div').remove(); x_2--;
+                    //removeCourse_1(x_2);
+                    $('#glbCredits').val(glbCredit);
+                    $('#glbCredits_1').val(glbCredit_1);
+                    $('#glbCredits_2').val(glbCredit_2);
+
+                    glbCredit_2 = removeCourse(2, glbCredit_2);
+                    // glbCredit=parseInt($('#glbCredits_1').val()) + glbCredit_2; //recompute
+                    // console.log("Total Cred " + glbCredit);
+                    
+                    });
+                
+                $("#file").on("change", function (e) {
+                    var count=1;
+                    var files = e.currentTarget.files; // puts all files into an array
+                    var approvedHTML="";
+                    // call them as such; files[0].size will get you the file size of the 0th file
+                    for (var x in files) {
+                        var filesize = ((files[x].size/1024)/1024).toFixed(4); // MB
+                        if (files[x].name != "item" && typeof files[x].name != "undefined" && filesize <= 10) { 
+                            if (count > 1) {
+                                approvedHTML += ", "+files[x].name;
+                            }
+                            else {
+                                approvedHTML += files[x].name;
+                            }
+                            count++;
+                        }
+                    }
+                    $("#file_info").val(approvedHTML);
+                    console.log(approvedHTML);
+
+
+                    //todo run upload here
+                    $("#previewPix").attr("src", url_global + "jpg/"+ $("#matno").val());
+                    let formData = new FormData();
+                    var dFile =  $("#file_pix")[0].files[0];
+                    formData.append('file_pix', dFile);
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "upload/"+ MatNo,
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        encode: true,
+                        success: function (data) {
+                            //show the uploaded image
+                            $("#previewPix").attr("src", url_global + "jpg/"+ $("#matno").val());
+                        }
+                    });
+                    
+                });
+                
+
+                //ajax for posting form data
+                $("#regForm").submit(function (event) {
+                    event.preventDefault(); //stop submit
+                    //getData().done(handleData);
+                    //data: form.serialize(),
+                    // data: formData,
+                    $("#topButtonsDiv").hide();
+                    var selDept= $('#dept_idr :selected').text();
+                    var MatNo = $("#matno").val();
+                    var form = $( this );
+                    //upload picture
+                    //saveFile(url_global + "upload/"+ MatNo);
+                    // let formData = new FormData(this);
+                    // formData.append($("#file_pix").prop('files')[0]);
+                    let formData = new FormData();
+                    var dFile =  $("#file_pix")[0].files[0];
+                    formData.append('file_pix', dFile);
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "upload/"+ MatNo,
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        encode: true,
+                        success: function (data) {
+                            //show the uploaded image
+                            $("#previewPix").attr("src", url_global + "jpg/"+ MatNo);
+                        }
+                    });
+                    //upload records
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "store_reg",
+                        data: form.serialize(),
+                        dataType: "json",
+                        encode: true,
+                        success: function (data) {
+
+                            //fetch data to verify if post was successful
+                            $.ajax({
+                                type: "GET",
+                                url: url_global + "get_reg/"+ MatNo,
+                                data: form.serialize(),
+                                dataType: "json",
+                                encode: true,
+                                success: function (data) 
+                                        {
+                                            //alert("Successful"); 
+                                            console.log("get succeeded \n");
+                                            //console.log(data);
+
+                                            let text = '';
+                                            let matno = "ENG999000";
+                                            let surname= "OLA";
+                                            let course='CPE000';
+                                            let course2='CPE000';
+                                            let credit ='0';
+                                            let credit2 ='0';
+
+                                            if(data.lenght>0){alert("data returned");}
+                                            console.log("coursecode \n" + data[0].CourseCode_1);
+                                            let formatedCourses1 = data[0].CourseCode_1 .replace(/;/g, "; ");
+                                            let formatedCourses2 = data[0].CourseCode_2 .replace(/;/g, "; ");
+                                            
+                                            let arrayCourse1 = data[0].CourseCode_1 .split(";");
+                                            let arrayCourse2 = data[0].CourseCode_2 .split(";");
+                                            let picMatno =  data[0].matno ;  //img                
+
+                                            glbCredit_1=0;
+                                            glbCredit_2=0;
+                                            let strCourses1 = ""
+                                            let strCourses2 = ""
+                                            for (let i = 0; i < arrayCourse1.length; i++ ) {
+                                                course = arrayCourse1[i];
+                                                credit=getCredit(course);
+                                                strCourses1 = strCourses1 + course + "  -  " + credit + "\n";
+                                                glbCredit_1 = parseInt(glbCredit_1) + parseInt(credit);
+                                               // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            }
+                                            for (let i = 0; i < arrayCourse2.length; i++ ) {
+                                                course2=arrayCourse2[i];
+                                                credit2=getCredit(course2);
+                                                strCourses2 = strCourses2 + course2 + "  -  " + credit2 + "\n";
+                                                glbCredit_2 = parseInt(glbCredit_2) + parseInt(credit2);
+                                               // text += '<tr><td>' + course + '</td><td>'+ credit + '</td><td>' + course + '</td><td class="mw-40" style="width: 180px;">' + credit + '</td></tr>';
+                                            }
+
+                                            $("#td_matno").html(data[0].matno);
+                                            $("#td_firstname").html(data[0].student_firstname);
+                                            $("#td_othernames").html(data[0].student_othernames);
+                                            $("#td_surname").html(data[0].student_surname);
+                                            $("#td_level").html(data[0].level);
+                                            $("#td_session").html(data[0].session_idr);
+                                            $("#td_phone").html(data[0].phone);
+                                            $("#td_gender").html(data[0].gender);
+                                            $("#td_department").html(selDept);
+                                            $("#td_mode").html(data[0].mode_of_entry);
+                                            $("#td_courses1").html(strCourses1);
+                                            $("#td_total1").html("Total - " + glbCredit_1);
+                                            
+                                            $("#td_courses2").html(strCourses2);
+                                            $("#td_total2").html("Total - " + glbCredit_2);
+                                            $('#img-pix').attr("src", url_global + 'jpg/' + picMatno);
+
+                                            previewRegForm();
+                                            $("#message")
+                                                .html('<h2 class="text-center">Online Departmental Course Registration</h2>')
+                                                .append("<p></p>")
+                                                .hide()
+                                                .fadeIn(1500, function () {
+                                                    $("#message").append(
+                                                    "<p><a  href='https://edla4eva.github.io/forms/reg.html'>Back to Registration </a></p>" );
+                                                });
+                                        },
+                                        error: function (data) {
+                                            console.log(data);
+                                            alert("An error occured while fetching data \n" + data.responseJSON.message);
+                                        }
+                            });
+                            //console.log(data); //no need to do this again
+
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            alert("An error occured posting data\n" + data.responseJSON.message);
+
+                        }
+                    });
+
+
+                    });
+
+
+                //load registration data
+                $(load_reg_data_button).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    $("#topButtonsDiv").hide(); //hide em
+
+                    // grab the ID and send AJAX request if not (empty / only whitespace)
+                    var MatNo = $("#searchMatno").val();
+                    if (/\S/.test(MatNo)) {
+
+                        // using the ajax() method directly
+                        $.ajax({
+                            type : "GET",
+                            url : url_global + "get_reg/" + MatNo,
+                            cache : false,
+                            dataType : "json",
+                            data : "{matno: 1}",
+                            success : load_returnd_records_into_fields,
+                            error: function(xhr) { alert("No record found in database, start registration from scratch \n" + xhr.status); }
+                        });
+
+                    }
+                    else {
+                        alert("No MATNO supplied");
+                    }
+
+                });
+                
+                //todo: load images
+                $('#btn').on('click', function() {
+                    var img = $('<img />', {src : 'http://webpage.com/images/' + $('#imagename').val() +'.png'});
+                    img.appendTo('body');
+                });
+
+                
+                $('#chkTAR').change(function() {
+                    if(this.checked) {
+                        //var returnVal = confirm("Are you sure?");
+                        $(this).prop("checked", true);
+                        $("#btnPreview").removeAttr("disabled");
+                        $("#btnPreview").prop('disabled', false)
+                    }
+                    $("#btnPreview").removeAttr("disabled");
+                    
+                });
+
+                //validate button
+
+
+                  // Submit button
+                  $("#submitbtn").click(function () {
+                    validateUsername();
+                    validateMatNo();
+                    //validateConfirmPassword();
+                    //validateEmail();
+                    if (
+                      usernameError == true &&
+                      matnoError == true
+                    ) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+            });
+
+            function removeCourse(semester, glbCredit_n) {
+                if(semester==1){
+                    var rows = document.getElementsByName('mytext_1[]');
+                    var Course_Code_Input =$("#CourseCode_1");
+                } else{
+                    var rows = document.getElementsByName('mytext_2[]');
+                    var Course_Code_Input =$("#CourseCode_2");
+                }
+                    
+                var selectedRows = [];
+                // $(wrapper_2).append('<div class="input-group mb-3">
+                //<input placeholder="Enter Course Code" type="text" id="mytext_2[]" 
+                //name="mytext_2[]" class="form-control" value="'+ dValue_2 + '">
+                //<div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 
+                //remove_field_2" type="button">Remove</button></div></div>'); //add input box
+                Course_Code_Input.val("" ); //clear it
+                for (var i = 0, l = rows.length; i < l; i++) {
+
+                    if (!rows[i].value=="") {
+                        selectedRows.push(rows[i]);
+                    }
+
+                    //compute credits
+                    console.log("In remove course Computing credit for "+ rows[i].value);
+                    // glbCredit = glbCredit - getCredit(rows[i].value);
+                    // if(semester==1) glbCredit_1 = glbCredit_1 - getCredit(rows[i].value);
+                    // else glbCredit_2 = glbCredit_2 - getCredit(rows[i].value);
+                    // console.log("Total Credits "+ glbCredit);
+
+                    glbCredit_n = glbCredit_n - getCredit(rows[i].value);
+                    console.log("Sem. Credits "+ glbCredit_n);
+                    console.log("In fxn Total. Credits "+ parseInt($('#glbCredits').val()));
+                    //$('#glbCredits')
+
+                    var prevValue = Course_Code_Input.val( );
+                    if (prevValue==""){
+                        Course_Code_Input.val(  rows[i].value );
+                    }else{
+                        Course_Code_Input.val( prevValue + ";" + rows[i].value  ); //change value                        
+                    }
+                }
+                return glbCredit_n;
+            }
+            
+            // function removeCourse_1() {
+            //         var rows_1 = document.getElementsByName('mytext_1[]');
+            //         var selectedRows = [];
+
+            //         $("#CourseCode_1").val("" ); //clear it
+            //         for (var i = 0, l = rows_1.length; i < l; i++) {
+            //             if (!rows_1[i].value=="") {
+            //                 selectedRows.push(rows_1[i]);
+            //             }
+
+            //             var prevValue_1 = $("#CourseCode_1").val( );
+            //             if (prevValue_1==""){
+            //                 $("#CourseCode_1").val(  rows_1[i].value );
+            //             }else{
+            //                 $("#CourseCode_1").val( prevValue_1 + ";" + rows_1[i].value  ); //change value                        
+            //             }
+            //         }
+            // }
+            
+            // function removeCourse_2() {
+
+            //         var rows = document.getElementsByName('mytext_2[]');
+            //         var selectedRows = [];
+
+            //         $("#CourseCode_2").val("" ); //clear it
+            //         for (var i = 0, l = rows.length; i < l; i++) {
+            //             if (!rows[i].value=="") {
+            //                 selectedRows.push(rows[i]);
+            //             }
+
+            //             var prevValue_2 = $("#CourseCode_2").val( );
+            //             if (prevValue_2==""){
+            //                 $("#CourseCode_2").val(  rows[i].value );
+            //             }else{
+            //                 $("#CourseCode_2").val( prevValue_2 + ";" + rows[i].value  ); //change value                        
+            //             }
+            //         }
+            // }
+                 
+            function PopulateDropDownList(limits, offset) {
+                //load combos
+                $("#btnGenerate").attr("disabled", "true");
+                var courses_1 = [
+                    { course_code: "CPE211", course_title: "CPE211-Title", course_unit: 3},
+                    { course_code: "CPE311", course_title: "CPE311", course_unit: 3},
+                    { course_code: "CPE321", course_title: "CPE321", course_unit: 3 },
+                    { course_code: "CPE481", course_title: "CPE481", course_unit: 3}
+                ];
+                var courses_2 = [
+                    { course_code: "CPE212", course_title: "CPE212-Title", course_unit: 3},
+                    { course_code: "CPE313", course_title: "CPE313" , course_unit: 3},
+                    { course_code: "CPE82", course_title: "CPE82", course_unit: 3},
+                    { course_code: "CPE572", course_title: "CPE572", course_unit: 3}
+                ];
+                    // using the ajax() method directly to get data for comco
+                    //                        url: url_global + "get_courses_where/3/"+ limits +"/"+ offset,
+                    $.ajax({
+                        type: "POST",
+                        url: url_global + "get_table/courses/"+ limits +"/"+ offset,
+                        data: {},
+                        dataType: "json",
+                        encode: true,
+                        }).done(function (data) {
+                            courses_1=data;
+                            courses_2=data;
+                            glb_Courses =data;
+
+                            fillcomboWithReturnedData(data, true);
+                            console.log(data);
+                            console.log("glb_Courses");
+                            console.log(glb_Courses);
+                            $("#btnGenerate").removeAttr("disabled");
+                        });
+                
+            }
+            function findElement(arr, propName, propValue) {
+                for (var i=0; i < arr.length; i++)
+                    if (arr[i][propName] == propValue)
+                    return arr[i];
+
+                // will return undefined if not found; you could return a default instead
+            }
+
+            function getCredit(paramCourse){
+
+                //var dCredit = glb_Courses.find(paramCourse).course_unit;
+                var x = findElement(glb_Courses, "course_code", paramCourse); // todo: causes error x is undefined
+                console.log('finding ' + paramCourse);
+                console.log(x);
+                //console.log(glb_Courses);
+                //alert(x["course_unit"]); // displays "hi"
+                if (x==undefined){
+                    dCredit=0;
+                }else{
+                    dCredit = x["course_unit"];
+                }
+
+
+                if (dCredit==undefined){
+                    dCredit=0;
+                }
+                return dCredit
+            }
+            function fillcomboWithReturnedData(courses_1, clearPrevious){
+                //first clear all courses
+                if (clearPrevious){
+                    $("#CourseCode_1").val(  "");
+                    $("#CourseCode_2").val(  "");
+                }
+
+
+                //<select id="comboCourses_1"></select>
+                $("#comboCourses_1").empty();
+                $("#comboCourses_2").empty();
+     
+                var comboCourses_1 = $("#comboCourses_1");
+                var comboCourses_2 = $("#comboCourses_2");
+                $(courses_1).each(function () {
+                    
+                    var option = $("<option />");
+                    //Set course_title in Text part.
+                    option.html(this.course_code + "-" + this.course_title + " (" + this.course_unit + ")");
+     
+                    //Set  course_code in Value part.
+                    option.val(this.course_code);
+     
+                    //Add the Option element to DropDownList.
+                    if(this.course_semester=="1") comboCourses_1.append(option);
+                    if(this.course_semester=="2") comboCourses_2.append(option);
+                    //comboCourses_1.append(option);
+                    //comboCourses_2.append(option);
+                });
+            }
+
+            function load_returnd_records_into_fields(data) {
+                var frm = $("#regForm");
+                var i;
+
+                console.dir(data);      // for debug
+
+                for (i in data) {
+                    console.log(i); 
+                    frm.find('[name="' + i + '"]').val(data[i]);
+                    for (field in data[i]) {
+                        console.log(data[i][field]); 
+                        frm.find('[name="' + field + '"]').val(data[i][field]);
+                    }
+                }
+
+                frm.show();
+                $("#continueRegDiv").show();
+                
+            }
+      
+            //todo: validations
+            function validateUsername() {
+                let usernameValue = $("#usernames").val();
+                if (usernameValue.length == "") {
+                  $("#usercheck").show();
+                  usernameError = false;
+                  return false;
+                } else if (usernameValue.length < 3 || usernameValue.length > 10) {
+                  $("#usercheck").show();
+                  $("#usercheck").html("**length of username must be between 3 and 10");
+                  usernameError = false;
+                  return false;
+                } else {
+                  $("#usercheck").hide();
+                }
+            }
+             
+              // Validate Email
+            function validateMatNo() {
+                  const matno = document.getElementById("matno");
+                matno.addEventListener("blur", () => {
+                    //let regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+                    let regex = /^ENG([0-9]){2,7}$/;
+                    let s = matno.value;
+                    if (regex.test(s)) {
+                    matno.classList.remove("is-invalid");
+                          matnoError = true;
+                    } else {
+                    matno.classList.add("is-invalid");
+                          matnoError = false;
+                    }
+                  });
+            }
+
+            function doPrint(){
+                printJS({ printable: 'regForm', type: 'html', header: 'Online Course Registration (c)2023' });
+            }
+
+            function doPrintPDF() {
+                urlPDFCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
+                urlPDFLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
+                urlPDF = urlPDFCloud;
+                $(previewButtons).hide();
+                var pdf = new jsPDF('p', 'pt', 'letter');
+                var pageHeight = pdf.internal.pageSize.height || pdf.internal.pageSize.getHeight();
+                var pageWidth = pdf.internal.pageSize.width || pdf.internal.pageSize.getWidth();
+                var fontSize = 14;
+                var startHeight = 150;
+
+                // Header
+                let strH = "COURSE REGISTRATION FORM"; //  "LATE REGISTRATION FORM";
+                pdf.setTextColor(100);
+                pdf.setFontSize(18);
+                pdf.text(strH, pageWidth / 2, 40, {align: 'center'});
+                
+                pdf.text("UNIVERSITY OF BENIN, FACULTY OF PHYSICAL SCIENCES", pageWidth / 2, 60, {align: 'center'});
+                pdf.text("EXAMINATION COURSE REGISTRATION FORM " + $("#td_session").html(), pageWidth / 2, 80, {align: 'center'});
+
+                //low performance
+                var img = new Image()
+                //img.src = '../images/usr.jpg'
+                try{
+                    img.src  = urlPDF + 'jpg/' + $("#td_matno").html();
+                    pdf.addImage(img, 'jpg', pageWidth-160, startHeight-fontSize, 100, 100);
+                }catch(err){
+                    img.src = '../images/usr.jpg';
+                    pdf.addImage(img, 'jpg', pageWidth-160, startHeight-fontSize, 100, 100);
+                }
+
+                //end header
+
+                //content
+                let strC = "TEMP VAL";
+                pdf.setTextColor(100);
+                pdf.setFontSize(14);
+                        
+
+                pdf.text("MAT. NO.:", 80, startHeight-(fontSize*1), {align: 'left'});
+                pdf.text($("#td_matno").html(), 300, startHeight-(fontSize*1), {align: 'left'}); //val
+
+                pdf.text("SURNAME:", 80, startHeight+(fontSize*1), {align: 'left'});
+                pdf.text($("#td_surname").html(), 300, startHeight+(fontSize*1), {align: 'left'}); //val
+
+                pdf.text("FIRST NAME:", 80, startHeight+(fontSize*3), {align: 'left'});
+                pdf.text($("#td_firstname").html(), 300, startHeight+(fontSize*3), {align: 'left'}); //val
+
+                pdf.text("OTHER NAMES:", 80, startHeight+(fontSize*5), {align: 'left'});
+                pdf.text($("#td_othernames").html(), 300, startHeight+(fontSize*5), {align: 'left'}); //val
+
+                pdf.text("DEPARTMENT:", 80, startHeight+(fontSize*7), {align: 'left'});
+                pdf.text($("#td_department").html(), 300, startHeight+(fontSize*7), {align: 'left'});
+
+                pdf.text("MODE OF ENTRY:", 80, startHeight+(fontSize*9), {align: 'left'});
+                pdf.text($("#td_mode").html(), 300, startHeight+(fontSize*9), {align: 'left'}); //val
+
+                pdf.text("PHONE NO.:", 80, startHeight+(fontSize*11), {align: 'left'});
+                pdf.text($("#td_phone").html(), 300, startHeight+(fontSize*11), {align: 'left'}); //val
+
+                pdf.text("GENDER:", 80, startHeight+(fontSize*13), {align: 'left'});
+                pdf.text($("#td_gender").html(), 180, startHeight+(fontSize*13), {align: 'left'}); //val
+
+                pdf.text("LEVEL:", 300, startHeight+(fontSize*13), {align: 'left'});
+                pdf.text($("#td_level").html(), 380, startHeight+(fontSize*13), {align: 'left'}); //val
+
+                pdf.setLineWidth(0.5);
+                pdf.line(80, startHeight+(fontSize*14), pageWidth-80, startHeight+(fontSize*14)); //x1,y1,x2,y2
+
+                //---courses
+                pdf.text("FIRST SEMESTER", 80, startHeight+(fontSize*16), {align: 'left'});
+                pdf.text("SECOND SEMESTER", 300, startHeight+(fontSize*16), {align: 'left'}); //val
+                
+                pdf.line(80, startHeight+(fontSize*17), pageWidth-80, startHeight+(fontSize*17)); //x1,y1,x2,y2
+
+                pdf.text($("#td_courses1").html(), 80, startHeight+(fontSize*19), {align: 'left'});
+                pdf.text($("#td_courses2").html(), 300, startHeight+(fontSize*19), {align: 'left'}); //val
+            
+                pdf.line(80, pageHeight-160-fontSize, pageWidth-80, pageHeight-160-fontSize); //x1,y1,x2,y2
+                pdf.text($("#td_total1").html(), 80, pageHeight  - 160 + fontSize, {align: 'left'});
+                pdf.text($("#td_total2").html(), 300, pageHeight  - 160 + fontSize, {align: 'left'}); //val
+                pdf.line(80, pageHeight-160+fontSize*2, pageWidth-80, pageHeight-160+fontSize*2); //x1,y1,x2,y2
+            
+            //sign
+                pdf.line(80, pageHeight-100, 220, pageHeight-100); //x1,y1,x2,y2
+                pdf.text("Course Adviser\'s Sign", 80, pageHeight  - 100 + fontSize, {align: 'left'});
+                
+                pdf.line(400, pageHeight-100, 550, pageHeight-100); //x1,y1,x2,y2
+                pdf.text("Student\'s Sign", 420, pageHeight  - 100 + fontSize, {align: 'left'}); //val
+            
+                pdf.line(200,pageHeight  - 60, pageWidth-200, pageHeight  - 60); //x1,y1,x2,y2
+                pdf.text("Dean\'s Sign",  pageWidth / 2,  pageHeight  - 60+ fontSize, {align: 'center'}); //val
+            
+            
+
+
+                //end content
+
+                // FOOTER
+                
+
+                let str = "RTPS Online Registration Software (eddie.olaye@gmail.com) " + Date();
+                pdf.setTextColor(100);
+                pdf.setFontSize(10);
+                pdf.text(str, pageWidth / 2, pageHeight  - 10, {align: 'center'});
+                //end footer
+
+                // source can be HTML-formatted string, or a reference to...
+                source = $('#message_print')[0];
+
+                // we support special element handlers. Register them with jQuery-style 
+                // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+                // There is no support for any other type of selectors 
+                // (class, of compound) at this time.
+                specialElementHandlers = {
+                    // element with id of "bypass" - jQuery style selector
+                    '#bypassme': function (element, renderer) {
+                        // true = "handled elsewhere, bypass text extraction"
+                        return true
+                    }
+                };
+                margins = {
+                    top: 80,
+                    bottom: 60,
+                    left: 40,
+                    width: 522
+                };
+                // all coords and widths are in jsPDF instance's declared units
+                // 'inches' in this case
+                pdf.fromHTML(
+                source, // HTML string or DOM elem ref.
+                margins.left+20, // x coord
+                margins.top+100, { // y coord
+                    'width': margins.width, // max width of content on PDF
+                    'elementHandlers': specialElementHandlers
+                },
+
+                function (dispose) {
+                    // dispose: object with X, Y of the last line add to the PDF 
+                    //          this allow the insertion of new lines after html
+                    pdf.save('onlineCourseRegistration.pdf');
+                }, margins);
+            }
+
+            async function saveFile(url){
+
+                let formData = new FormData();
+                var dFile =  $("#file_pix").get(0).files;
+                formData.append('file_pix', dFile[0]);
+                await fetch(url, {method: "POST", body: formData});
+            }
+
+            function initializeFormView(){
+                $("#regForm").hide();
+                $("#message_print_all").hide();
+                
+                $("#continueRegDiv").hide();
+
+            }
+            function startRegView(){
+
+                $("#btnContinue").attr("disabled","true"); 
+                $("#regForm").show(); 
+                $("#topButtonsDiv").hide(); 
+                $("#continueRegDiv").hide();
+            }
+            function continueRegView(){
+                $("#continueRegDiv").show();
+            }
+            function previewRegForm(){
+                $("#message_print_all").show();
+                $(btnFinalSubmit).show();
+                $("#regForm").hide();
+            }
+            function editReg(){
+
+                //method 1
+                //$(btnEdit).hide();
+                $(btnFinalSubmit).hide();
+                $(message_print_all).hide();
+                $(regForm).show();
+
+
+                //method 2
+                //location.reload();
+                //clear all courses so that student must restart
+                // $("#CourseCode_1").val(  "");
+                // $("#CourseCode_2").val(  "");
+            }
+            function finalSubmit(){
+                //console.log(document.body);
+                $(btnEdit).hide();
+                $(btnFinalSubmit).hide();
+                $(printForm).show(); //this line causes error DOM?
+                //todo set submit at backend
+
+                let formData = new FormData();
+                var MatNo = $("#matno").val();
+                $.ajax({
+                        type: "POST",
+                        url: url_global + "final_submit_reg/" + MatNo,
+                        data: formData,
+                        encode: true,
+                        success: function (data) {
+
+                        }
+                    });
+
+            }
+
+
+
+
+        </script>
+
+
+
+      
+
+
+
+    </body>
+</html>
