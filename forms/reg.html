@@ -1043,7 +1043,7 @@
                 urlPDFCloud = 'https://www.rtps.keminsoft.site/public/index.php/api/';
                 urlPDFLocal = 'http://localhost/rtps/web/back-end/public/index.php/api/';
                 urlPDF = urlPDFCloud;
-                $(previewButtons).hide();
+                //$(previewButtons).hide(); dont hide edit after downloading form
                 var pdf = new jsPDF('p', 'pt', 'letter');
                 var pageHeight = pdf.internal.pageSize.height || pdf.internal.pageSize.getHeight();
                 var pageWidth = pdf.internal.pageSize.width || pdf.internal.pageSize.getWidth();
