@@ -82,7 +82,7 @@
                             <div id="bypassme">
                                 <h2 class="text-center">UNIVERSITY OF BENIN, BENIN CITY</h2>
                                 <h4 class="text-center">FACULTY OF ENGINEERING</h4>
-                                <h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 4/2025 SESSION</h5>
+                                <h5 class="text-center">EXAMINATION COURSE REGISTRATION FORM 2024/2025 SESSION</h5>
                                 <br>
                             </div>
                             <div style="float: right;" >
@@ -198,7 +198,7 @@
                                     <option value="2020/2021">2020/2021</option>
                                     <option value="2021/2022">2021/2022</option>
                                     <option value="2022/2023">2022/2023</option>
-                                    <option value="2023/2024" >2023/2024</option>
+                                    <option value="2023/2024">2023/2024</option>
                                     <option value="2024/2025" selected>2024/2025</option>
                                     <option value="2025/2026">2025/2026</option>
                                     <option value="2026/2027">2026/2027</option>
@@ -449,18 +449,12 @@
                         var trialTotalCredits = parseInt(dCreditTmp) + parseInt($("#TotalCredit_1").val()) + parseInt($("#TotalCredit_2").val()) 
                        
                         //todo compute credit
-                        if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
+                        if (trialTotalCredits>50 &&  $('#level').val()!=='500' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
-                            return;
-                        }else if(trialTotalCredits>51 &&  $('#level').val()=='400' ){ //final year
-                            alert("You cannot register more than 51 credits (in final year - 400L)" );
                             return;
                         }
-                        if (trialCredit_1>30 &&  $('#level').val()!=='400' ){
+                        if (trialCredit_1>30 &&  $('#level').val()!=='500' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
-                            return;
-                        } else if (trialCredit_1>31 &&  $('#level').val()=='400' ){ //final yr
-                            alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
                             return;
                         }
 
@@ -498,21 +492,14 @@
                         
 
                         //
-                        if (trialTotalCredits>50 &&  $('#level').val()!=='400' ){
+                        if (trialTotalCredits>50 &&  $('#level').val()!=='500' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
-                        }else if(trialTotalCredits>51 &&  $('#level').val()=='400' ){ //final year
-                            alert("You cannot register more than 51 credits (in final year - 400L)" );
-                            return;
                         }
-                        if (trialCredit_2>30 &&  $('#level').val()!=='400' ){
+                        if (trialCredit_2>30 &&  $('#level').val()!=='500' ){
                             alert("You cannot register more than 50 credits total and 30 credits per semester" );
                             return;
-                        } else if (trialCredit_2>31 &&  $('#level').val()=='400' ){ //final yr
-                            alert("You cannot register more than 31 credits per semester (in final year - 400L)" );
-                            return;
                         }
-                        
                         $(wrapper_2).append('<div class="input-group mb-3"><input type="text" id="mytext_2[]" name="mytext_2[]" class="form-control" value="'+ dValue_2 + '"><input type="text" id="mycredit_2[]"  class="form-control" value="'+ dCreditTmp2 + '"><div class="input-group-append"><button class="btn btn-danger mb-0 mt-1 ml-1 remove_field_2" type="button">Remove</button></div></div>'); //add input box
                         if (prevValue_2==""){
                             $("#CourseCode_2").val(  dValue_2 ); //change value   
